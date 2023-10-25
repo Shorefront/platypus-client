@@ -1,12 +1,13 @@
 use leptos::*;
-use leptos_struct_table::*;
 
 use tmflib::tmf629::customer::Customer;
+use tmflib::tmf632::organization::Organization;
 
 #[component]
 fn App() -> impl IntoView {
 
-    let c1 = Customer::new(String::From("A Customer"));
+    let org = Organization::new("My Org".to_owned());
+    let c1 = Customer::new(org);
 
     let customers = create_rw_signal(vec![c1]);
 
