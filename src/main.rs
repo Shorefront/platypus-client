@@ -1,8 +1,16 @@
 use leptos::*;
 use leptos_router::*;
 
+use tmflib::tmf620::catalog::Catalog;
+use tmflib::tmf620::category::Category;
 use tmflib::tmf629::customer::Customer;
 use tmflib::tmf632::organization::Organization;
+use tmflib::tmf632::individual::Individual;
+
+mod model;
+
+use model::tmf620::catalog::{CatalogTable,CatalogView};
+use model::common::{Menu,GenericTable};
 
 #[component]
 fn CustomerRow(customer : Customer) -> impl IntoView {
@@ -12,16 +20,23 @@ fn CustomerRow(customer : Customer) -> impl IntoView {
 }
 
 #[component]
-fn IndividualTable() -> impl IntoView {
+fn CategoryTable() -> impl IntoView {
+    let cat1 = Category::new("Root".to_string());
+    let categories = vec![cat1];
     view! {
-        <div>
-        <h2>Individual Table</h2>
-        <table>
-            <tr>
-                <th>Name</th>
-            </tr>
-        </table>
-        </div>
+        <GenericTable items=categories/>
+    }
+    
+}
+
+#[component]
+fn IndividualTable() -> impl IntoView {
+    let ind1 = Individual::new("Ryan");
+    let ind2 = Individual::new("John");
+    let ind3 = Individual::new("Fred");
+    let individuals = vec![ind1,ind2,ind3];
+    view! {
+            <GenericTable items=individuals/>
     }
 }
 
@@ -33,31 +48,7 @@ fn CustomerTable() -> impl IntoView {
     let c2 = Customer::new(org2);
     let customers = vec![c1,c2];
     view! {
-        <div>
-        <h2>Customer Table</h2>
-            <table>
-                <tr>
-                    <th>Id</th><th>Customer</th>
-                </tr>
-         
-                {customers.into_iter()
-                    .map(|c| {
-                        CustomerRow(CustomerRowProps{ customer: c})
-                    }).collect_view()
-                }
-            </table>
-        </div>
-    }
-}
-
-#[component]
-fn Menu() -> impl IntoView {
-    view!{
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/tmflib/tmf629/customer">"Party / Customer"</a></li>
-            <li><a href="/tmflib/tmf632/individual">"Party / Individual"</a></li>
-        </ul>
+        <GenericTable items=customers/>
     }
 }
 
@@ -83,6 +74,8 @@ fn App1() -> impl IntoView {
             <main>
                 <Routes>
                     <Route path="/" view=Home/>
+                    <Route path="/tmflib/tmf620/catalog" view=CatalogTable/>
+                    <Route path="/tmflib/tmf620/category" view=CategoryTable/>
                     <Route path="/tmflib/tmf629/customer" view=CustomerTable/>
                     <Route path="/tmflib/tmf632/individual" view=IndividualTable/>
                 </Routes>
