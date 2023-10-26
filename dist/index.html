@@ -1,6 +1,8 @@
-<!DOCTYPE html><html><head></head>
+<!DOCTYPE html><html><head>
+<link rel="preload" href="/platypus-client-7936c5a5dddfa75f_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+<link rel="modulepreload" href="/platypus-client-7936c5a5dddfa75f.js"></head>
     <body>
-<script>(function () {
+<script type="module">import init from '/platypus-client-7936c5a5dddfa75f.js';init('/platypus-client-7936c5a5dddfa75f_bg.wasm');</script><script>(function () {
     var protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     var url = protocol + '//' + window.location.host + '/_trunk/ws';
     var poll_interval = 5000;
