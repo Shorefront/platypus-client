@@ -14,11 +14,11 @@ fn TableRow<T : HasId + HasName>(item : T) -> impl IntoView {
 #[component]
 pub fn GenericTable<T : HasId + HasName>(items : Vec<T>) -> impl IntoView {
     view! {
-        <div>
-        <h2>{T::get_class().to_uppercase()}</h2>
-            <table style="border: 1px solid;">
-                <tr style="background-color: yellow;">
-                    <th>{ T::get_class()} <span>" Listing"</span></th>
+        <div style="float: left; ">
+        <h2>{T::get_class().to_uppercase()} List</h2>
+            <table style="border: 1px solid;width: 30%;">
+                <tr>
+                    <th>{ T::get_class()}</th>
                 </tr>
          
                 {items.into_iter()
@@ -39,6 +39,8 @@ pub fn Menu() -> impl IntoView {
             <li>
                 "TMF620 Product Catalog"
                 <ul>
+                    <li><a href="/tmflib/tmf620/category">"Categories"</a></li>
+                    <li><a href="/tmflib/tmf620/catalog">"Catalog"</a></li>
                     <li><a href="/tmflib/productCatalogManagement/category">"Categories"</a></li>
                     <li><a href="/tmflib/productCatalogManagement/catalog">"Catalog"</a></li>
                     <li><a href="/tmflib/productCatalogManagement/productOffering">"Product Offers"</a></li>
