@@ -1,20 +1,26 @@
-//! Category View
+//! Category Views
+
 use leptos::*;
+use crate::model::common::GenericTable;
+use tmflib::tmf620::category::Category;
 
 #[component]
 pub fn CategoryTable() -> impl IntoView {
-    view! {    
-        <p>"Category Table"</p>
-        <table>
-        </table>
+    let cat1 = Category::new("Root".to_string());
+    let categories = vec![cat1];
+    view! {
+        <GenericTable items=categories/>
     }
+    
 }
 
 #[component]
-pub fn CategoryView(_id : String) -> impl IntoView {
-    view! {
-        <p>
-        "Some Category View"
-        </p>
+pub fn CategoryView() -> impl IntoView {
+    view!{
+        <div>
+            <h2>"Category Details"</h2>
+            <table>
+            </table>
+        </div>
     }
 }
