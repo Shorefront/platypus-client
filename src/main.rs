@@ -56,7 +56,7 @@ fn App1() -> impl IntoView {
         <Router>
             <h1>"Platypus - TMF Management"</h1>
             <nav>
-                {Menu()}
+                <Menu />
             </nav>
             <main>
                 <Routes>
