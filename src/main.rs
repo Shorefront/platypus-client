@@ -69,6 +69,7 @@ fn App1() -> impl IntoView {
                     <Route path="/tmflib/tmf632/individual" view=IndividualTable/>
                     <Route path="/tmflib/tmf632/organization" view=OrganizationTable>
                         <Route path=":id" view=OrganizationView/>
+                        <Route path="*" view=OrganizationTable/>
                     </Route>
                 </Routes>
             </main>
