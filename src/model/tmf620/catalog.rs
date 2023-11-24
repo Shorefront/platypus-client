@@ -4,14 +4,17 @@ use leptos::*;
 #[component]
 pub fn CatalogTable() -> impl IntoView {
     view! {
-
+        <p>"A Catalog Table"</p>
+        <table>
+        </table>
     }
 }
 
 #[component]
-pub fn CatalogView(id : String) -> impl IntoView {
+pub fn CatalogView(_id : String) -> impl IntoView {
     view! {
-        <svg>
-        </svg>
+        <p>
+        "Some catalogue view"
+        </p>
     }
 }
