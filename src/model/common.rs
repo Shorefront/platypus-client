@@ -15,10 +15,10 @@ fn TableRow<T : HasId + HasName>(item : T) -> impl IntoView {
 pub fn GenericTable<T : HasId + HasName>(items : Vec<T>) -> impl IntoView {
     view! {
         <div>
-        <h2>{T::get_class().to_uppercase()} Table</h2>
-            <table>
-                <tr>
-                    <th>{ T::get_class()}</th>
+        <h2>{T::get_class().to_uppercase()}</h2>
+            <table style="border: 1px solid;">
+                <tr style="background-color: yellow;">
+                    <th>{ T::get_class()} <span>" Listing"</span></th>
                 </tr>
          
                 {items.into_iter()
@@ -35,22 +35,24 @@ pub fn GenericTable<T : HasId + HasName>(items : Vec<T>) -> impl IntoView {
 pub fn Menu() -> impl IntoView {
     view!{
         <ul>
-            <li><a href="/">Home</a></li>
+            <li><a href="/">"Home"</a></li>
             <li>
-                TMF620 Product Catalog
+                "TMF620 Product Catalog"
                 <ul>
-                    <li><a href="/tmflib/tmf620/category">Categories</a></li>
-                    <li><a href="/tmflib/tmf620/catalog">Catalog</a></li>
+                    <li><a href="/tmflib/productCatalogManagement/category">"Categories"</a></li>
+                    <li><a href="/tmflib/productCatalogManagement/catalog">"Catalog"</a></li>
+                    <li><a href="/tmflib/productCatalogManagement/productOffering">"Product Offers"</a></li>
+                    <li><a href="/tmflib/productCatalogManagement/productSpecification">"Product Specification"</a></li>
                 </ul>
             </li>
             <li>
-            TMF629
+            "TMF629"
                 <ul>
                     <li><a href="/tmflib/tmf629/customer">"Customer"</a></li>
                 </ul>
             </li>
             <li>
-                TMF632 Party
+                "TMF632 Party"
                 <ul>
                     <li><a href="/tmflib/tmf632/individual">"Individual"</a></li>    
                     <li><a href="/tmflib/tmf632/organization">"Organization"</a></li>
