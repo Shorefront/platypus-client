@@ -1,16 +1,20 @@
 use leptos::*;
 use leptos_router::*;
 
-use tmflib::tmf620::catalog::Catalog;
-use tmflib::tmf620::category::Category;
 use tmflib::tmf629::customer::Customer;
 use tmflib::tmf632::organization::Organization;
-use tmflib::tmf632::individual::Individual;
 
 mod model;
 
-use model::tmf620::catalog::{CatalogTable,CatalogView};
+use model::tmf620::catalog::CatalogTable;
+use model::tmf620::category::CategoryTable;
+use model::tmf620::product_specification::ProductSpecificationTable;
+use model::tmf620::product_offering::ProductOfferingTable;
 use model::common::{Menu,GenericTable};
+use model::tmf632::individual::IndividualTable;
+use model::tmf632::organization::{OrganizationTable,OrganizationView};
+
+#[warn(missing_docs)]
 
 #[component]
 fn CustomerRow(customer : Customer) -> impl IntoView {
@@ -19,26 +23,9 @@ fn CustomerRow(customer : Customer) -> impl IntoView {
     }
 }
 
-#[component]
-fn CategoryTable() -> impl IntoView {
-    let cat1 = Category::new("Root".to_string());
-    let categories = vec![cat1];
-    view! {
-        <GenericTable items=categories/>
-    }
-    
-}
 
-#[component]
-fn IndividualTable() -> impl IntoView {
-    let ind1 = Individual::new("Ryan");
-    let ind2 = Individual::new("John");
-    let ind3 = Individual::new("Fred");
-    let individuals = vec![ind1,ind2,ind3];
-    view! {
-            <GenericTable items=individuals/>
-    }
-}
+
+
 
 #[component]
 fn CustomerTable() -> impl IntoView {
@@ -74,10 +61,15 @@ fn App1() -> impl IntoView {
             <main>
                 <Routes>
                     <Route path="/" view=Home/>
-                    <Route path="/tmflib/tmf620/catalog" view=CatalogTable/>
-                    <Route path="/tmflib/tmf620/category" view=CategoryTable/>
+                    <Route path="/tmflib/productCatalogManagement/catalog" view=CatalogTable/>
+                    <Route path="/tmflib/productCatalogManagement/category" view=CategoryTable/>
+                    <Route path="/tmflib/productCatalogManagement/productSpecification" view=ProductSpecificationTable/>
+                    <Route path="/tmflib/productCatalogManagement/productOffering" view=ProductOfferingTable/>
                     <Route path="/tmflib/tmf629/customer" view=CustomerTable/>
                     <Route path="/tmflib/tmf632/individual" view=IndividualTable/>
+                    <Route path="/tmflib/tmf632/organization" view=OrganizationTable>
+                        <Route path=":id" view=OrganizationView/>
+                    </Route>
                 </Routes>
             </main>
         </Router>
