@@ -50,14 +50,14 @@ pub fn Menu() -> impl IntoView {
             <li>
             "TMF629"
                 <ul>
-                    <li><a href="/tmflib/tmf629/customer">"Customer"</a></li>
+                    <li><a href="/tmf-api/tmf629/v4/customer">"Customer"</a></li>
                 </ul>
             </li>
             <li>
                 "TMF632 Party"
                 <ul>
-                    <li><a href="/tmflib/tmf632/individual">"Individual"</a></li>    
-                    <li><a href="/tmflib/tmf632/organization">"Organization"</a></li>
+                    <li><a href="/tmf-api/tmf632/v4/individual">"Individual"</a></li>    
+                    <li><a href="/tmf-api/tmf632/v4/organization">"Organization"</a></li>
                 </ul>
             </li>
         </ul>
