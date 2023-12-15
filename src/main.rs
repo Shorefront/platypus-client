@@ -50,7 +50,16 @@ fn Home() -> impl IntoView {
 }
 
 #[component]
-fn App1() -> impl IntoView {
+fn NotFound() -> impl IntoView {
+    view!{
+        <div>
+            <p>"Cannot find that page"</p>
+        </div>
+    }
+}
+
+#[component]
+fn Platypus() -> impl IntoView {
 
     view!{
         <Router>
@@ -65,12 +74,13 @@ fn App1() -> impl IntoView {
                     <Route path="/tmflib/productCatalogManagement/category" view=CategoryTable/>
                     <Route path="/tmflib/productCatalogManagement/productSpecification" view=ProductSpecificationTable/>
                     <Route path="/tmflib/productCatalogManagement/productOffering" view=ProductOfferingTable/>
-                    <Route path="/tmflib/tmf629/customer" view=CustomerTable/>
-                    <Route path="/tmflib/tmf632/individual" view=IndividualTable/>
-                    <Route path="/tmflib/tmf632/organization" view=OrganizationTable>
+                    <Route path="/tmf-api/tmf629/v4/customer" view=CustomerTable/>
+                    <Route path="/tmf-api/tmf632/v4/individual" view=IndividualTable/>
+                    <Route path="/tmf-api/tmf632/v4/organization" view=OrganizationTable>
                         <Route path=":id" view=OrganizationView/>
-                        <Route path="*" view=OrganizationTable/>
+                        <Route path="*any" view=NotFound/>
                     </Route>
+                    <Route path="*any" view=NotFound />
                 </Routes>
             </main>
         </Router>
@@ -78,5 +88,5 @@ fn App1() -> impl IntoView {
 }
 
 fn main() {
-    leptos::mount_to_body(App1)
+    leptos::mount_to_body(Platypus)
 }
