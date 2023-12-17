@@ -39,12 +39,10 @@ pub fn Menu() -> impl IntoView {
             <li>
                 "TMF620 Product Catalog"
                 <ul>
-                    <li><a href="/tmflib/tmf620/category">"Categories"</a></li>
-                    <li><a href="/tmflib/tmf620/catalog">"Catalog"</a></li>
-                    <li><a href="/tmflib/productCatalogManagement/category">"Categories"</a></li>
-                    <li><a href="/tmflib/productCatalogManagement/catalog">"Catalog"</a></li>
-                    <li><a href="/tmflib/productCatalogManagement/productOffering">"Product Offers"</a></li>
-                    <li><a href="/tmflib/productCatalogManagement/productSpecification">"Product Specification"</a></li>
+                    <li><a href="/tmflib/productCatalogManagement/v4/category">"Categories"</a></li>
+                    <li><a href="/tmflib/productCatalogManagement/v4/catalog">"Catalog"</a></li>
+                    <li><a href="/tmflib/productCatalogManagement/v4/productOffering">"Product Offers"</a></li>
+                    <li><a href="/tmflib/productCatalogManagement/v4/productSpecification">"Product Specification"</a></li>
                 </ul>
             </li>
             <li>
