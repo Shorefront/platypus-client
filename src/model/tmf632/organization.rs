@@ -3,6 +3,7 @@
 use tmflib::tmf632::organization::Organization;
 
 use leptos::*;
+use leptos_router::Outlet;
 
 use crate::GenericTable;
 
@@ -13,7 +14,14 @@ pub fn OrganizationTable() -> impl IntoView {
     let org3 = Organization::new(String::from("Apples"));
     let orgs = vec![org1,org2,org3];
     view! {
+        <div style="width:80%; padding: 5px;">
+        <div style="float: left;">
             <GenericTable items=orgs/>
+        </div>
+        <div style="float: right;">
+            <Outlet/>
+        </div>
+        </div>
     }
 }
 
