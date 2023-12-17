@@ -70,15 +70,19 @@ fn Platypus() -> impl IntoView {
             <main>
                 <Routes>
                     <Route path="/" view=Home/>
-                    <Route path="/tmflib/productCatalogManagement/catalog" view=CatalogTable/>
-                    <Route path="/tmflib/productCatalogManagement/category" view=CategoryTable/>
-                    <Route path="/tmflib/productCatalogManagement/productSpecification" view=ProductSpecificationTable/>
-                    <Route path="/tmflib/productCatalogManagement/productOffering" view=ProductOfferingTable/>
+                    <Route path="/tmflib/productCatalogManagement/v4/catalog" view=CatalogTable/>
+                    <Route path="/tmflib/productCatalogManagement/v4/category" view=CategoryTable>
+                    
+                    </Route>
+                    <Route path="/tmflib/productCatalogManagement/v4/productSpecification" view=ProductSpecificationTable/>
+                    <Route path="/tmflib/productCatalogManagement/v4/productOffering" view=ProductOfferingTable/>
                     <Route path="/tmf-api/tmf629/v4/customer" view=CustomerTable/>
                     <Route path="/tmf-api/tmf632/v4/individual" view=IndividualTable/>
                     <Route path="/tmf-api/tmf632/v4/organization" view=OrganizationTable>
-                        <Route path=":id" view=OrganizationView/>
-                        <Route path="*any" view=NotFound/>
+                        <Route path=":id" view=OrganizationView />
+                        <Route path="" view=|| view! {
+                            <p>"Please select an organisation to view more info."</p>
+                        } />
                     </Route>
                     <Route path="*any" view=NotFound />
                 </Routes>
