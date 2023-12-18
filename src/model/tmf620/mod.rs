@@ -8,7 +8,7 @@ pub mod product_offering_price;
 use leptos::*;
 use leptos_router::*;
 
-use catalog::{CatalogTable,CatalogView};
+use catalog::{CatalogList,CatalogDetails};
 use category::{CategoryTable,CategoryView};
 use product_offering::{ProductOfferingTable,ProductOfferingView};
 use product_specification::{ProductSpecificationTable,ProductSpecificationView};
@@ -25,8 +25,8 @@ pub fn NoOptionView() -> impl IntoView {
 pub fn CatalogRoutes() -> impl IntoView {
     view! {
         <Route path="/tmf-api/productCatalogManagement/v4" view=CatalogHome>
-            <Route path="catalog" view=CatalogTable >
-                <Route path=":id" view=CatalogView /> 
+            <Route path="catalog" view=CatalogList >
+                <Route path=":id" view=CatalogDetails /> 
                 <Route path="" view=NoOptionView />
             </Route>
             <Route path="category" view=CategoryTable >
