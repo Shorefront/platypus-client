@@ -20,7 +20,7 @@ pub fn NoOptionView() -> impl IntoView {
 pub fn CustomerRoutes() -> impl IntoView {
     view! {
         <Route path="/tmf-api/tmf629/v4" view=CustomerHome>
-            <Route path="customer" view=CustomerTable >
+            <Route path="customer" view=CustomerList >
                 <Route path=":id" view=CustomerView />
                 <Route path="" view=NoOptionView />
             </Route>
@@ -38,7 +38,7 @@ pub fn CustomerHome() -> impl IntoView {
             </ul>
         </nav>
 
-        <CustomerTable />
+        <Outlet />
     }
 }
 
@@ -52,7 +52,7 @@ pub fn CustomerView() -> impl IntoView {
 }
 
 #[component]
-pub fn CustomerTable() -> impl IntoView {
+pub fn CustomerList() -> impl IntoView {
     let org1 = Organization::new("Customer One".to_string());
     let cust1 = Customer::new(org1);
     let org2 = Organization::new("Customer Two".to_string());
