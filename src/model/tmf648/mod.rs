@@ -5,7 +5,6 @@ use leptos::*;
 use leptos_router::*;
 
 use tmflib::HasId;
-
 use tmflib::tmf648::quote::Quote;
 
 #[component]
@@ -24,7 +23,7 @@ pub fn QuoteHome() -> impl IntoView {
             </ul>
         </nav>
 
-        <QuoteList />
+        <Outlet />
     }
 }
 
