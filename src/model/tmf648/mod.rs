@@ -4,10 +4,9 @@
 use leptos::*;
 use leptos_router::*;
 
-use tmflib::{HasId,HasName};
+use tmflib::HasId;
 
 use tmflib::tmf648::quote::Quote;
-use crate::model::common::GenericTable;
 
 #[component]
 pub fn NoOptionView() -> impl IntoView {
