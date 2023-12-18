@@ -15,8 +15,7 @@ fn TableRow<T : HasId + HasName>(item : T) -> impl IntoView {
 pub fn GenericTable<T : HasId + HasName>(items : Vec<T>) -> impl IntoView {
     view! {
         <div style="float: left; ">
-        <h2>{T::get_class().to_uppercase()}</h2>
-            <table style="border: 1px solid;width: 30%;">
+            <table>
                 <tr>
                     <th>{ T::get_class()}</th>
                 </tr>
