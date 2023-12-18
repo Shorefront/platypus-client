@@ -10,6 +10,13 @@ use tmflib::tmf648::quote::Quote;
 use crate::model::common::GenericTable;
 
 #[component]
+pub fn NoOptionView() -> impl IntoView {
+    view! {
+        <p>"Please select an option"</p>
+    }
+}
+
+#[component]
 pub fn QuoteHome() -> impl IntoView {
     view! {
         <nav>
@@ -47,22 +54,19 @@ pub fn QuoteList() -> impl IntoView {
 #[component]
 pub fn QuoteDetail() -> impl IntoView {
     view! {
-
+        <p>"Quote Detail View"</p>
     }
 }
 
 #[component(transparent)]
 pub fn QuoteRoutes() -> impl IntoView {
     view! {
-        <Route path="/tmf-api/quoteManagement/v4" view=QuoteHome>
-            <Route path="customer" view=QuoteList >
+        <Route path="/tmf-api/tmf648/v4" view=QuoteHome>
+            <Route path="quote" view=QuoteList >
                 <Route path=":id" view=QuoteDetail />
+                <Route path="" view=NoOptionView />
             </Route>
-            <Route path="" view=|| {
-                view! {
-                    <p>"Please select something"</p>
-                }
-            } />
+            <Route path="" view=NoOptionView />
         </Route>
     }
 }
