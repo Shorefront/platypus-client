@@ -5,24 +5,29 @@ pub mod organization;
 use leptos_router::*;
 use leptos::*;
 
-use organization::{OrganizationTable,OrganizationView};
+use organization::{OrganizationList,OrganizationView};
 use individual::{IndividualTable,IndividualView};
+
+#[component]
+pub fn NoOptionView() -> impl IntoView {
+    view! {
+        <p>"Please select an option"</p>
+    }
+}
 
 #[component(transparent)]
 pub fn PartyRoutes() -> impl IntoView {
     view! {
         <Route path="/tmf-api/tmf632/v4" view=PartyHome>
-            <Route path="organisation" view=OrganizationTable >
+            <Route path="organization" view=OrganizationList >
                 <Route path=":id" view=OrganizationView />
+                <Route path="" view=NoOptionView />
             </Route>
             <Route path="individual" view=IndividualTable >
                 <Route path=":id" view=IndividualView />
+                <Route path="" view=NoOptionView />
             </Route>
-            <Route path="" view=|| {
-                view! {
-                    <p>"Please select something"</p>
-                }
-            } />
+            <Route path="" view=NoOptionView />
         </Route>
     }
 }
@@ -36,8 +41,6 @@ pub fn PartyHome() -> impl IntoView {
                 <li><a href="/tmf-api/tmf632/v4/individual">"Individual"</a></li>
             </ul>
         </nav>
-        <div>
         <Outlet />
-        </div>
     }
 }
