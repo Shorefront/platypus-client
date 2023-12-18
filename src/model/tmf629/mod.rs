@@ -56,7 +56,7 @@ pub fn CustomerTable() -> impl IntoView {
     let custs = vec![cust1,cust2];
     view! {
         <div class="list">
-        <GenericTable items=custs/>
+            <GenericTable items=custs/>
         </div>
         <div class="detail">
             <Outlet />
