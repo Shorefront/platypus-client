@@ -3,7 +3,8 @@
 use tmflib::tmf632::organization::Organization;
 
 use leptos::*;
-use leptos_router::Outlet;
+use leptos_router::*;
+
 
 use crate::GenericTable;
 
@@ -25,8 +26,15 @@ pub fn OrganizationTable() -> impl IntoView {
     }
 }
 
+#[derive(Default,Params,PartialEq)]
+struct OrgParams {
+    id: Option<String>,
+}
+
 #[component]
 pub fn OrganizationView() -> impl IntoView {
+    let _params = use_params::<OrgParams>();
+
     view! {
         <h3>Organization View</h3>
         <table>
