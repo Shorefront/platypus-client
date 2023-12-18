@@ -14,7 +14,7 @@ fn TableRow<T : HasId + HasName>(item : T) -> impl IntoView {
 #[component]
 pub fn GenericTable<T : HasId + HasName>(items : Vec<T>) -> impl IntoView {
     view! {
-        <div style="float: left; ">
+        <div class="gentable">
             <table>
                 <tr>
                     <th>{ T::get_class()}</th>
@@ -39,13 +39,13 @@ pub fn Menu() -> impl IntoView {
                 <a href="/tmf-api/productCatalogManagement/v4">"TMF620"</a>
             </li>
             <li>
-                <a href="/tmf-api/tmf629/v4">"TMF629"</a>
+                <a href="/tmf-api/tmf629/v4/customer">"TMF629"</a>
             </li>
             <li>
                 <a href="/tmf-api/tmf632/v4">"TMF632"</a>
             </li>
             <li>
-                <a href="/tmf-api/tmf648/v4">"TMF648"</a>
+                <a href="/tmf-api/tmf648/v4/quote">"TMF648"</a>
             </li>
         </ul>
     }
