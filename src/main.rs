@@ -7,6 +7,7 @@ use tmflib::tmf632::organization::Organization;
 mod model;
 
 use model::tmf620::CatalogRoutes;
+use model::tmf629::CustomerRoutes;
 use model::tmf632::PartyRoutes;
 use model::common::{Menu,GenericTable};
 
@@ -62,6 +63,7 @@ fn Platypus() -> impl IntoView {
                 <Routes>
                     <Route path="/" view=Home/>
                     <CatalogRoutes />
+                    <CustomerRoutes />
                     <PartyRoutes />
                     <Route path="*any" view=NotFound />
                 </Routes>
