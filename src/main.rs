@@ -9,6 +9,7 @@ mod model;
 use model::tmf620::CatalogRoutes;
 use model::tmf629::CustomerRoutes;
 use model::tmf632::PartyRoutes;
+use model::tmf648::QuoteRoutes;
 use model::common::{Menu,GenericTable};
 
 #[warn(missing_docs)]
@@ -65,6 +66,7 @@ fn Platypus() -> impl IntoView {
                     <CatalogRoutes />
                     <CustomerRoutes />
                     <PartyRoutes />
+                    <QuoteRoutes />
                     <Route path="*any" view=NotFound />
                 </Routes>
             </main>
