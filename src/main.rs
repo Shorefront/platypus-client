@@ -14,6 +14,11 @@ use model::common::{Menu,GenericTable};
 #[component]
 fn Home() -> impl IntoView {
     view!{
+        <nav>
+            <ul>
+                ""
+            </ul>
+        </nav>
         <div>
         <h2>TMF Data Management</h2>
         <p>This is an experiemental TMF data management platform written in Rust.</p>
