@@ -39,7 +39,7 @@ pub fn Menu() -> impl IntoView {
                 <a href="/tmf-api/productCatalogManagement/v4">"TMF620"</a>
             </li>
             <li>
-                <a href="/tmf-api/customerManagement/v4">"TMF629"</a>
+                <a href="/tmf-api/tmf629/v4">"TMF629"</a>
             </li>
             <li>
                 <a href="/tmf-api/tmf632/v4">"TMF632"</a>

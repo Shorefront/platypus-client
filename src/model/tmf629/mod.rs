@@ -9,18 +9,22 @@ use crate::model::common::GenericTable;
 use tmflib::tmf629::customer::Customer;
 use tmflib::tmf632::organization::Organization;
 
+#[component]
+pub fn NoOptionView() -> impl IntoView {
+    view! {
+        <p>"Please select an option"</p>
+    }
+}
+
 #[component(transparent)]
 pub fn CustomerRoutes() -> impl IntoView {
     view! {
-        <Route path="/tmf-api/customerManagement/v4" view=CustomerHome>
+        <Route path="/tmf-api/tmf629/v4" view=CustomerHome>
             <Route path="customer" view=CustomerTable >
                 <Route path=":id" view=CustomerView />
+                <Route path="" view=NoOptionView />
             </Route>
-            <Route path="" view=|| {
-                view! {
-                    <p>"Please select something"</p>
-                }
-            } />
+            <Route path="" view=NoOptionView />
         </Route>
     }
 }
