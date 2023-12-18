@@ -19,7 +19,7 @@ pub fn QuoteHome() -> impl IntoView {
     view! {
         <nav>
             <ul class="menu">
-                <li>Quote</li>
+                <li><a href="quote">"Quote"</a></li>
             </ul>
         </nav>
 
@@ -52,7 +52,7 @@ pub fn QuoteList() -> impl IntoView {
 #[component]
 pub fn QuoteDetail() -> impl IntoView {
     view! {
-        <p>"Quote Detail View"</p>
+        <p>"Quote Details"</p>
     }
 }
 

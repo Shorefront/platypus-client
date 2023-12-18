@@ -34,7 +34,7 @@ pub fn CustomerHome() -> impl IntoView {
     view! {
         <nav>
             <ul class="menu">
-                <li>"Customer"</li>
+                <li><a href="customer">"Customer"</a></li>
             </ul>
         </nav>
 
