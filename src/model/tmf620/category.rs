@@ -1,6 +1,7 @@
 //! Category Views
 
 use leptos::*;
+use leptos_router::Outlet;
 use crate::model::common::GenericTable;
 use tmflib::tmf620::category::Category;
 
@@ -9,7 +10,12 @@ pub fn CategoryTable() -> impl IntoView {
     let cat1 = Category::new("Root".to_string());
     let categories = vec![cat1];
     view! {
-        <GenericTable items=categories/>
+        <div class="list">
+            <GenericTable items=categories/>
+        </div>
+        <div class="detail">
+            <Outlet />
+        </div>
     }
     
 }
