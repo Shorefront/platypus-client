@@ -1,0 +1,68 @@
+/// Quote Module
+/// 
+
+use leptos::*;
+use leptos_router::*;
+
+use tmflib::{HasId,HasName};
+
+use tmflib::tmf648::quote::Quote;
+use crate::model::common::GenericTable;
+
+#[component]
+pub fn QuoteHome() -> impl IntoView {
+    view! {
+        <nav>
+            <ul class="menu">
+                <li>Quote</li>
+            </ul>
+        </nav>
+
+        <QuoteList />
+    }
+}
+
+#[component]
+pub fn QuoteList() -> impl IntoView {
+    let mut quote1 = Quote::new();
+    quote1.id = Some("Quote123".to_string());
+    let quotes = vec![quote1];
+    view! {
+        <div class="list">
+            <table>
+                <tr><th>"Quote Id"</th></tr>
+                {quotes.into_iter()
+                    .map(|q| {
+                        view! { <tr><td><a href={ q.get_href()}>{ q.id } </a></td></tr> }
+                    }).collect_view()
+                }
+            </table>
+        </div>
+        <div class="detail">
+            <Outlet />
+        </div>
+    }
+}
+
+#[component]
+pub fn QuoteDetail() -> impl IntoView {
+    view! {
+
+    }
+}
+
+#[component(transparent)]
+pub fn QuoteRoutes() -> impl IntoView {
+    view! {
+        <Route path="/tmf-api/quoteManagement/v4" view=QuoteHome>
+            <Route path="customer" view=QuoteList >
+                <Route path=":id" view=QuoteDetail />
+            </Route>
+            <Route path="" view=|| {
+                view! {
+                    <p>"Please select something"</p>
+                }
+            } />
+        </Route>
+    }
+}
