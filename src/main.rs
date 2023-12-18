@@ -6,13 +6,8 @@ use tmflib::tmf632::organization::Organization;
 
 mod model;
 
-use model::tmf620::catalog::CatalogTable;
-use model::tmf620::category::CategoryTable;
-use model::tmf620::product_specification::ProductSpecificationTable;
-use model::tmf620::product_offering::ProductOfferingTable;
+use model::tmf620::CatalogRoutes;
 use model::common::{Menu,GenericTable};
-use model::tmf632::individual::IndividualTable;
-use model::tmf632::organization::{OrganizationTable,OrganizationView};
 
 #[warn(missing_docs)]
 
@@ -22,10 +17,6 @@ fn CustomerRow(customer : Customer) -> impl IntoView {
         <tr><td><a href={customer.href}>{ customer.id}</a></td><td>{ customer.name }</td></tr>
     }
 }
-
-
-
-
 
 #[component]
 fn CustomerTable() -> impl IntoView {
@@ -63,27 +54,13 @@ fn Platypus() -> impl IntoView {
 
     view!{
         <Router>
-            <h1>"Platypus - TMF Management"</h1>
             <nav>
                 <Menu />
             </nav>
             <main>
                 <Routes>
                     <Route path="/" view=Home/>
-                    <Route path="/tmflib/productCatalogManagement/v4/catalog" view=CatalogTable/>
-                    <Route path="/tmflib/productCatalogManagement/v4/category" view=CategoryTable>
-                    
-                    </Route>
-                    <Route path="/tmflib/productCatalogManagement/v4/productSpecification" view=ProductSpecificationTable/>
-                    <Route path="/tmflib/productCatalogManagement/v4/productOffering" view=ProductOfferingTable/>
-                    <Route path="/tmf-api/tmf629/v4/customer" view=CustomerTable/>
-                    <Route path="/tmf-api/tmf632/v4/individual" view=IndividualTable/>
-                    <Route path="/tmf-api/tmf632/v4/organization" view=OrganizationTable>
-                        <Route path=":id" view=OrganizationView />
-                        <Route path="" view=|| view! {
-                            <p>"Please select an organisation to view more info."</p>
-                        } />
-                    </Route>
+                    <CatalogRoutes />
                     <Route path="*any" view=NotFound />
                 </Routes>
             </main>
