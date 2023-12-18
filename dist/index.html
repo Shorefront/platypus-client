@@ -7,6 +7,9 @@
             nav {
                 border-bottom: 1px solid grey;
             }
+            main {
+                height: 100%;
+            }
             .menu {
                 list-style-type: none;
                 margin: 0;
@@ -23,7 +26,7 @@
             }
 
             div.list {
-                width: 25%;
+                width: 20%;
                 padding: 3px;
                 background-color: #fcf;
             }
@@ -36,15 +39,27 @@
             table {
                 width: 85%;
             }
+
+            .gentable {
+                background-color: #fff;
+                box-shadow: grey 3px 3px 4px;
+                margin-left: 5px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                padding: 2px;
+                border-radius: 5px;
+                width: 90%;
+            }
+
             th {
                 border-bottom: 1px solid black;
             }
         </style>
     
-<link rel="preload" href="/platypus-client-b0a5a8fba2a038ed_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
-<link rel="modulepreload" href="/platypus-client-b0a5a8fba2a038ed.js"></head>
+<link rel="preload" href="/platypus-client-c4bf1329d44a49c4_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+<link rel="modulepreload" href="/platypus-client-c4bf1329d44a49c4.js"></head>
     <body>
-<script type="module">import init from '/platypus-client-b0a5a8fba2a038ed.js';init('/platypus-client-b0a5a8fba2a038ed_bg.wasm');</script><script>(function () {
+<script type="module">import init from '/platypus-client-c4bf1329d44a49c4.js';init('/platypus-client-c4bf1329d44a49c4_bg.wasm');</script><script>(function () {
     var protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     var url = protocol + '//' + window.location.host + '/_trunk/ws';
     var poll_interval = 5000;
