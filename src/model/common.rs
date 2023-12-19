@@ -31,6 +31,13 @@ pub fn GenericTable<T : HasId + HasName>(items : Vec<T>) -> impl IntoView {
 }
 
 #[component]
+pub fn Banner() -> impl IntoView {
+    view! {
+        <div class="banner">Platypus</div>
+    }
+}
+
+#[component]
 pub fn Menu() -> impl IntoView {
     view!{
         <ul class="menu">

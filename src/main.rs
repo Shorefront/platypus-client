@@ -7,7 +7,7 @@ use model::tmf620::CatalogRoutes;
 use model::tmf629::CustomerRoutes;
 use model::tmf632::PartyRoutes;
 use model::tmf648::QuoteRoutes;
-use model::common::{Menu,GenericTable};
+use model::common::{Banner,Menu,GenericTable};
 
 #[warn(missing_docs)]
 
@@ -20,7 +20,7 @@ fn Home() -> impl IntoView {
             </ul>
         </nav>
         <div>
-        <h2>TMF Data Management</h2>
+        <h2>Platypus - TMF Data Management</h2>
         <p>This is an experiemental TMF data management platform written in Rust.</p>
         </div>
     }
@@ -40,6 +40,9 @@ fn Platypus() -> impl IntoView {
 
     view!{
         <Router>
+            <nav>
+                <Banner />
+            </nav>
             <nav>
                 <Menu />
             </nav>
