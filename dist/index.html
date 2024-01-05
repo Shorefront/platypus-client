@@ -1,8 +1,81 @@
 <!DOCTYPE html><html><head>
-<link rel="preload" href="/platypus-client-6a624f28043d292d_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
-<link rel="modulepreload" href="/platypus-client-6a624f28043d292d.js"></head>
+        <title>Platypus Client</title>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            nav {
+                border-bottom: 1px solid grey;
+            }
+            main {
+                height: 100%;
+            }
+            .banner {
+                width: 100%;
+                float: left;
+                font-size: 32px;
+                background-color: #005a71;
+                color: #fff;
+            }
+            .menu {
+                list-style-type: none;
+                margin: 0;
+                padding: 2px;
+                overflow:hidden;
+                background: #00b0bd;
+            }
+            .menu li {
+                float: left;
+                padding: 3px;
+                margin: 1px;
+                background-color: #ddd;
+                border: 1px solid #aaa;
+                width: 96px;
+            }
+            .menu li:hover {
+                background-color: #fff;
+            }
+            div {
+                float: left;
+            }
+
+            div.list {
+                width: 20%;
+                padding: 3px;
+                background-color: #fcf;
+            }
+            div.detail {
+                width: 70%;
+                padding: 3px;
+                background-color: #cfc;
+            }
+
+            table {
+                width: 85%;
+            }
+
+            .gentable {
+                background-color: #fff;
+                box-shadow: grey 3px 3px 4px;
+                margin-left: 5px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                padding: 2px;
+                border-radius: 5px;
+                width: 90%;
+            }
+
+            th {
+                border-bottom: 1px solid black;
+                text-transform: capitalize;
+                text-align: left;
+            }
+        </style>
+    
+<link rel="preload" href="/platypus-client-8af8fbaff44d2d88_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+<link rel="modulepreload" href="/platypus-client-8af8fbaff44d2d88.js"></head>
     <body>
-<script type="module">import init from '/platypus-client-6a624f28043d292d.js';init('/platypus-client-6a624f28043d292d_bg.wasm');</script><script>(function () {
+<script type="module">import init from '/platypus-client-8af8fbaff44d2d88.js';init('/platypus-client-8af8fbaff44d2d88_bg.wasm');</script><script>(function () {
     var protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     var url = protocol + '//' + window.location.host + '/_trunk/ws';
     var poll_interval = 5000;
