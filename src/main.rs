@@ -49,11 +49,16 @@ fn Platypus() -> impl IntoView {
             <main>
                 <Routes>
                     <Route path="/" view=Home/>
-                    <CatalogRoutes />
-                    <CustomerRoutes />
-                    <PartyRoutes />
-                    <QuoteRoutes />
-                    <Route path="*any" view=NotFound />
+                    <Route path="/tmflib/productCatalogManagement/catalog" view=CatalogTable/>
+                    <Route path="/tmflib/productCatalogManagement/category" view=CategoryTable/>
+                    <Route path="/tmflib/productCatalogManagement/productSpecification" view=ProductSpecificationTable/>
+                    <Route path="/tmflib/productCatalogManagement/productOffering" view=ProductOfferingTable/>
+                    <Route path="/tmflib/tmf629/customer" view=CustomerTable/>
+                    <Route path="/tmflib/tmf632/individual" view=IndividualTable/>
+                    <Route path="/tmflib/tmf632/organization" view=OrganizationTable>
+                        <Route path=":id" view=OrganizationView/>
+                    </Route>
+                    <Route path="/*any" view=NotFound />
                 </Routes>
             </main>
         </Router>
