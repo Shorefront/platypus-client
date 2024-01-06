@@ -25,8 +25,12 @@ pub fn CategoryView() -> impl IntoView {
     view!{
         <div>
             <h2>"Category Details"</h2>
-            <table>
-            </table>
+            <svg>
+                <g class="catnode">
+                    <rect x="10" y="10" width="64" height="24" style="fill: grey; stroke: black; opacity: 0.5;"/>
+                    <text x="12" y="24">Root</text>
+                </g>
+            </svg>
         </div>
     }
 }
