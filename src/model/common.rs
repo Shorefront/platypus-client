@@ -54,6 +54,9 @@ pub fn Menu() -> impl IntoView {
             <li>
                 <a href="/tmf-api/tmf648/v4/quote">"TMF648"</a>
             </li>
+            <li>
+                <a href="/tmf-api/tmf674/v4/site">"TMF674"</a>
+            </li>
         </ul>
     }
 }
