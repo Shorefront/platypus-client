@@ -34,7 +34,11 @@ pub fn CategoryNode(cat : Category, position: u16) -> impl IntoView {
         <g class="catnode">
             <rect x="10" y={ y1 }  width="64" height="24" rx="5" style=style/>
             <text x="12" y={ 24+(position*30) }>{cat.name}</text>
-        </g>    
+        </g>
+        <g class="catdetail">
+            <rect x="80" y={ y1 } width="256" height="24" />
+            <text x="82" y={ 24+(position*30) }>{cat.description}</text>
+        </g>
     }
 }
 
