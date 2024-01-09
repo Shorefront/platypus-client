@@ -42,7 +42,8 @@ pub fn CategoryNode(cat : Category, position: u16) -> impl IntoView {
     }
 }
 
-fn get_cat_by_id(_id : String) -> Option<Category> {
+#[server(GetCategoryById, "/api")]
+async fn get_cat_by_id(_id : String) -> Result<Category,ServerFnError> {
     // Try to find a category node with the given id by making
     // TMF API calls via the back end.
     // Future state, this will be a server fn that calls a Platypus TMF API
@@ -50,7 +51,7 @@ fn get_cat_by_id(_id : String) -> Option<Category> {
     let cat1 = Category::new("A Root".to_string())
         .description("The root of all nodes.".to_string())
         .is_root(true);
-    Some(cat1)
+    Ok(cat1)
 }
 
 #[component]
@@ -58,7 +59,24 @@ pub fn CategoryView() -> impl IntoView {
     let params = use_params_map();
     let id = move || params.with(|params| params.get("id").cloned().unwrap_or_default());
     
-    let cat1 = get_cat_by_id(id()).unwrap();
+    // let cat1 = |_| {
+    //     spawn_local(async {
+    //         get_cat_by_id(id()).await;
+    //     });
+    // };
+    // let cat_id = id();
+    // let mut output = String::new();
+    // let get_cat = move |cat_id,cat_output : &mut String| {
+    //     spawn_local(async {
+    //         match get_cat_by_id(cat_id).await {
+    //             Ok(_) => "one".to_string(),
+    //             Err(_) => "two".to_string(),            
+    //         };
+    //         cat_output = "Test".to_string();
+    //     });
+    // };
+    // let cat1 = get_cat(cat_id,&mut output);
+    let cat1 = Category::new("Root".to_string());
     let cat2 = Category::new("A Child".to_string());
     let cat3 = Category::new("B Child".to_string());
     
