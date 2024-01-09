@@ -9,7 +9,7 @@ use leptos::*;
 use leptos_router::*;
 
 use catalog::{CatalogList,CatalogDetails};
-use category::{CategoryTable,CategoryView};
+use category::{CategoryTable,CategoryView,CategoryAdd};
 use product_offering::{ProductOfferingTable,ProductOfferingView};
 use product_specification::{ProductSpecificationTable,ProductSpecificationView};
 use product_offering_price::{ProductOfferingPriceList,ProductOfferingPriceDetail};
@@ -31,6 +31,7 @@ pub fn CatalogRoutes() -> impl IntoView {
             </Route>
             <Route path="category" view=CategoryTable >
                 <Route path=":id" view=CategoryView />
+                <Route path="add" view=CategoryAdd />
                 <Route path="" view=NoOptionView />
             </Route>
             <Route path="productOffering" view=ProductOfferingTable >

@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-leptos = { version = "0.5.4", features = ["csr","ssr"] }
+leptos = { version = "0.5.4", features = ["csr"] }
 tmflib = { git = "https://github.com/rruckley/tmflib.git" }
 log = "0.4"
 console_log = "1"

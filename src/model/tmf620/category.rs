@@ -6,20 +6,72 @@ use leptos_router::*;
 use crate::model::common::GenericTable;
 use tmflib::tmf620::category::Category;
 
+async fn get_cat() -> Vec<Category> {
+    let cat1 = Category::new("Root".to_string());
+    let categories = vec![cat1];
+    categories
+}
 
 #[component]
 pub fn CategoryTable() -> impl IntoView {
-    let cat1 = Category::new("Root".to_string());
-    let categories = vec![cat1];
+
+
+    let load_cat_list = create_resource(|| (), |_| async move {
+        get_cat().await
+    });
+    let cat_list = load_cat_list.get();
+    let categories = match cat_list {
+        Some(c) => c,
+        None => vec![],
+    };
+
     view! {
         <div class="list">
             <GenericTable items=categories/>
-        </div>
+            <a href="/tmf-api/productCatalogManagement/v4/category/add">"Add New"</a>
+        </div> 
         <div class="detail">
             <Outlet />
         </div>
     }
     
+}
+
+#[component]
+pub fn CategorySelection(signal : WriteSignal<String>) -> impl IntoView {
+    // TODO: Get a list of categories to generate the selection
+    view! {
+        <label for="parent">"Parent Node"</label>
+        <select id="parent" on:change=move |ev| {
+            signal.set(event_target_value(&ev));
+        }>   
+            <option value="rootId">"Root"</option>
+            <option value="childa">"Child A"</option>
+            <option value="childb">"Child B"</option>
+        </select>
+    }
+}
+
+#[component]
+pub fn CategoryAdd() -> impl IntoView {
+    let (name, set_name) = create_signal("New Category".to_string());
+    let (parent,set_parent) = create_signal("Root".to_string());
+    view! {
+        <div class="form">
+        <h2>"Add Category"</h2>
+        <label for="name">Name </label>
+        <input id="name" type="text"
+            on:input=move |ev| {
+                // Since we are not using nightly we have to call .set() on the WriteSignal.
+                // Nightly allows us to treat WriteSignal as a function, e.g. set_name()
+                set_name.set(event_target_value(&ev));            
+            }
+            prop:value=name
+        />
+        <CategorySelection signal=set_parent/>
+        <p>"Will create new category called: " {name} " with parent: " { parent }</p>
+        </div>
+    }
 }
 
 #[component]
@@ -42,22 +94,10 @@ pub fn CategoryNode(cat : Category, position: u16) -> impl IntoView {
     }
 }
 
-#[server(GetCategoryById, "/api")]
-async fn get_cat_by_id(_id : String) -> Result<Category,ServerFnError> {
-    // Try to find a category node with the given id by making
-    // TMF API calls via the back end.
-    // Future state, this will be a server fn that calls a Platypus TMF API
-    // to get a category
-    let cat1 = Category::new("A Root".to_string())
-        .description("The root of all nodes.".to_string())
-        .is_root(true);
-    Ok(cat1)
-}
-
 #[component]
 pub fn CategoryView() -> impl IntoView {
     let params = use_params_map();
-    let id = move || params.with(|params| params.get("id").cloned().unwrap_or_default());
+    let _id = move || params.with(|params| params.get("id").cloned().unwrap_or_default());
     
     // let cat1 = |_| {
     //     spawn_local(async {
