@@ -4,6 +4,17 @@ version = "0.1.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+tmf620 = []
+tmf629 = []
+tmf632 = []
+tmf648 = []
+tmf674 = []
+core = ["tmf620","tmf629","tmf632","tmf648","tmf674"]
+default = ["core","experimental","tmf7xx"]
+experimental = ["core"]
+tmf7xx = ["experimental"]
+composable = ["experimental"]
 
 [dependencies]
 leptos = { version = "0.5.4", features = ["csr"] }
