@@ -4,12 +4,37 @@ use leptos::*;
 use leptos_router::*;
 
 use crate::model::common::GenericTable;
-use tmflib::tmf620::category::Category;
+use tmflib::{tmf620::category::Category, HasId};
+use reqwest_wasm::Client;
 
 async fn get_cat() -> Vec<Category> {
+    // This is where we create an API call back into back end
+    
+    
     let cat1 = Category::new("Root".to_string());
-    let categories = vec![cat1];
-    categories
+    let href = cat1.get_href();
+    let client = Client::new();
+    let res = client.get(href).send().await;
+    match res {
+        Ok(r) => {
+            // Parse result into Vec<Category>
+            let body = r.text().await;
+            match body {
+                Ok(b) => {
+                    let cat_list : Vec<Category> = serde_json::from_str(b.as_ref()).unwrap();
+                    cat_list
+                },
+                Err(_e) => {
+                    vec![]
+                },
+            }
+        },
+        Err(e) => {
+            // output error, return empty
+            println!("Could not fetch categories: {}",e);
+            vec![]
+        }
+    }
 }
 
 #[component]
