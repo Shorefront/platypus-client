@@ -4,6 +4,8 @@
 use leptos::*;
 use tmflib::{HasId,HasName};
 
+use crate::model::tmf7xx::CostModelMenu;
+
 #[component]
 fn TableRow<T : HasId + HasName>(item : T) -> impl IntoView {
     view! {
@@ -17,7 +19,7 @@ pub fn GenericTable<T : HasId + HasName>(items : Vec<T>) -> impl IntoView {
         <div class="gentable">
             <table>
                 <tr>
-                    <th>{ T::get_class()}</th>
+                    <th>{ T::get_class()}s</th>
                 </tr>
          
                 {items.into_iter()
@@ -57,6 +59,7 @@ pub fn Menu() -> impl IntoView {
             <li>
                 <a href="/tmf-api/tmf674/v4/site">"TMF674"</a>
             </li>
+            <CostModelMenu />
         </ul>
     }
 }
