@@ -2,6 +2,7 @@
 
 use leptos::*;
 use leptos_router::*;
+use log::error;
 
 use crate::model::common::GenericTable;
 use tmflib::{tmf620::category::Category, HasId};
@@ -12,7 +13,7 @@ async fn get_cat() -> Vec<Category> {
     
     
     let cat1 = Category::new("Root".to_string());
-    let href = cat1.get_href();
+    let href = format!("http://localhost:8080/{}",cat1.get_href());
     let client = Client::new();
     let res = client.get(href).send().await;
     match res {
@@ -24,14 +25,15 @@ async fn get_cat() -> Vec<Category> {
                     let cat_list : Vec<Category> = serde_json::from_str(b.as_ref()).unwrap();
                     cat_list
                 },
-                Err(_e) => {
+                Err(e) => {
+                    error!("Could not parse JSON: {}",e);
                     vec![]
                 },
             }
         },
         Err(e) => {
             // output error, return empty
-            println!("Could not fetch categories: {}",e);
+            error!("Could not fetch categories: {}",e);
             vec![]
         }
     }
