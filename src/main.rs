@@ -65,5 +65,6 @@ fn Platypus() -> impl IntoView {
 }
 
 fn main() {
+    _ = console_log::init_with_level(log::Level::Debug);
     leptos::mount_to_body(Platypus)
 }
