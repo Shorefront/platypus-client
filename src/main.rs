@@ -9,6 +9,8 @@ use model::tmf629::CustomerRoutes;
 use model::tmf632::PartyRoutes;
 use model::tmf648::QuoteRoutes;
 use model::tmf674::GeographicSiteRoutes;
+#[cfg(feature = "tmf7xx")]
+use model::tmf7xx::CostModelRoutes;
 // Common
 use model::common::{Banner,Menu,GenericTable};
 
@@ -56,6 +58,8 @@ fn Platypus() -> impl IntoView {
                     <PartyRoutes />
                     <QuoteRoutes />
                     <GeographicSiteRoutes />
+                    #[cfg(feature = "tmf7xx")]
+                    <CostModelRoutes />
                     <Route path="/" view=Home/>
                     <Route path="/*any" view=NotFound />
                 </Routes>
