@@ -13,7 +13,7 @@ async fn get_cat() -> Vec<Category> {
     
     
     let cat1 = Category::new("Root".to_string());
-    let href = format!("http://localhost:8080/{}",cat1.get_href());
+    let href = format!("http://localhost:8000/{}",cat1.get_href());
     let client = Client::new();
     let res = client.get(href).send().await;
     match res {
