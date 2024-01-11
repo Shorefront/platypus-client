@@ -22,7 +22,7 @@ pub fn CostModelMenu() -> impl IntoView {
 #[component(transparent)]
 pub fn CostModelRoutes() -> impl IntoView {
     view! {
-        <Route path="/tmf-api/tmf7xx/v5" view=CostHome>
+    <Route path="/tmf-api/tmf7xx/v5" view=CostHome>
         <Route path="costModel" view=CostModelList >
             <Route path=":id" view=CostModelDetail />
             <Route path="" view=NoOptionView />
