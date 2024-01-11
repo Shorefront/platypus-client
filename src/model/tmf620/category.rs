@@ -8,12 +8,12 @@ use crate::model::common::GenericTable;
 use tmflib::{tmf620::category::Category, HasId};
 use reqwest_wasm::Client;
 
+const DEFAULT_HOST : &str = "http://localhost:3000";
+
 async fn get_cat() -> Vec<Category> {
     // This is where we create an API call back into back end
     
-    
-    let cat1 = Category::new("Root".to_string());
-    let href = format!("http://localhost:8000/{}",cat1.get_href());
+    let href = format!("{}/{}",DEFAULT_HOST,Category::get_class_href());
     let client = Client::new();
     let res = client.get(href).send().await;
     match res {
