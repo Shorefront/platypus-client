@@ -3,12 +3,14 @@ use leptos_router::*;
 use reqwest_wasm::Client;
 use log::info;
 
-use tmflib::tmf620::catalog::Catalog;
+use tmflib::{tmf620::catalog::Catalog, HasId};
 use super::super::common::GenericTable;
+
+const DEFAULT_HOST : &str = "http://localhost:3000";
 
 async fn get_catalogs() -> Vec<Catalog> {
 
-    let href = format!("http://localhost:8000/tmf-api/productCatalogManagement/v4/catalog");
+    let href = format!("{}/{}",DEFAULT_HOST,Catalog::get_class_href());
     let client = Client::new();
     let res = client.get(href).send().await;
     match res {
