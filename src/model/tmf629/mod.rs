@@ -4,7 +4,7 @@
 use leptos::*;
 use leptos_router::*;
 
-use crate::model::common::GenericTable;
+use crate::model::common::table::GenericTable;
 
 use tmflib::tmf629::customer::Customer;
 use tmflib::tmf632::organization::Organization;
