@@ -12,7 +12,9 @@ use model::tmf674::GeographicSiteRoutes;
 #[cfg(feature = "tmf7xx")]
 use model::tmf7xx::CostModelRoutes;
 // Common
-use model::common::{Banner,Menu,GenericTable};
+use model::common::Banner;
+use model::common::table::GenericTable;
+use model::common::menu::Menu;
 
 #[warn(missing_docs)]
 
