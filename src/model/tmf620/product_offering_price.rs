@@ -1,7 +1,7 @@
 //! Product Offering Price Module
 
 use tmflib::tmf620::product_offering_price::ProductOfferingPrice;
-use crate::model::common::GenericTable;
+use crate::model::common::table::GenericTable;
 
 use leptos::*;
 use leptos_router::*;

@@ -4,7 +4,7 @@ use reqwest_wasm::Client;
 use log::info;
 
 use tmflib::{tmf620::catalog::Catalog, HasId};
-use super::super::common::GenericTable;
+use crate::model::common::table::GenericTable;
 
 const DEFAULT_HOST : &str = "http://localhost:3000";
 
@@ -18,15 +18,15 @@ async fn get_catalogs() -> Vec<Catalog> {
             info!("Fetched Catalog data");
             let body = r.text().await;
             match body {
-                Ok(b) => {
+                Ok(_b) => {
                     vec![]
                 },
-                Err(e) => {
+                Err(_e) => {
                     vec![]
                 }
             }
         },
-        Err(e) => {
+        Err(_e) => {
             vec![]
         }
     }
