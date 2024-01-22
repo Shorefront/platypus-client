@@ -4,8 +4,9 @@ use leptos::*;
 use leptos_router::*;
 use log::error;
 
-use crate::model::common::GenericTable;
+use crate::model::common::table::GenericTable;
 use tmflib::{tmf620::category::Category, HasId};
+use crate::model::common::form::NamedClass;
 use reqwest_wasm::Client;
 
 const DEFAULT_HOST : &str = "http://localhost:3000";
@@ -68,35 +69,31 @@ pub fn CategoryTable() -> impl IntoView {
 pub fn CategorySelection(signal : WriteSignal<String>) -> impl IntoView {
     // TODO: Get a list of categories to generate the selection
     view! {
-        <label for="parent">"Parent Node"</label>
-        <select id="parent" on:change=move |ev| {
-            signal.set(event_target_value(&ev));
-        }>   
-            <option value="rootId">"Root"</option>
-            <option value="childa">"Child A"</option>
-            <option value="childb">"Child B"</option>
-        </select>
+        <fieldset>
+            <legend>Heirarchy</legend>
+            <label for="parent">"Parent Node"</label>
+            <select id="parent" on:change=move |ev| {
+                signal.set(event_target_value(&ev));
+            }>   
+                <option value="rootId">"Root"</option>
+                <option value="childa">"Child A"</option>
+                <option value="childb">"Child B"</option>
+            </select>
+        </fieldset>
     }
 }
 
 #[component]
 pub fn CategoryAdd() -> impl IntoView {
-    let (name, set_name) = create_signal("New Category".to_string());
+    let (name,set_name) = create_signal("New Category".to_string());
     let (parent,set_parent) = create_signal("Root".to_string());
+    let new_cat = Category::new(name.get());
     view! {
         <div class="form">
-        <h2>"Add Category"</h2>
-        <label for="name">Name </label>
-        <input id="name" type="text"
-            on:input=move |ev| {
-                // Since we are not using nightly we have to call .set() on the WriteSignal.
-                // Nightly allows us to treat WriteSignal as a function, e.g. set_name()
-                set_name.set(event_target_value(&ev));            
-            }
-            prop:value=name
-        />
-        <CategorySelection signal=set_parent/>
-        <p>"Will create new category called: " {name} " with parent: " { parent }</p>
+            <h2>"Add Category"</h2>
+            <NamedClass item=new_cat signal=set_name />
+            <CategorySelection signal=set_parent/>
+            <p>"Will create new category called: " { name } " with parent: " { parent }</p>
         </div>
     }
 }
