@@ -1,24 +1,41 @@
 //! TMF Form components
 //! 
 use leptos::*;
-use tmflib::{HasId,HasName};
+use tmflib::{HasId,HasName,HasValidity};
 
 #[component]
-pub fn NamedClass<T : HasId + HasName> (item : T,signal : WriteSignal<String>) -> impl IntoView {
+pub fn SingleRow(id: String, label: String, value: String) ->impl IntoView {
+    view! {
+        <tr>
+            <td><label for=id.clone()>{ label }</label></td>
+            <td><input id=id.clone() value=value /></td>
+        </tr>
+    }
+}
+
+#[component]
+pub fn BasicClass<T : HasId> (item : T) -> impl IntoView {
     let id = item.get_id();
     let href = item.get_href();
+    view! {
+            <tr>
+                <td><label for="id">"Id"</label></td>
+                <td>{ id }</td>
+            </tr>
+            <tr>
+                <td><label for="href">"HREF"</label></td>
+                <td>{ href }</td>
+            </tr>   
+    }
+}
+
+#[component]
+pub fn NamedClass<T : HasId + HasName + Clone> (item : T,signal : WriteSignal<String>) -> impl IntoView {
     let name = item.get_name();
     view!{
         <fieldset>
             <legend>"Class "{ T::get_class()}</legend>
-            <tr>
-                <td><label for="id">"Id"</label></td>
-                <td><input id="id" value=id /></td>
-            </tr>
-            <tr>
-                <td><label for="href">"HREF"</label></td>
-                <td><input id="href" value=href /></td>
-            </tr>
+            <BasicClass item=item />
             <tr>
                 <td><label for="name">"Name"</label></td>
                 <td><input id="name" value=name on:input=move |ev| {
@@ -30,17 +47,19 @@ pub fn NamedClass<T : HasId + HasName> (item : T,signal : WriteSignal<String>) -
 }
 
 #[component]
-pub fn Validity<T : HasId + HasName> (item : T) -> impl IntoView {
+pub fn Validity<T : HasId + HasValidity> (item : T) -> impl IntoView {
+    let valid_start = item.get_validity_start();
+    let valid_end = item.get_validity_end();
     view! {
         <fieldset>
             <legend>Validity</legend>
             <tr>
                 <td><label for="start_date_time">Start</label></td>
-                <td><input id="start_date_time" type="datetime-local" /></td>
+                <td><input id="start_date_time" type="datetime-local" value=valid_start /></td>
             </tr>
             <tr>
                 <td><label for="end_date_time">End</label></td>
-                <td><input id="end_date_time" type="datetime-local" /></td>
+                <td><input id="end_date_time" type="datetime-local" value=valid_end/></td>
             </tr>
         </fieldset>
     }
