@@ -2,19 +2,21 @@
 
 use leptos::*;
 use leptos_router::Outlet;
+use tmflib::HasId;
 
 use crate::model::common::table::GenericTable;
-use crate::model::common::form::{NamedClass,Validity};
+use crate::model::common::form::NamedClass;
 use tmflib::tmf620::product_specification::ProductSpecification;
 
 #[component]
 pub fn ProductSpecificationTable() -> impl IntoView {
     let spec1 = ProductSpecification::new("Spec One".to_string());
     let specs = vec![spec1];
+    let spec_add = format!("{}/add",ProductSpecification::get_class_href());
     view! {
         <div class="list">
             <GenericTable items=specs />
-            <a href="/tmf-api/productCatalogManagement/v4/productSpecification/add">"Add"</a>
+            <a href=spec_add>"Add"</a>
         </div>
         <div class="detail">
             <Outlet />
@@ -36,7 +38,6 @@ pub fn ProductSpecificationAdd() -> impl IntoView {
     view! {
         <div class="form">
         <NamedClass item=new_ps.clone() signal=set_name />
-        <Validity item=new_ps.clone() />
         <p>"Will create new category called: " { name }</p>
         </div>
     }
