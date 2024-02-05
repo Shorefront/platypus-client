@@ -5,7 +5,7 @@ use leptos::*;
 use tmflib::{HasId,HasName};
 
 #[component]
-fn TableRow<T : HasId + HasName>(item : T) -> impl IntoView {
+pub fn TableRow<T : HasId + HasName>(item : T) -> impl IntoView {
     view! {
         <tr><td><a href={item.get_href()}>{ item.get_name() }</a></td></tr>
     }

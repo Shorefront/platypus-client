@@ -37,6 +37,13 @@ pub fn QuoteList() -> impl IntoView {
     let add_href = format!("{}/add",Quote::get_class_href());
     view! {
         <div class="list">
+        <table>
+            {quotes.into_iter()
+                .map(|_c| {
+                    
+                }).collect_view()
+            }
+        </table>
             <a href=add_href>"Add"</a>
         </div>
         <div class="detail">
@@ -69,7 +76,7 @@ pub fn BasicQuote(quote : Quote) -> impl IntoView {
 #[component]
 pub fn QuoteAdd() -> impl IntoView {
     let quote =Quote::new();
-    let (name,set_name) = create_signal("New Quote".to_string());
+    let (_name,_set_name) = create_signal("New Quote".to_string());
     view! {
         <p>"Add Quote"</p>
         <BasicQuote quote=quote.clone() />
