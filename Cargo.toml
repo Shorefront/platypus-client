@@ -17,20 +17,20 @@ tmf7xx = ["experimental"]
 composable = ["experimental"]
 
 [dependencies]
-leptos = { version = "0.6.5", features = ["csr"] }
-tmflib = { git = "https://github.com/rruckley/tmflib.git" }
+leptos = { version = "0.6.10", features = ["csr"] }
+tmflib = { git = "https://github.com/rruckley/tmflib.git"}
 log = "0.4"
 console_log = "1"
 console_error_panic_hook = "0.1.7"
-leptos_meta = "0.6.5"
-leptos_router = { version = "0.6.5", features = ["csr"]}
+leptos_meta = "0.6.10"
+leptos_router = { version = "0.6.10", features = ["csr"]}
 reqwest-wasm = "0.11.16"
-serde = "1.0.195"
-serde_json = "1.0.111"
+serde = "1.0.197"
+serde_json = "1.0.115"
 
 [dev-dependencies]
-wasm-bindgen = "0.2.87"
-wasm-bindgen-test = "0.3.37"
+wasm-bindgen = "0.2.92"
+wasm-bindgen-test = "0.3.42"
 pretty_assertions = "1.4.0"
 
 [dev-dependencies.web-sys]
@@ -42,4 +42,4 @@ features = [
     "HtmlInputElement",
     "XPathResult",
 ]
-version = "0.3.64"
+version = "0.3.69"
