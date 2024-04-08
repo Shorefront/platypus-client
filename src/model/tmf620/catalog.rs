@@ -57,10 +57,14 @@ pub fn CatalogTable() -> impl IntoView {
 
     let cat1 = Catalog::new("Design");
     let cat2 = Catalog::new("Production");
+    let href = format!("{}/add",Catalog::get_class_href());
     let catalogs = vec![cat1,cat2];
     view! {
         <div class="list">
             <GenericTable items=catalogs />
+        </div>
+        <div>
+            <a href=href>"New Catalogue"</a>
         </div>
         <div class="detail">
             <Outlet />
