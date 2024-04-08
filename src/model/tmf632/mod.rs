@@ -18,7 +18,7 @@ pub fn NoOptionView() -> impl IntoView {
 #[component(transparent)]
 pub fn PartyRoutes() -> impl IntoView {
     view! {
-        <Route path="/tmf-api/tmf632/v4" view=PartyHome>
+        <Route path="/tmf-api/partyManagement/v4" view=PartyHome>
             <Route path="organization" view=OrganizationList >
                 <Route path=":id" view=OrganizationView />
                 <Route path="" view=NoOptionView />

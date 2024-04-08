@@ -19,7 +19,7 @@ pub fn NoOptionView() -> impl IntoView {
 #[component(transparent)]
 pub fn CustomerRoutes() -> impl IntoView {
     view! {
-        <Route path="/tmf-api/tmf629/v4" view=CustomerHome>
+        <Route path="/tmf-api/customerManagement/v4" view=CustomerHome>
             <Route path="customer" view=CustomerList >
                 <Route path=":id" view=CustomerView />
                 <Route path="" view=NoOptionView />

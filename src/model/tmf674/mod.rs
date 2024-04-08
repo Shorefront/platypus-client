@@ -19,7 +19,7 @@ pub fn GeographicSiteHome() -> impl IntoView {
     view! {
         <nav>
             <ul class="menu">
-                <li><a href="site">"Site"</a></li>
+                <li><a href="geographicSite">"Site"</a></li>
             </ul>
         </nav>
 
@@ -59,8 +59,8 @@ pub fn GeographicSiteDetail() -> impl IntoView {
 #[component(transparent)]
 pub fn GeographicSiteRoutes() -> impl IntoView {
     view! {
-        <Route path="/tmf-api/tmf674/v4" view=GeographicSiteHome>
-            <Route path="site" view=GeographicSiteList >
+        <Route path="/tmf-api/geographicSiteManagement/v4" view=GeographicSiteHome>
+            <Route path="geographicSite" view=GeographicSiteList >
                 <Route path=":id" view=GeographicSiteDetail />
                 <Route path="" view=NoOptionView />
             </Route>
