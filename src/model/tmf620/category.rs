@@ -47,6 +47,7 @@ pub fn CategoryTable() -> impl IntoView {
     let load_cat_list = create_resource(|| (), |_| async move {
         get_cat().await
     });
+    let add_href = format!("{}/add",Category::get_class_href());
     let cat_list = load_cat_list.get();
     let categories = match cat_list {
         Some(c) => c,
@@ -56,7 +57,7 @@ pub fn CategoryTable() -> impl IntoView {
     view! {
         <div class="list">
             <GenericTable items=categories/>
-            <a href="/tmf-api/productCatalogManagement/v4/category/add">"Add New"</a>
+            <a href=add_href>"New Category"</a>
         </div> 
         <div class="detail">
             <Outlet />
