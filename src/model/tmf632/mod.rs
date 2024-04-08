@@ -37,8 +37,8 @@ pub fn PartyHome() -> impl IntoView {
     view! {
         <nav>
             <ul class="menu">
-                <li><a href="/tmf-api/tmf632/v4/organization">"Organisation"</a></li>
-                <li><a href="/tmf-api/tmf632/v4/individual">"Individual"</a></li>
+                <li><a href="/tmf-api/partyManagement/v4/organization">"Organisation"</a></li>
+                <li><a href="/tmf-api/partyManagement/v4/individual">"Individual"</a></li>
             </ul>
         </nav>
         <Outlet />
