@@ -27,8 +27,18 @@ async fn get_catalogs() -> Vec<Catalog> {
             }
         },
         Err(_e) => {
-            vec![]
+            // Could not get catalog, return some defaults
+            let cat1 = Catalog::new("Design");
+            let cat2 = Catalog::new("Production");
+            let catalogs = vec![cat1,cat2];
+            catalogs
         }
+    }
+}
+
+#[component]
+pub fn CatalogAdd() -> impl IntoView {
+    view! {
     }
 }
 
