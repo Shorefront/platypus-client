@@ -5,7 +5,10 @@ use leptos::*;
 use leptos_router::*;
 
 use tmflib::HasId;
-use tmflib::tmf674::geographic_site::GeographicSite;
+#[cfg(feature = "tmf674_v4")]
+use tmflib::tmf674::geographic_site_v4::GeographicSite;
+#[cfg(feature = "tmf674_v5")]
+use tmflib::tmf674::geographic_site_v5::GeographicSite;
 
 #[component]
 pub fn NoOptionView() -> impl IntoView {
