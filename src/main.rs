@@ -60,8 +60,6 @@ fn Platypus() -> impl IntoView {
                     <PartyRoutes />
                     <QuoteRoutes />
                     <GeographicSiteRoutes />
-                    #[cfg(feature = "tmf7xx")]
-                    <CostModelRoutes />
                     <Route path="/" view=Home/>
                     <Route path="/*any" view=NotFound />
                 </Routes>

@@ -2,6 +2,7 @@
 
 use leptos::*;
 
+#[cfg(feature = "tmf7xx")]
 use crate::model::tmf7xx::CostModelMenu;
 
 #[component]
@@ -24,7 +25,6 @@ pub fn Menu() -> impl IntoView {
             <li>
                 <a href="/tmf-api/geographicSiteManagement/v4/geographicSite">"TMF674"</a>
             </li>
-            <CostModelMenu />
         </ul>
     }
 }
