@@ -3,8 +3,10 @@
 
 use leptos::*;
 use leptos_router::*;
+use tmflib::HasId;
 
 use crate::model::common::table::GenericTable;
+use crate::model::common::form::{NamedClass,SingleRow};
 
 use tmflib::tmf629::customer::Customer;
 #[cfg(feature = "tmf632_v4")]
@@ -19,12 +21,24 @@ pub fn NoOptionView() -> impl IntoView {
     }
 }
 
+#[component]
+pub fn BasicCustomer(customer : Customer) -> impl IntoView {
+    let (name,set_name) = create_signal("New Category".to_string());
+    view! {
+        <fieldset>
+            <legend>Customer Information</legend>
+            <NamedClass item=customer signal=set_name/>
+        </fieldset>
+    }
+}
+
 #[component(transparent)]
 pub fn CustomerRoutes() -> impl IntoView {
     view! {
         <Route path="/tmf-api/customerManagement/v4" view=CustomerHome>
             <Route path="customer" view=CustomerList >
                 <Route path=":id" view=CustomerView />
+                <Route path="add" view=CustomerAdd />
                 <Route path="" view=NoOptionView />
             </Route>
             <Route path="" view=NoOptionView />
@@ -61,12 +75,23 @@ pub fn CustomerList() -> impl IntoView {
     let org2 = Organization::new("Customer Two".to_string());
     let cust2 = Customer::new(org2);
     let custs = vec![cust1,cust2];
+    let add_href = format!("{}/add",Customer::get_class_href());
     view! {
         <div class="list">
             <GenericTable items=custs/>
+            <a href=add_href>"Add Customer"</a>
         </div>
         <div class="detail">
             <Outlet />
         </div>
+    }
+}
+
+#[component]
+pub fn CustomerAdd() -> impl IntoView {
+    let customer = Customer::default();
+    view! {
+        <p>"Add Customer"</p>
+        <BasicCustomer customer=customer.clone() />
     }
 }
