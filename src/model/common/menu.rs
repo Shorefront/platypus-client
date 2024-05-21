@@ -20,7 +20,7 @@ pub fn Menu() -> impl IntoView {
                 <a href="/tmf-api/partyManagement/v4">"TMF632"</a>
             </li>
             <li>
-                <a href="/tmf-api/tmf648/v4/quote">"TMF648"</a>
+                <a href="/tmf-api/quoteManagement/v4/quote">"TMF648"</a>
             </li>
             <li>
                 <a href="/tmf-api/geographicSiteManagement/v4/geographicSite">"TMF674"</a>
