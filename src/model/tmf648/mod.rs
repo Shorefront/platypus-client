@@ -18,9 +18,10 @@ pub fn NoOptionView() -> impl IntoView {
 
 #[component(transparent)]
 pub fn QuoteRoutes() -> impl IntoView {
+    let mod_path = Quote::get_mod_path();
     let quote_path = Quote::get_class();
     view! {
-        <Route path="/tmf-api/quoteManagement/v4" view=QuoteHome>
+        <Route path=mod_path view=QuoteHome>
             <Route path=quote_path view=QuoteList >
                 <Route path=":id" view=QuoteDetail />
                 <Route path="add" view=QuoteAdd />
@@ -59,7 +60,7 @@ pub fn QuoteList() -> impl IntoView {
                 }).collect_view()
             }
         </table>
-            <a href=add_href>"Add"</a>
+        <a href=add_href>"Add"</a>
         </div>
         <div class="detail">
             <Outlet />
