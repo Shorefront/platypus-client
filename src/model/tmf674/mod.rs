@@ -61,9 +61,10 @@ pub fn GeographicSiteDetail() -> impl IntoView {
 
 #[component(transparent)]
 pub fn GeographicSiteRoutes() -> impl IntoView {
+    let site_path = GeographicSite::get_class();
     view! {
         <Route path="/tmf-api/geographicSiteManagement/v4" view=GeographicSiteHome>
-            <Route path="geographicSite" view=GeographicSiteList >
+            <Route path=site_path view=GeographicSiteList >
                 <Route path=":id" view=GeographicSiteDetail />
                 <Route path="" view=NoOptionView />
             </Route>

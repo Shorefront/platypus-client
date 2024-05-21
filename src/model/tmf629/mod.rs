@@ -15,7 +15,7 @@ use tmflib::tmf632::organization_v5::Organization;
 #[component]
 pub fn NoOptionView() -> impl IntoView {
     view! {
-        <p>"Please select an option"</p>
+        <p>"Please select an customer"</p>
     }
 }
 

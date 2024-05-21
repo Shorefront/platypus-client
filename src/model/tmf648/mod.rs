@@ -12,7 +12,22 @@ use crate::model::common::form::{BasicClass,Validity,SingleRow};
 #[component]
 pub fn NoOptionView() -> impl IntoView {
     view! {
-        <p>"Please select an option"</p>
+        <p>"Please select an quote"</p>
+    }
+}
+
+#[component(transparent)]
+pub fn QuoteRoutes() -> impl IntoView {
+    let quote_path = Quote::get_class();
+    view! {
+        <Route path="/tmf-api/quoteManagement/v4" view=QuoteHome>
+            <Route path=quote_path view=QuoteList >
+                <Route path=":id" view=QuoteDetail />
+                <Route path="add" view=QuoteAdd />
+                <Route path="" view=NoOptionView />
+            </Route>
+            <Route path="" view=NoOptionView />
+        </Route>
     }
 }
 
@@ -84,16 +99,3 @@ pub fn QuoteAdd() -> impl IntoView {
     }
 }
 
-#[component(transparent)]
-pub fn QuoteRoutes() -> impl IntoView {
-    view! {
-        <Route path="/tmf-api/tmf648/v4" view=QuoteHome>
-            <Route path="quote" view=QuoteList >
-                <Route path=":id" view=QuoteDetail />
-                <Route path="add" view=QuoteAdd />
-                <Route path="" view=NoOptionView />
-            </Route>
-            <Route path="" view=NoOptionView />
-        </Route>
-    }
-}
