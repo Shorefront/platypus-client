@@ -2063,8 +2063,8 @@ checksum = "1f3ccbac311fea05f86f61904b462b55fb3df8837a366dfc601a0161d0532f20"
 
 [[package]]
 name = "tmflib"
-version = "0.1.15"
-source = "git+https://github.com/rruckley/tmflib.git#00c96f756138f7a7a7782ffb0055c8e7b9f28af6"
+version = "0.1.16"
+source = "git+https://github.com/rruckley/tmflib.git#25f9b7588d8a15cd1071670159ec7f5abd6d9abe"
 dependencies = [
  "base32",
  "chrono",
@@ -2079,9 +2079,9 @@ dependencies = [
 
 [[package]]
 name = "tmflib-derive"
-version = "0.1.15"
+version = "0.1.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "304dc14c9b79241192454b409f5cd2d5d42ae92548eb74271d7460a7cb339107"
+checksum = "e642880e566e2ebd024fc2bf7e9e2f8137357c8b349c5056d4ef80326939728c"
 dependencies = [
  "proc-macro2",
  "quote",
