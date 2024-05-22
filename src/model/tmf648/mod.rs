@@ -4,7 +4,7 @@
 use leptos::*;
 use leptos_router::*;
 
-use tmflib::HasId;
+use tmflib::{HasId, HasName};
 use tmflib::tmf648::quote::Quote;
 
 use crate::model::common::form::{BasicClass,NamedClass,Validity,SingleRow};
@@ -77,16 +77,22 @@ pub fn QuoteDetail() -> impl IntoView {
 }
 
 #[component]
-pub fn BasicQuote(quote : Quote) -> impl IntoView {
+pub fn BasicQuote(mut quote : Quote) -> impl IntoView {
     let desc = quote.description.clone();
     let cat = quote.category.clone();
     let (name,set_name) = create_signal("New Specification".to_string());
+    let (desc,set_desc) = create_signal("Description".to_string());
+    let (cat,set_cat) = create_signal("Category".to_string());
+    name.with(|n| quote.set_name(n));
     view! {
         <fieldset>
-            <legend>Quote Information</legend>
+            <legend>"Quote Information"</legend>
             <NamedClass item=quote.clone() signal=set_name/>
-            <SingleRow id="description".to_string() label="Description".to_string() value=desc.unwrap_or_default() />
-            <SingleRow id="category".to_string() label="Category".to_string() value=cat.unwrap_or_default() />
+            <fieldset>
+                <legend>"Details"</legend>
+                <SingleRow id="description".to_string() label="Description".to_string() signal=set_desc />
+                <SingleRow id="category".to_string() label="Category".to_string() signal=set_cat />
+            </fieldset>
         </fieldset>
     }
 }
