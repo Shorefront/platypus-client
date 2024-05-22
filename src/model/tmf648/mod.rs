@@ -7,7 +7,7 @@ use leptos_router::*;
 use tmflib::HasId;
 use tmflib::tmf648::quote::Quote;
 
-use crate::model::common::form::{BasicClass,NamedClass,Validity,SingleRow};
+use crate::model::common::form::{BasicClass,NamedClass,Validity,SingleRow,RelatedParty};
 
 #[component]
 pub fn NoOptionView() -> impl IntoView {
@@ -85,6 +85,7 @@ pub fn BasicQuote(quote : Quote) -> impl IntoView {
         <fieldset>
             <legend>Quote Information</legend>
             <NamedClass item=quote.clone() signal=set_name/>
+            <RelatedParty item=quote/>
             <SingleRow id="description".to_string() label="Description".to_string() value=desc.unwrap_or_default() />
             <SingleRow id="category".to_string() label="Category".to_string() value=cat.unwrap_or_default() />
         </fieldset>
