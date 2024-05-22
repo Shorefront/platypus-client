@@ -7,7 +7,7 @@ use leptos_router::*;
 use tmflib::HasId;
 use tmflib::tmf648::quote::Quote;
 
-use crate::model::common::form::{BasicClass,Validity,SingleRow};
+use crate::model::common::form::{BasicClass,NamedClass,Validity,SingleRow};
 
 #[component]
 pub fn NoOptionView() -> impl IntoView {
@@ -20,6 +20,7 @@ pub fn NoOptionView() -> impl IntoView {
 pub fn QuoteRoutes() -> impl IntoView {
     let mod_path = Quote::get_mod_path();
     let quote_path = Quote::get_class();
+    let mod_path = Quote::get_mod_path();
     view! {
         <Route path=mod_path view=QuoteHome>
             <Route path=quote_path view=QuoteList >
@@ -79,10 +80,11 @@ pub fn QuoteDetail() -> impl IntoView {
 pub fn BasicQuote(quote : Quote) -> impl IntoView {
     let desc = quote.description.clone();
     let cat = quote.category.clone();
+    let (name,set_name) = create_signal("New Specification".to_string());
     view! {
         <fieldset>
             <legend>Quote Information</legend>
-            <BasicClass item=quote.clone()/>
+            <NamedClass item=quote.clone() signal=set_name/>
             <SingleRow id="description".to_string() label="Description".to_string() value=desc.unwrap_or_default() />
             <SingleRow id="category".to_string() label="Category".to_string() value=cat.unwrap_or_default() />
         </fieldset>
