@@ -3,10 +3,10 @@
 
 use leptos::*;
 use leptos_router::*;
-use tmflib::HasId;
+use tmflib::{HasId, HasName};
 
 use crate::model::common::table::GenericTable;
-use crate::model::common::form::{NamedClass,SingleRow};
+use crate::model::common::form::NamedClass;
 
 use tmflib::tmf629::customer::Customer;
 #[cfg(feature = "tmf632_v4")]
@@ -22,8 +22,9 @@ pub fn NoOptionView() -> impl IntoView {
 }
 
 #[component]
-pub fn BasicCustomer(customer : Customer) -> impl IntoView {
+pub fn BasicCustomer(mut customer : Customer) -> impl IntoView {
     let (name,set_name) = create_signal("New Category".to_string());
+    name.with(|n| customer.set_name(n));
     view! {
         <fieldset>
             <legend>Customer Information</legend>
