@@ -4,8 +4,8 @@ use leptos::*;
 use leptos_router::*;
 use log::error;
 
-use crate::model::common::table::GenericTable;
-use tmflib::{tmf620::category::Category, HasId};
+use crate::model::common::{form::SingleRow, table::GenericTable};
+use tmflib::{tmf620::category::Category, HasId, HasName};
 use crate::model::common::form::NamedClass;
 use reqwest_wasm::Client;
 
@@ -88,13 +88,16 @@ pub fn CategorySelection(signal : WriteSignal<String>) -> impl IntoView {
 pub fn CategoryAdd() -> impl IntoView {
     let (name,set_name) = create_signal("New Category".to_string());
     let (parent,set_parent) = create_signal("Root".to_string());
-    let new_cat = Category::new(name.get());
+    let (get_desc,set_desc) = create_signal("Description".to_string());
+    let mut new_cat = Category::new(name.get());
+    name.with(|n| new_cat.set_name(n));
     view! {
         <div class="form">
             <h2>"Add Category"</h2>
             <NamedClass item=new_cat signal=set_name />
             <CategorySelection signal=set_parent/>
-            <p>"Will create new category called: " { name } " with parent: " { parent }</p>
+            <SingleRow id="description".to_string() label="Description".to_string() signal=set_desc />
+            <p>"Will create new category called: " { name } " with parent: " { parent } and description { get_desc }</p>
         </div>
     }
 }
