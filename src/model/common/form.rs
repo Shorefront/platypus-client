@@ -4,11 +4,15 @@ use leptos::*;
 use tmflib::{HasId,HasName,HasValidity};
 
 #[component]
-pub fn SingleRow(id: String, label: String, value: String) ->impl IntoView {
+pub fn SingleRow(id: String, label: String, signal : WriteSignal<String>) ->impl IntoView {
     view! {
         <tr>
             <td><label for=id.clone()>{ label }</label></td>
-            <td><input id=id.clone() value=value /></td>
+            <td><input 
+                id=id.clone() 
+                on:input=move |ev| { signal.set(event_target_value(&ev)); } 
+                />
+            </td>
         </tr>
     }
 }
@@ -20,12 +24,8 @@ pub fn BasicClass<T : HasId> (item : T) -> impl IntoView {
     view! {
             <tr>
                 <td><label for="id">"Id"</label></td>
-                <td>{ id }</td>
-            </tr>
-            <tr>
-                <td><label for="href">"HREF"</label></td>
-                <td>{ href }</td>
-            </tr>   
+                <td><a href=href>{ id }</a></td>
+            </tr> 
     }
 }
 
