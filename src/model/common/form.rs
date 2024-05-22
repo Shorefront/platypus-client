@@ -1,7 +1,7 @@
 //! TMF Form components
 //! 
 use leptos::*;
-use tmflib::{HasId,HasName,HasValidity};
+use tmflib::{common::related_party::RelatedParty, HasId, HasName, HasRelatedParty, HasValidity};
 
 #[component]
 pub fn SingleRow(id: String, label: String, value: String) ->impl IntoView {
@@ -60,6 +60,20 @@ pub fn Validity<T : HasId + HasValidity> (item : T) -> impl IntoView {
             <tr>
                 <td><label for="end_date_time">End</label></td>
                 <td><input id="end_date_time" type="datetime-local" value=valid_end/></td>
+            </tr>
+        </fieldset>
+    }
+}
+
+#[component]
+pub fn RelatedParty<T : HasId + HasRelatedParty> (item : T) -> impl IntoView {
+    let parties : Vec<RelatedParty> = vec![];
+    let idx : usize = 0;
+    let len = item.get_party(0);
+    view! {
+        <fieldset>
+            <legend>Related Parties</legend>
+            <tr>
             </tr>
         </fieldset>
     }
