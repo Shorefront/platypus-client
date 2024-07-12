@@ -20,11 +20,12 @@ pub fn GenericTable<T : HasId + HasName>(items : Vec<T>) -> impl IntoView {
                     <th>{ T::get_class()}s</th>
                 </tr>
          
-                {items.into_iter()
+                {
+                    items.into_iter()
                     .map(|c| {
                         TableRow(TableRowProps{ item: c})
                     }).collect_view()
-                }
+                },  
             </table>
         </div>
     }

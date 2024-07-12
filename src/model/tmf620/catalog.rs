@@ -6,7 +6,7 @@ use log::info;
 use tmflib::{tmf620::catalog::Catalog, HasId};
 use crate::model::common::table::GenericTable;
 
-const DEFAULT_HOST : &str = "http://localhost:3000";
+const DEFAULT_HOST : &str = "http://localhost:8000";
 
 async fn get_catalogs() -> Vec<Catalog> {
 

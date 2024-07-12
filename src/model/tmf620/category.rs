@@ -2,19 +2,19 @@
 
 use leptos::*;
 use leptos_router::*;
-use log::error;
+use log::{info,error};
 
 use crate::model::common::{form::SingleRow, table::GenericTable};
 use tmflib::{tmf620::category::Category, HasId, HasName};
 use crate::model::common::form::NamedClass;
 use reqwest_wasm::Client;
 
-const DEFAULT_HOST : &str = "http://localhost:3000";
+const DEFAULT_HOST : &str = "http://localhost:8000";
 
 async fn get_cat() -> Vec<Category> {
     // This is where we create an API call back into back end
     
-    let href = format!("{}/{}",DEFAULT_HOST,Category::get_class_href());
+    let href = format!("{}{}",DEFAULT_HOST,Category::get_class_href());
     let client = Client::new();
     let res = client.get(href).send().await;
     match res {
@@ -24,6 +24,7 @@ async fn get_cat() -> Vec<Category> {
             match body {
                 Ok(b) => {
                     let cat_list : Vec<Category> = serde_json::from_str(b.as_ref()).unwrap();
+                    info!("Found {} categories",cat_list.len());
                     cat_list
                 },
                 Err(e) => {
@@ -48,15 +49,14 @@ pub fn CategoryTable() -> impl IntoView {
         get_cat().await
     });
     let add_href = format!("{}/add",Category::get_class_href());
-    let cat_list = load_cat_list.get();
-    let categories = match cat_list {
-        Some(c) => c,
-        None => vec![],
+    
+    let out = match load_cat_list.get() {
+        Some(v) => v,
+        None => vec![]
     };
-
     view! {
         <div class="list">
-            <GenericTable items=categories/>
+            <GenericTable items=out/>
             <a href=add_href>"New Category"</a>
         </div> 
         <div class="detail">
