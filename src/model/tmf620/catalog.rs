@@ -6,11 +6,11 @@ use log::info;
 use tmflib::{tmf620::catalog::Catalog, HasId};
 use crate::model::common::table::GenericTable;
 
-const DEFAULT_HOST : &str = "http://localhost:8000";
+const DEFAULT_HOST : &str = "http://localhost:8001";
 
 async fn get_catalogs() -> Vec<Catalog> {
 
-    let href = format!("{}/{}",DEFAULT_HOST,Catalog::get_class_href());
+    let href = format!("{}{}",DEFAULT_HOST,Catalog::get_class_href());
     let client = Client::new();
     let res = client.get(href).send().await;
     match res {
