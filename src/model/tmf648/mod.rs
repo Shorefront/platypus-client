@@ -81,8 +81,8 @@ pub fn BasicQuote(mut quote : Quote) -> impl IntoView {
     let desc = quote.description.clone();
     let cat = quote.category.clone();
     let (name,set_name) = create_signal(quote.get_name());
-    let (desc,set_desc) = create_signal(quote.description());
-    let (cat,set_cat) = create_signal("Cat".to_string());
+    let (_desc,set_desc) = create_signal(quote.description());
+    let (_cat,set_cat) = create_signal("Cat".to_string());
     name.with(|n| quote.set_name(n));
     view! {
         <fieldset>
