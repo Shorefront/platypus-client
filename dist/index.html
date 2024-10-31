@@ -41,19 +41,37 @@
 
             div.list {
                 width: 20%;
+                height: 100%;
                 padding: 3px;
+                margin: 3px;
+                border-radius: 5px;
                 background-color: #fcf;
+                border: 1px solid gray;
             }
             div.list a {
-                border: 2px solid grey;
+                border: 1px solid #005a71;
                 float: left;
                 background-color: #ccc;
-                font-weight: bold;
-                padding: 3px;
+                border-radius: 5px;
+                padding: 5px;
+                width: 80%;
+                margin-left: 10%;
+                text-decoration: none;     
+            }
+            div.list li a {
+                width: 100%;
+                margin: 0;
+            }
+            div.list div {
+                float: left;
             }
             div.detail {
                 width: 70%;
+                height: 100%;
                 padding: 3px;
+                margin: 3px;
+                border-radius: 5px;
+                border: 1px solid gray;
                 background-color: #cfc;
             }
 
@@ -70,6 +88,24 @@
                 padding: 2px;
                 border-radius: 5px;
                 width: 90%;
+            }
+
+            .list ul {
+               
+            }
+
+            .list li {
+                list-style-type: none;
+            }
+
+            div.list a:hover {
+                background-color: #ddd;
+                border: 1px solid #00b0bd;
+            }
+
+            .list h3 {
+                text-transform: capitalize;
+                text-decoration: underline;
             }
 
             th {
@@ -93,7 +129,34 @@
             }
         </style>
     
-<link rel="preload" href="/platypus-client-58ffe9df1795277c_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
-<link rel="modulepreload" href="/platypus-client-58ffe9df1795277c.js"></head>
+<link rel="preload" href="/platypus-client-b52c31740ca49814_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+<link rel="modulepreload" href="/platypus-client-b52c31740ca49814.js"></head>
     <body>
-<script type="module">import init from '/platypus-client-58ffe9df1795277c.js';init('/platypus-client-58ffe9df1795277c_bg.wasm');</script></body></html>
+<script type="module">import init from '/platypus-client-b52c31740ca49814.js';init('/platypus-client-b52c31740ca49814_bg.wasm');</script><script>(function () {
+    var protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    var url = protocol + '//' + window.location.host + '/_trunk/ws';
+    var poll_interval = 5000;
+    var reload_upon_connect = () => {
+        window.setTimeout(
+            () => {
+                // when we successfully reconnect, we'll force a
+                // reload (since we presumably lost connection to
+                // trunk due to it being killed, so it will have
+                // rebuilt on restart)
+                var ws = new WebSocket(url);
+                ws.onopen = () => window.location.reload();
+                ws.onclose = reload_upon_connect;
+            },
+            poll_interval);
+    };
+
+    var ws = new WebSocket(url);
+    ws.onmessage = (ev) => {
+        const msg = JSON.parse(ev.data);
+        if (msg.reload) {
+            window.location.reload();
+        }
+    };
+    ws.onclose = reload_upon_connect;
+})()
+</script></body></html>
