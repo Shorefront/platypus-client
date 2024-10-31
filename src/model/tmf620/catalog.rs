@@ -4,6 +4,7 @@ use reqwest_wasm::Client;
 use log::info;
 
 use tmflib::{tmf620::catalog::Catalog, HasId};
+use crate::model::common::list::GenericListWithAdd;
 use crate::model::common::table::GenericTable;
 
 const DEFAULT_HOST : &str = "http://localhost:8001";
@@ -44,17 +45,13 @@ pub fn CatalogAdd() -> impl IntoView {
 
 #[component]
 pub fn CatalogList() -> impl IntoView {
-    let load_cat_list = create_resource(|| (),|_| async move {
-        get_catalogs().await
-    });
-    let category_list = load_cat_list.get();
-    let catalogs = match category_list {
-        Some(cl) => cl,
-        None => vec![],
-    };
+    let cat1 = Catalog::new("Components");
+    let cat2 = Catalog::new("Products");
+    let cat_list = vec![cat1,cat2];
+
     view! {
         <div class="list">
-            <GenericTable items=catalogs />
+            <GenericListWithAdd items=cat_list />
         </div>
         <div class="detail">
             <Outlet />
@@ -67,14 +64,12 @@ pub fn CatalogTable() -> impl IntoView {
 
     let cat1 = Catalog::new("Design");
     let cat2 = Catalog::new("Production");
-    let href = format!("{}/add",Catalog::get_class_href());
+    let add_href = format!("{}/add",Catalog::get_class_href());
     let catalogs = vec![cat1,cat2];
     view! {
         <div class="list">
             <GenericTable items=catalogs />
-        </div>
-        <div>
-            <a href=href>"New Catalogue"</a>
+            <a href=add_href>"New Catalogue"</a>
         </div>
         <div class="detail">
             <Outlet />

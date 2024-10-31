@@ -4,6 +4,8 @@
 use leptos::*;
 use leptos_router::*;
 
+use crate::model::common::list::GenericListWithAdd;
+
 use tmflib::HasId;
 #[cfg(feature = "tmf674_v4")]
 use tmflib::tmf674::geographic_site_v4::GeographicSite;
@@ -37,14 +39,7 @@ pub fn GeographicSiteList() -> impl IntoView {
     let sites = vec![site1,site2];
     view! {
         <div class="list">
-            <table>
-                <tr><th>"Site Id"</th></tr>
-                {sites.into_iter()
-                    .map(|gs| {
-                        view! { <tr><td><a href={ gs.get_href()}> { gs.name } </a></td></tr> }
-                    }).collect_view()
-                }
-            </table>
+            <GenericListWithAdd items=sites />
         </div>
         <div class="detail">
             <Outlet />

@@ -6,6 +6,7 @@ use leptos_router::*;
 use tmflib::{HasId, HasName};
 
 use crate::model::common::table::GenericTable;
+use crate::model::common::list::GenericListWithAdd;
 use crate::model::common::form::NamedClass;
 
 use tmflib::tmf629::customer::Customer;
@@ -76,11 +77,10 @@ pub fn CustomerList() -> impl IntoView {
     let org2 = Organization::new("Customer Two".to_string());
     let cust2 = Customer::new(org2);
     let custs = vec![cust1,cust2];
-    let add_href = format!("{}/add",Customer::get_class_href());
+
     view! {
         <div class="list">
-            <GenericTable items=custs/>
-            <a href=add_href>"Add Customer"</a>
+            <GenericListWithAdd items=custs/>
         </div>
         <div class="detail">
             <Outlet />

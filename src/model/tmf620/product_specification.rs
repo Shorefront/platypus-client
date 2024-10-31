@@ -5,18 +5,18 @@ use leptos_router::Outlet;
 use tmflib::HasId;
 
 use crate::model::common::table::GenericTable;
+use crate::model::common::list::GenericListWithAdd;
 use crate::model::common::form::NamedClass;
 use tmflib::tmf620::product_specification::ProductSpecification;
 
 #[component]
 pub fn ProductSpecificationTable() -> impl IntoView {
-    let spec1 = ProductSpecification::new("Spec One".to_string());
-    let specs = vec![spec1];
-    let spec_add = format!("{}/add",ProductSpecification::get_class_href());
+    let spec1 = ProductSpecification::new("Internet Specification");
+    let spec2 = ProductSpecification::new("WAN Specification");
+    let specs = vec![spec1,spec2];
     view! {
         <div class="list">
-            <GenericTable items=specs />
-            <a href=spec_add>"Add"</a>
+            <GenericListWithAdd items=specs />
         </div>
         <div class="detail">
             <Outlet />

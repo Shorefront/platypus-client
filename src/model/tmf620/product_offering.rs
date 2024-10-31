@@ -3,17 +3,18 @@
 use leptos::*;
 use leptos_router::Outlet;
 use crate::model::common::table::GenericTable;
+use crate::model::common::list::GenericListWithAdd;
 
 use tmflib::tmf620::product_offering::ProductOffering;
 
 #[component]
 pub fn ProductOfferingTable() -> impl IntoView {
-    let offer1 = ProductOffering::new("Offer1".to_string());
-    let items = vec![offer1];
+    let offer1 = ProductOffering::new("Internet");
+    let offer2 = ProductOffering::new("WAN");
+    let items = vec![offer1,offer2];
     view! {
         <div class="list">
-            
-            <GenericTable items=items/>
+            <GenericListWithAdd items=items/>
         </div>
         <div class="detail">
             <Outlet />

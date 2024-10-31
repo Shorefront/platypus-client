@@ -9,7 +9,7 @@ use leptos::*;
 use leptos_router::*;
 
 
-use crate::GenericTable;
+use crate::model::common::list::GenericListWithAdd;
 
 #[component]
 pub fn OrganizationList() -> impl IntoView {
@@ -19,7 +19,7 @@ pub fn OrganizationList() -> impl IntoView {
     let orgs = vec![org1,org2,org3];
     view! {
         <div class="list">
-            <GenericTable items=orgs/>
+            <GenericListWithAdd items=orgs/>
         </div>
         <div class="detail">
             <Outlet/>

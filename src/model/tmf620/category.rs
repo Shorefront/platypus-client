@@ -5,6 +5,7 @@ use leptos_router::*;
 use log::{info,error};
 
 use crate::model::common::{form::SingleRow, table::GenericTable};
+use crate::model::common::list::GenericListWithAdd;
 use tmflib::{tmf620::category::Category, HasId, HasName};
 use crate::model::common::form::NamedClass;
 use reqwest_wasm::Client;
@@ -44,20 +45,16 @@ async fn get_cat() -> Vec<Category> {
 #[component]
 pub fn CategoryTable() -> impl IntoView {
 
+    let cat1 = Category::new("Component");
+    let cat2 = Category::new("Product");
 
-    let load_cat_list = create_resource(|| (), |_| async move {
-        get_cat().await
-    });
+    let cat_list = vec![cat1,cat2];
+
     let add_href = format!("{}/add",Category::get_class_href());
     
-    let out = match load_cat_list.get() {
-        Some(v) => v,
-        None => vec![]
-    };
     view! {
         <div class="list">
-            <GenericTable items=out/>
-            <a href=add_href>"New Category"</a>
+            <GenericListWithAdd items=cat_list />
         </div> 
         <div class="detail">
             <Outlet />
@@ -144,9 +141,9 @@ pub fn CategoryView() -> impl IntoView {
     //     });
     // };
     // let cat1 = get_cat(cat_id,&mut output);
-    let cat1 = Category::new("Root".to_string());
-    let cat2 = Category::new("A Child".to_string());
-    let cat3 = Category::new("B Child".to_string());
+    let cat1 = Category::new("Root Category".to_string());
+    let cat2 = Category::new("Component".to_string());
+    let cat3 = Category::new("Product".to_string());
     
     //cat.id = Some(cat_id);
     view!{

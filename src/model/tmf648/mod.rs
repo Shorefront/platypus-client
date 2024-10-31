@@ -54,13 +54,13 @@ pub fn QuoteList() -> impl IntoView {
     let add_href = format!("{}/add",Quote::get_class_href());
     view! {
         <div class="list">
-        <table>
+        <ul>
             {quotes.into_iter()
-                .map(|_c| {
-                    
+                .map(|c| {
+                
                 }).collect_view()
             }
-        </table>
+        </ul>
         <a href=add_href>"Add"</a>
         </div>
         <div class="detail">

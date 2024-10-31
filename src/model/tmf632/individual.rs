@@ -9,6 +9,7 @@ use tmflib::tmf632::individual_v4::Individual;
 use tmflib::tmf632::individual_v5::Individual;
 
 use crate::GenericTable;
+use crate::model::common::list::GenericListWithAdd;
 
 #[component]
 pub fn IndividualTable() -> impl IntoView {
@@ -18,7 +19,7 @@ pub fn IndividualTable() -> impl IntoView {
     let individuals = vec![ind1,ind2,ind3];
     view! {
         <div class="list">
-            <GenericTable items=individuals/>
+            <GenericListWithAdd items=individuals/>
         </div>
         <div class="detail">
             <Outlet />
