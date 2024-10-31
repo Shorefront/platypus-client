@@ -7,6 +7,8 @@ mod model;
 use model::tmf620::CatalogRoutes;
 use model::tmf629::CustomerRoutes;
 use model::tmf632::PartyRoutes;
+#[cfg(feature = "tmf633")]
+use model::tmf633::ServiceCatalogRoutes;
 use model::tmf648::QuoteRoutes;
 use model::tmf674::GeographicSiteRoutes;
 #[cfg(feature = "tmf7xx")]
@@ -58,6 +60,7 @@ fn Platypus() -> impl IntoView {
                     <CatalogRoutes />
                     <CustomerRoutes />
                     <PartyRoutes />
+                    <ServiceCatalogRoutes />
                     <QuoteRoutes />
                     <GeographicSiteRoutes />
                     <Route path="/" view=Home/>
