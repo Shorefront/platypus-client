@@ -38,9 +38,7 @@ fn Home() -> impl IntoView {
 #[component]
 fn NotFound() -> impl IntoView {
     view!{
-        <div>
-            <p>"Cannot find that page"</p>
-        </div>
+            <p class="error">"Cannot find that page"</p>
     }
 }
 
