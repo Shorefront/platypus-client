@@ -1,7 +1,7 @@
 //! Product Offering Model
 
-use leptos::*;
-use leptos_router::Outlet;
+use leptos::prelude::*;
+use leptos_router::components::Outlet;
 use crate::model::common::table::GenericTable;
 use crate::model::common::list::GenericListWithAdd;
 

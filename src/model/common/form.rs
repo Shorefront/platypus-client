@@ -1,6 +1,6 @@
 //! TMF Form components
 //! 
-use leptos::*;
+use leptos::prelude::*;
 use tmflib::{HasId,HasName,HasValidity};
 
 #[component]

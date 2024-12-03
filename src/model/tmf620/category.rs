@@ -1,6 +1,8 @@
 //! Category Views
 
-use leptos::*;
+use components::Outlet;
+use hooks::use_params_map;
+use leptos::prelude::*;
 use leptos_router::*;
 use log::{info,error};
 
@@ -122,7 +124,7 @@ pub fn CategoryNode(cat : Category, position: u16) -> impl IntoView {
 #[component]
 pub fn CategoryView() -> impl IntoView {
     let params = use_params_map();
-    let _id = move || params.with(|params| params.get("id").cloned().unwrap_or_default());
+    let _id = move || params.with(|params| params.get("id").unwrap_or_default());
     
     // let cat1 = |_| {
     //     spawn_local(async {

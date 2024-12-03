@@ -1,6 +1,7 @@
-use leptos::*;
+use components::{ParentRoute, Router, Routes};
 use leptos_router::*;
-
+use leptos::prelude::*;
+use leptos::mount::hydrate_body;
 mod model;
 
 // Routes
@@ -44,9 +45,10 @@ fn NotFound() -> impl IntoView {
 
 #[component]
 fn Platypus() -> impl IntoView {
+    // provide_context(ExampleContext(0));
 
     view!{
-        <Router>
+        <Router set_is_routing>
             <nav>
                 <Banner />
             </nav>
@@ -54,7 +56,7 @@ fn Platypus() -> impl IntoView {
                 <Menu />
             </nav>
             <main>
-                <Routes>
+                <ParentRoute>
                     <CatalogRoutes />
                     <CustomerRoutes />
                     <PartyRoutes />
@@ -63,7 +65,7 @@ fn Platypus() -> impl IntoView {
                     <GeographicSiteRoutes />
                     <Route path="/" view=Home/>
                     <Route path="/*any" view=NotFound />
-                </Routes>
+                </ParentRoute>
             </main>
         </Router>
     }
@@ -71,5 +73,5 @@ fn Platypus() -> impl IntoView {
 
 fn main() {
     _ = console_log::init_with_level(log::Level::Debug);
-    leptos::mount_to_body(Platypus)
+    leptos::mount::hydrate_body(Platypus)
 }

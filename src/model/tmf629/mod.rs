@@ -1,8 +1,8 @@
 //! Customer components
 
 
-use leptos::*;
-use leptos_router::*;
+use components::{Outlet, Route, ParentRoute};
+use leptos::prelude::*;
 use tmflib::{HasId, HasName};
 
 use crate::model::common::table::GenericTable;
@@ -37,14 +37,14 @@ pub fn BasicCustomer(mut customer : Customer) -> impl IntoView {
 #[component(transparent)]
 pub fn CustomerRoutes() -> impl IntoView {
     view! {
-        <Route path="/tmf-api/customerManagement/v4" view=CustomerHome>
+        <ParentRoute path="/tmf-api/customerManagement/v4" view=CustomerHome>
             <Route path="customer" view=CustomerList >
                 <Route path=":id" view=CustomerView />
                 <Route path="add" view=CustomerAdd />
                 <Route path="" view=NoOptionView />
             </Route>
             <Route path="" view=NoOptionView />
-        </Route>
+        </ParentRoute>
     }
 }
 

@@ -1,7 +1,8 @@
 //! Individual Model
 
-use leptos::*;
+use leptos::prelude::*;
 use leptos_router::*;
+use components::{Outlet, Route, Router};
 
 #[cfg(feature = "tmf632_v4")]
 use tmflib::tmf632::individual_v4::Individual;

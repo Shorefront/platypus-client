@@ -1,10 +1,11 @@
 //! Product Offering Price Module
 
+use components::Outlet;
 use tmflib::tmf620::product_offering_price::ProductOfferingPrice;
 use crate::model::common::table::GenericTable;
 use crate::model::common::list::{GenericListWithAdd, GenericListWithAddProps};
 
-use leptos::*;
+use leptos::prelude::*;
 use leptos_router::*;
 
 #[component]

@@ -1,7 +1,6 @@
 //! Generate Route components
 
-use leptos::*;
-// use leptos_router::*;
+use leptos::prelude::*;
 
 use tmflib::{HasId,HasName};
 

@@ -1,7 +1,8 @@
 //! Service Catalogue Module
 //! 
 
-use leptos::*;
+use components::{Outlet, ParentRoute, Route};
+use leptos::prelude::*;
 use leptos_router::*;
 
 pub mod service_catalog;
@@ -32,29 +33,9 @@ pub fn InvalidOptionView() -> impl IntoView {
 #[component(transparent)]
 pub fn ServiceCatalogRoutes() -> impl IntoView {
     view! {
-        <Route path="/tmf-api/serviceCatalogManagement/v4" view=ServiceCatalogHome>
-            <Route path="catalog" view=ServiceCatalogList >
-                <Route path=":id" view=ServiceCatalogView />
-                <Route path="add" view=ServiceCatalogForm />
-                <Route path="" view=InvalidOptionView />
-            </Route>
-            <Route path="category" view=ServiceCategoryList >
-                <Route path=":id" view=ServiceCategoryView />
-                <Route path="add" view=ServiceCategoryForm />
-                <Route path="" view=InvalidOptionView />
-            </Route>
-            <Route path="candidate" view=ServiceCandidateList >
-                <Route path=":id" view=ServiceCandidateView />
-                <Route path="add" view=ServiceCandidateForm />
-                <Route path="" view=InvalidOptionView />
-            </Route>
-            <Route path="specification" view=ServiceSpecificationList >
-                <Route path=":id" view=ServiceSpecificationView />
-                <Route path="add" view=ServiceSpecificationForm />
-                <Route path="" view=InvalidOptionView />
-            </Route>
-        <Route path="" view=NoOptionView />
-        </Route>
+        <ParentRoute path="/tmf-api/serviceCatalogManagement/v4" view=ServiceCatalogHome>
+            <Route path="" view=NoOptionView />
+        </ParentRoute>
     }
 }
 

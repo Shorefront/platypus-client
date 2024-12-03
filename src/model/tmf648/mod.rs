@@ -1,7 +1,8 @@
+use components::{Outlet, ParentRoute, Route};
 /// Quote Module
 /// 
 
-use leptos::*;
+use leptos::prelude::*;
 use leptos_router::*;
 
 use tmflib::{HasId, HasName};
@@ -22,14 +23,14 @@ pub fn QuoteRoutes() -> impl IntoView {
     let quote_path = Quote::get_class();
     let mod_path = Quote::get_mod_path();
     view! {
-        <Route path=mod_path view=QuoteHome>
-            <Route path=quote_path view=QuoteList >
+        <ParentRoute path=mod_path view=QuoteHome>
+            <ParentRoute path=quote_path view=QuoteList >
                 <Route path=":id" view=QuoteDetail />
                 <Route path="add" view=QuoteAdd />
                 <Route path="" view=NoOptionView />
-            </Route>
+            </ParentRoute>
             <Route path="" view=NoOptionView />
-        </Route>
+        </ParentRoute>
     }
 }
 

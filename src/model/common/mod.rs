@@ -1,7 +1,7 @@
 //! Common components
 //! 
 
-use leptos::*;
+use leptos::prelude::*;
 
 pub mod table;
 pub mod menu;
