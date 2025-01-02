@@ -1,8 +1,8 @@
 //! Customer components
 
 
-use leptos::*;
-use leptos_router::*;
+use leptos::prelude::*;
+use leptos_router::components::{Route,Routes,ParentRoute,Outlet};
 use tmflib::{HasId, HasName};
 
 use crate::model::common::table::GenericTable;
@@ -24,7 +24,7 @@ pub fn NoOptionView() -> impl IntoView {
 
 #[component]
 pub fn BasicCustomer(mut customer : Customer) -> impl IntoView {
-    let (name,set_name) = create_signal("New Category".to_string());
+    let (name,set_name) = signal("New Category".to_string());
     name.with(|n| customer.set_name(n));
     view! {
         <fieldset>
@@ -35,16 +35,16 @@ pub fn BasicCustomer(mut customer : Customer) -> impl IntoView {
 }
 
 #[component(transparent)]
-pub fn CustomerRoutes() -> impl IntoView {
+pub fn CustomerRoutes() -> impl MatchNestedRoutes + Clone {
     view! {
-        <Route path="/tmf-api/customerManagement/v4" view=CustomerHome>
-            <Route path="customer" view=CustomerList >
+        <ParentRoute path="/tmf-api/customerManagement/v4" view=CustomerHome>
+            <ParentRoute path="customer" view=CustomerList >
                 <Route path=":id" view=CustomerView />
                 <Route path="add" view=CustomerAdd />
                 <Route path="" view=NoOptionView />
-            </Route>
+            </ParentRoute>
             <Route path="" view=NoOptionView />
-        </Route>
+        </ParentRoute>
     }
 }
 

@@ -1,7 +1,8 @@
 //! Category Views
 
-use leptos::*;
-use leptos_router::*;
+use leptos::prelude::*;
+use leptos_router::components::*;
+use leptos_router::hooks::use_params_map;
 use log::{info,error};
 
 use crate::model::common::{form::SingleRow, table::GenericTable};
@@ -83,9 +84,9 @@ pub fn CategorySelection(signal : WriteSignal<String>) -> impl IntoView {
 
 #[component]
 pub fn CategoryAdd() -> impl IntoView {
-    let (name,set_name) = create_signal("New Category".to_string());
-    let (parent,set_parent) = create_signal("Root".to_string());
-    let (get_desc,set_desc) = create_signal("Description".to_string());
+    let (name,set_name) = signal("New Category".to_string());
+    let (parent,set_parent) = signal("Root".to_string());
+    let (get_desc,set_desc) = signal("Description".to_string());
     let mut new_cat = Category::new(name.get());
     name.with(|n| new_cat.set_name(n));
     view! {
@@ -122,7 +123,7 @@ pub fn CategoryNode(cat : Category, position: u16) -> impl IntoView {
 #[component]
 pub fn CategoryView() -> impl IntoView {
     let params = use_params_map();
-    let _id = move || params.with(|params| params.get("id").cloned().unwrap_or_default());
+    let _id = move || params.with(|params| params.get("id").clone().unwrap_or_default());
     
     // let cat1 = |_| {
     //     spawn_local(async {

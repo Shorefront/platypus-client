@@ -1,8 +1,8 @@
 //! Service Catalogue Module
 //! 
 
-use leptos::*;
-use leptos_router::*;
+use leptos::prelude::*;
+use leptos_router::components::{Route,ParentRoute};
 
 pub mod service_catalog;
 pub mod service_category;
@@ -29,32 +29,32 @@ pub fn InvalidOptionView() -> impl IntoView {
 }
 
 
-#[component(transparent)]
-pub fn ServiceCatalogRoutes() -> impl IntoView {
+#[component]
+pub fn ServiceCatalogRoutes() -> impl IntoRender {
     view! {
-        <Route path="/tmf-api/serviceCatalogManagement/v4" view=ServiceCatalogHome>
-            <Route path="catalog" view=ServiceCatalogList >
+        <ParentRoute path="/tmf-api/serviceCatalogManagement/v4" view=ServiceCatalogHome>
+            <ParentRoute path="catalog" view=ServiceCatalogList >
                 <Route path=":id" view=ServiceCatalogView />
                 <Route path="add" view=ServiceCatalogForm />
                 <Route path="" view=InvalidOptionView />
-            </Route>
-            <Route path="category" view=ServiceCategoryList >
+            </ParentRoute>
+            <ParentRoute path="category" view=ServiceCategoryList >
                 <Route path=":id" view=ServiceCategoryView />
                 <Route path="add" view=ServiceCategoryForm />
                 <Route path="" view=InvalidOptionView />
-            </Route>
-            <Route path="candidate" view=ServiceCandidateList >
+            </ParentRoute>
+            <ParentRoute path="candidate" view=ServiceCandidateList >
                 <Route path=":id" view=ServiceCandidateView />
                 <Route path="add" view=ServiceCandidateForm />
                 <Route path="" view=InvalidOptionView />
-            </Route>
-            <Route path="specification" view=ServiceSpecificationList >
+            </ParentRoute>
+            <ParentRoute path="specification" view=ServiceSpecificationList >
                 <Route path=":id" view=ServiceSpecificationView />
                 <Route path="add" view=ServiceSpecificationForm />
                 <Route path="" view=InvalidOptionView />
-            </Route>
+            </ParentRoute>
         <Route path="" view=NoOptionView />
-        </Route>
+        </ParentRoute>
     }
 }
 

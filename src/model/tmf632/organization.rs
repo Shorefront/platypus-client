@@ -5,8 +5,10 @@ use tmflib::tmf632::organization_v4::Organization;
 #[cfg(feature = "tmf632_v5")]
 use tmflib::tmf632::organization_v5::Organization;
 
-use leptos::*;
-use leptos_router::*;
+use leptos::prelude::*;
+use leptos_router::components::*;
+use leptos_router::hooks::use_params;
+use leptos_router::params::Params;
 
 
 use crate::model::common::list::GenericListWithAdd;

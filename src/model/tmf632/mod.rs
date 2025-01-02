@@ -2,8 +2,8 @@
 pub mod individual;
 pub mod organization;
 
-use leptos_router::*;
-use leptos::*;
+use leptos_router::components::{Route,Routes,ParentRoute,Outlet};
+use leptos::prelude::*;
 
 use organization::{OrganizationList,OrganizationView};
 use individual::{IndividualTable,IndividualView};
@@ -16,19 +16,19 @@ pub fn NoOptionView() -> impl IntoView {
 }
 
 #[component(transparent)]
-pub fn PartyRoutes() -> impl IntoView {
+pub fn PartyRoutes() -> impl MatchNestedRoutes + Clone {
     view! {
-        <Route path="/tmf-api/partyManagement/v4" view=PartyHome>
-            <Route path="organization" view=OrganizationList >
+        <ParentRoute path="/tmf-api/partyManagement/v4" view=PartyHome>
+            <ParentRoute path="organization" view=OrganizationList >
                 <Route path=":id" view=OrganizationView />
                 <Route path="" view=NoOptionView />
-            </Route>
-            <Route path="individual" view=IndividualTable >
+            </ParentRoute>
+            <ParentRoute path="individual" view=IndividualTable >
                 <Route path=":id" view=IndividualView />
                 <Route path="" view=NoOptionView />
-            </Route>
+            </ParentRoute>
             <Route path="" view=NoOptionView />
-        </Route>
+        </ParentRoute>
     }
 }
 

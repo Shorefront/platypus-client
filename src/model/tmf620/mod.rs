@@ -5,8 +5,9 @@ pub mod product_specification;
 pub mod product_offering;
 pub mod product_offering_price;
 
-use leptos::*;
-use leptos_router::*;
+use leptos::prelude::*;
+use leptos_router::components::{Route,ParentRoute,Outlet};
+use leptos_router::{path, MatchNestedRoutes};
 
 use catalog::{CatalogList,CatalogDetails,CatalogAdd};
 use category::{CategoryTable,CategoryView,CategoryAdd};
@@ -22,35 +23,35 @@ pub fn NoOptionView() -> impl IntoView {
 }
 
 #[component(transparent)]
-pub fn CatalogRoutes() -> impl IntoView {
+pub fn CatalogRoutes() -> impl MatchNestedRoutes + Clone {
     view! {
-        <Route path="/tmf-api/productCatalogManagement/v4" view=CatalogHome>
-            <Route path="catalog" view=CatalogList >
-                <Route path=":id" view=CatalogDetails /> 
+        <ParentRoute path=path!("/tmf-api/productCatalogManagement/v4") view=CatalogHome>
+            <ParentRoute path=path!("catalog") view=CatalogList >
+                <Route path=path!(":id") view=CatalogDetails /> 
                 <Route path="add" view=CatalogAdd />
                 <Route path="" view=NoOptionView />
-            </Route>
-            <Route path="category" view=CategoryTable >
+            </ParentRoute>
+            <ParentRoute path="category" view=CategoryTable >
                 <Route path=":id" view=CategoryView />
                 <Route path="add" view=CategoryAdd />
                 <Route path="" view=NoOptionView />
-            </Route>
-            <Route path="productOffering" view=ProductOfferingTable >
+            </ParentRoute>
+            <ParentRoute path="productOffering" view=ProductOfferingTable >
                 <Route path=":id" view=ProductOfferingView />
                 <Route path="" view=NoOptionView />
-            </Route>
-            <Route path="productSpecification" view=ProductSpecificationTable >
+            </ParentRoute>
+            <ParentRoute path="productSpecification" view=ProductSpecificationTable >
                 <Route path=":id" view=ProductSpecificationView />
                 <Route path="add" view=ProductSpecificationAdd />
-                <Route path="" view=NoOptionView />
-            </Route>
-            <Route path="productOfferingPrice" view=ProductOfferingPriceList >
+                <Route path=path!("") view=NoOptionView />
+            </ParentRoute>
+            <ParentRoute path="productOfferingPrice" view=ProductOfferingPriceList >
                 <Route path=":id" view=ProductOfferingPriceDetail />
                 <Route path="" view=NoOptionView />
-            </Route>
-            <Route path="" view=NoOptionView />
-        </Route>
-    }
+            </ParentRoute>
+            <Route path=path!("") view=NoOptionView />
+        </ParentRoute>
+    }.into_inner()
 }
 
 #[component]

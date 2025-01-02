@@ -1,6 +1,6 @@
 //! Parent menu Module
 
-use leptos::*;
+use leptos::prelude::*;
 
 #[cfg(feature = "tmf7xx")]
 use crate::model::tmf7xx::CostModelMenu;

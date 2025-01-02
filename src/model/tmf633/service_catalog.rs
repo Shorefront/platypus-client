@@ -3,8 +3,8 @@
 //! 
 //! 
 
-use leptos::*;
-use leptos_router::*;
+use leptos::prelude::*;
+use leptos_router::components::Outlet;
 use crate::model::common::list::GenericListWithAdd;
 use tmflib::tmf633::service_specification::ServiceSpecification;
 

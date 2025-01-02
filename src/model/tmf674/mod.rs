@@ -1,8 +1,8 @@
 //! TMF674 Geographic Sites
 //! 
 
-use leptos::*;
-use leptos_router::*;
+use leptos::prelude::*;
+use leptos_router::components::Outlet;
 
 use crate::model::common::list::GenericListWithAdd;
 
@@ -55,7 +55,7 @@ pub fn GeographicSiteDetail() -> impl IntoView {
 }
 
 #[component(transparent)]
-pub fn GeographicSiteRoutes() -> impl IntoView {
+pub fn GeographicSiteRoutes() -> impl MatchNestedRoutes + Clone {
     let site_path = GeographicSite::get_class();
     view! {
         <Route path="/tmf-api/geographicSiteManagement/v4" view=GeographicSiteHome>

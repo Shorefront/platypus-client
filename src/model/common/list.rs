@@ -1,7 +1,7 @@
 //! List rendering
 //! 
 
-use leptos::*;
+use leptos::prelude::*;
 use tmflib::{HasId,HasName};
 
 #[component]

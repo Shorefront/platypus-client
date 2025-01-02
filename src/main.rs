@@ -1,5 +1,6 @@
-use leptos::*;
-use leptos_router::*;
+use leptos_router::components::{Router,Route, Routes};
+use leptos::prelude::*;
+use leptos::mount::mount_to_body;
 
 mod model;
 
@@ -15,7 +16,7 @@ use model::tmf674::GeographicSiteRoutes;
 use model::tmf7xx::CostModelRoutes;
 // Common
 use model::common::Banner;
-use model::common::table::GenericTable;
+// use model::common::table::GenericTable;
 use model::common::menu::Menu;
 
 #[warn(missing_docs)]
@@ -71,5 +72,5 @@ fn Platypus() -> impl IntoView {
 
 fn main() {
     _ = console_log::init_with_level(log::Level::Debug);
-    leptos::mount_to_body(Platypus)
+    mount_to_body(Platypus)
 }
