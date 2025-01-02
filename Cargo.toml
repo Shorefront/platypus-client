@@ -22,21 +22,21 @@ tmf7xx = ["experimental"]
 composable = ["experimental"]
 
 [dependencies]
-leptos = { version = "0.6.12", features = ["csr"] }
+leptos = { version = "0.7.2", features = ["csr"] }
 # tmflib = { git = "https://github.com/rruckley/tmflib.git"}
 log = "0.4"
 console_log = "1"
 console_error_panic_hook = "0.1.7"
-leptos_meta = "0.6.15"
-leptos_router = { version = "0.6.12", features = ["csr"]}
+leptos_meta = "0.7.2"
+leptos_router = "0.7.2"
 reqwest-wasm = "0.11.16"
-serde = "1.0.204"
-serde_json = "1.0.120"
-tmflib = "0.1.22"
+serde = "1.0.217"
+serde_json = "1.0.134"
+tmflib = "0.1.23"
 
 [dev-dependencies]
 wasm-bindgen = "0.2.92"
-wasm-bindgen-test = "0.3.42"
+wasm-bindgen-test = "0.3.49"
 pretty_assertions = "1.4.0"
 
 [dev-dependencies.web-sys]
