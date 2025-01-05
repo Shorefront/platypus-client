@@ -1,4 +1,5 @@
 use leptos_router::components::{Router,Route, Routes};
+use leptos_router::path;
 use leptos::prelude::*;
 use leptos::mount::mount_to_body;
 
@@ -55,15 +56,16 @@ fn Platypus() -> impl IntoView {
                 <Menu />
             </nav>
             <main>
-                <Routes>
+                <Routes fallback=|| "This page could not be found">
                     <CatalogRoutes />
                     <CustomerRoutes />
                     <PartyRoutes />
                     <ServiceCatalogRoutes />
                     <QuoteRoutes />
                     <GeographicSiteRoutes />
-                    <Route path="/" view=Home/>
-                    <Route path="/*any" view=NotFound />
+                    <Route path=path!("/") view=Home/>
+                    <Route path=path!("/*any") view=NotFound />
+                    <Route path=path!("") view=NotFound />
                 </Routes>
             </main>
         </Router>

@@ -4,7 +4,7 @@
 use leptos::prelude::*;
 use leptos_router::components::Outlet;
 
-use tmflib::{tmf633::service_candidate::ServiceCandidate, HasName};
+use tmflib::tmf633::service_candidate::ServiceCandidate;
 use crate::model::common::list::GenericListWithAdd;
 
 #[component]

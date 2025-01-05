@@ -1,6 +1,6 @@
 //! TMF7XX Cost Management Module
 
-use leptos::*;
+use leptos::prelude::*;
 use leptos_router::*;
 
 #[component]

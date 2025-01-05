@@ -3,11 +3,12 @@
 
 use leptos::prelude::*;
 use leptos_router::components::*;
+use leptos_router::{MatchNestedRoutes,path};
 
 use tmflib::{HasId, HasName};
 use tmflib::tmf648::quote::Quote;
 
-use crate::model::common::form::{BasicClass,NamedClass,Validity,SingleRow};
+use crate::model::common::form::{NamedClass,Validity,SingleRow};
 
 #[component]
 pub fn NoOptionView() -> impl IntoView {
@@ -18,19 +19,20 @@ pub fn NoOptionView() -> impl IntoView {
 
 #[component(transparent)]
 pub fn QuoteRoutes() -> impl MatchNestedRoutes + Clone {
-    let mod_path = Quote::get_mod_path();
-    let quote_path = Quote::get_class();
-    let mod_path = Quote::get_mod_path();
+    // let mod_path = Quote::get_mod_path();
+    // let quote_path = Quote::get_class();
+    // let mod_path = Quote::get_mod_path();
     view! {
-        <ParentRoute path=mod_path view=QuoteHome>
-            <ParentRoute path=quote_path view=QuoteList >
-                <Route path=":id" view=QuoteDetail />
-                <Route path="add" view=QuoteAdd />
-                <Route path="" view=NoOptionView />
+        <ParentRoute path=path!("tmf648") view=QuoteHome>
+            <ParentRoute path=path!("quote") view=QuoteList >
+                <Route path=path!(":id") view=QuoteDetail />
+                <Route path=path!("add") view=QuoteAdd />
+                <Route path=path!("") view=NoOptionView />
             </ParentRoute>
-            <Route path="" view=NoOptionView />
+            <Route path=path!("") view=NoOptionView />
         </ParentRoute>
     }
+    .into_inner()
 }
 
 #[component]
@@ -56,7 +58,7 @@ pub fn QuoteList() -> impl IntoView {
         <div class="list">
         <ul>
             {quotes.into_iter()
-                .map(|c| {
+                .map(|_c| {
                 
                 }).collect_view()
             }
@@ -78,8 +80,8 @@ pub fn QuoteDetail() -> impl IntoView {
 
 #[component]
 pub fn BasicQuote(mut quote : Quote) -> impl IntoView {
-    let desc = quote.description.clone();
-    let cat = quote.category.clone();
+    // let desc = quote.description.clone();
+    // let cat = quote.category.clone();
     let (name,set_name) = signal(quote.get_name());
     let (_desc,set_desc) = signal(quote.description());
     let (_cat,set_cat) = signal("Cat".to_string());

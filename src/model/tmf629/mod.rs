@@ -2,10 +2,11 @@
 
 
 use leptos::prelude::*;
-use leptos_router::components::{Route,Routes,ParentRoute,Outlet};
-use tmflib::{HasId, HasName};
+use leptos_router::components::{Route,ParentRoute,Outlet};
+use leptos_router::{path,MatchNestedRoutes};
+use tmflib::HasName;
 
-use crate::model::common::table::GenericTable;
+// use crate::model::common::table::GenericTable;
 use crate::model::common::list::GenericListWithAdd;
 use crate::model::common::form::NamedClass;
 
@@ -37,15 +38,16 @@ pub fn BasicCustomer(mut customer : Customer) -> impl IntoView {
 #[component(transparent)]
 pub fn CustomerRoutes() -> impl MatchNestedRoutes + Clone {
     view! {
-        <ParentRoute path="/tmf-api/customerManagement/v4" view=CustomerHome>
-            <ParentRoute path="customer" view=CustomerList >
-                <Route path=":id" view=CustomerView />
-                <Route path="add" view=CustomerAdd />
-                <Route path="" view=NoOptionView />
+        <ParentRoute path=path!("/tmf-api/customerManagement/v4") view=CustomerHome>
+            <ParentRoute path=path!("customer") view=CustomerList >
+                <Route path=path!(":id") view=CustomerView />
+                <Route path=path!("add") view=CustomerAdd />
+                <Route path=path!("") view=NoOptionView />
             </ParentRoute>
-            <Route path="" view=NoOptionView />
+            <Route path=path!("") view=NoOptionView />
         </ParentRoute>
     }
+    .into_inner()
 }
 
 #[component]

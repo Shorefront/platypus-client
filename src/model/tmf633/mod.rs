@@ -3,6 +3,7 @@
 
 use leptos::prelude::*;
 use leptos_router::components::{Route,ParentRoute};
+use leptos_router::{MatchNestedRoutes,path};
 
 pub mod service_catalog;
 pub mod service_category;
@@ -29,32 +30,33 @@ pub fn InvalidOptionView() -> impl IntoView {
 }
 
 
-#[component]
-pub fn ServiceCatalogRoutes() -> impl IntoRender {
+#[component(transparent)]
+pub fn ServiceCatalogRoutes() -> impl MatchNestedRoutes + Clone {
     view! {
-        <ParentRoute path="/tmf-api/serviceCatalogManagement/v4" view=ServiceCatalogHome>
-            <ParentRoute path="catalog" view=ServiceCatalogList >
-                <Route path=":id" view=ServiceCatalogView />
-                <Route path="add" view=ServiceCatalogForm />
-                <Route path="" view=InvalidOptionView />
+        <ParentRoute path=path!("/tmf-api/serviceCatalogManagement/v4") view=ServiceCatalogHome>
+            <ParentRoute path=path!("catalog") view=ServiceCatalogList >
+                <Route path=path!(":id") view=ServiceCatalogView />
+                <Route path=path!("add") view=ServiceCatalogForm />
+                <Route path=path!("") view=InvalidOptionView />
             </ParentRoute>
-            <ParentRoute path="category" view=ServiceCategoryList >
-                <Route path=":id" view=ServiceCategoryView />
-                <Route path="add" view=ServiceCategoryForm />
-                <Route path="" view=InvalidOptionView />
+            <ParentRoute path=path!("category") view=ServiceCategoryList >
+                <Route path=path!(":id") view=ServiceCategoryView />
+                <Route path=path!("add") view=ServiceCategoryForm />
+                <Route path=path!("") view=InvalidOptionView />
             </ParentRoute>
-            <ParentRoute path="candidate" view=ServiceCandidateList >
-                <Route path=":id" view=ServiceCandidateView />
-                <Route path="add" view=ServiceCandidateForm />
-                <Route path="" view=InvalidOptionView />
+            <ParentRoute path=path!("candidate") view=ServiceCandidateList >
+                <Route path=path!(":id") view=ServiceCandidateView />
+                <Route path=path!("add") view=ServiceCandidateForm />
+                <Route path=path!("") view=InvalidOptionView />
             </ParentRoute>
-            <ParentRoute path="specification" view=ServiceSpecificationList >
-                <Route path=":id" view=ServiceSpecificationView />
-                <Route path="add" view=ServiceSpecificationForm />
-                <Route path="" view=InvalidOptionView />
+            <ParentRoute path=path!("specification") view=ServiceSpecificationList >
+                <Route path=path!(":id") view=ServiceSpecificationView />
+                <Route path=path!("add") view=ServiceSpecificationForm />
+                <Route path=path!("") view=InvalidOptionView />
             </ParentRoute>
-        <Route path="" view=NoOptionView />
+        <Route path=path!("") view=NoOptionView />
         </ParentRoute>
     }
+    .into_inner()
 }
 

@@ -5,7 +5,7 @@ use leptos_router::components::*;
 use leptos_router::hooks::use_params_map;
 use log::{info,error};
 
-use crate::model::common::{form::SingleRow, table::GenericTable};
+use crate::model::common::form::SingleRow;
 use crate::model::common::list::GenericListWithAdd;
 use tmflib::{tmf620::category::Category, HasId, HasName};
 use crate::model::common::form::NamedClass;
@@ -51,7 +51,7 @@ pub fn CategoryTable() -> impl IntoView {
 
     let cat_list = vec![cat1,cat2];
 
-    let add_href = format!("{}/add",Category::get_class_href());
+    let _add_href = format!("{}/add",Category::get_class_href());
     
     view! {
         <div class="list">
@@ -149,7 +149,6 @@ pub fn CategoryView() -> impl IntoView {
     //cat.id = Some(cat_id);
     view!{
         <div>
-            <h2>"Category Details : " { cat1.name.as_ref().unwrap() } </h2>
             <svg>
                 <CategoryNode cat=cat1 position=0/>
                 <CategoryNode cat=cat2 position=1/>
