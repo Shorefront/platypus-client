@@ -2,7 +2,7 @@
 //! 
 
 use leptos::prelude::*;
-use leptos_router::components::{Route,ParentRoute};
+use leptos_router::components::{Outlet,Route,ParentRoute};
 use leptos_router::{MatchNestedRoutes,path};
 
 pub mod service_catalog;
@@ -29,6 +29,22 @@ pub fn InvalidOptionView() -> impl IntoView {
     }
 }
 
+#[component]
+pub fn ServiceCatalogHome() -> impl IntoView {
+    view! {
+        <nav>
+            <ul class="menu">
+                <li><a href="/tmf-api/serviceCatalogManagement/v4/catalog">"Catalog"</a></li>
+                <li><a href="/tmf-api/serviceCatalogManagement/v4/category">"Category"</a></li>
+                <li><a href="/tmf-api/serviceCatalogManagement/v4/serviceCandidate">"Candidate"</a></li>
+                <li><a href="/tmf-api/serviceCatalogManagement/v4/specification">"Specification"</a></li>
+            </ul>
+        </nav>
+
+        <Outlet />
+    }
+}
+
 
 #[component(transparent)]
 pub fn ServiceCatalogRoutes() -> impl MatchNestedRoutes + Clone {
@@ -44,7 +60,7 @@ pub fn ServiceCatalogRoutes() -> impl MatchNestedRoutes + Clone {
                 <Route path=path!("add") view=ServiceCategoryForm />
                 <Route path=path!("") view=InvalidOptionView />
             </ParentRoute>
-            <ParentRoute path=path!("candidate") view=ServiceCandidateList >
+            <ParentRoute path=path!("serviceCandidate") view=ServiceCandidateList >
                 <Route path=path!(":id") view=ServiceCandidateView />
                 <Route path=path!("add") view=ServiceCandidateForm />
                 <Route path=path!("") view=InvalidOptionView />
