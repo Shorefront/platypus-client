@@ -17,24 +17,6 @@ pub fn NoOptionView() -> impl IntoView {
     }
 }
 
-#[component(transparent)]
-pub fn QuoteRoutes() -> impl MatchNestedRoutes + Clone {
-    // let mod_path = Quote::get_mod_path();
-    // let quote_path = Quote::get_class();
-    // let mod_path = Quote::get_mod_path();
-    view! {
-        <ParentRoute path=path!("tmf648") view=QuoteHome>
-            <ParentRoute path=path!("quote") view=QuoteList >
-                <Route path=path!(":id") view=QuoteDetail />
-                <Route path=path!("add") view=QuoteAdd />
-                <Route path=path!("") view=NoOptionView />
-            </ParentRoute>
-            <Route path=path!("") view=NoOptionView />
-        </ParentRoute>
-    }
-    .into_inner()
-}
-
 #[component]
 pub fn QuoteHome() -> impl IntoView {
     view! {
@@ -108,5 +90,23 @@ pub fn QuoteAdd() -> impl IntoView {
         <BasicQuote quote=quote.clone() />
         <Validity item=quote />
     }
+}
+
+#[component(transparent)]
+pub fn QuoteRoutes() -> impl MatchNestedRoutes + Clone {
+    // let mod_path = Quote::get_mod_path();
+    // let quote_path = Quote::get_class();
+    // let mod_path = Quote::get_mod_path();
+    view! {
+        <ParentRoute path=path!("/tmf-api/quoteManagement/v4") view=QuoteHome>
+            <ParentRoute path=path!("quote") view=QuoteList >
+                <Route path=path!(":id") view=QuoteDetail />
+                <Route path=path!("add") view=QuoteAdd />
+                <Route path=path!("") view=NoOptionView />
+            </ParentRoute>
+            <Route path=path!("") view=NoOptionView />
+        </ParentRoute>
+    }
+    .into_inner()
 }
 
