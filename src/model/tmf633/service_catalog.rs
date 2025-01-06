@@ -8,21 +8,7 @@ use leptos_router::components::Outlet;
 use crate::model::common::list::GenericListWithAdd;
 use tmflib::tmf633::service_specification::ServiceSpecification;
 
-#[component]
-pub fn ServiceCatalogHome() -> impl IntoView {
-    view! {
-        <nav>
-            <ul class="menu">
-                <li><a href="/tmf-api/serviceCatalogManagement/v4/catalog">"Catalog"</a></li>
-                <li><a href="/tmf-api/serviceCatalogManagement/v4/category">"Category"</a></li>
-                <li><a href="/tmf-api/serviceCatalogManagement/v4/serviceCandidate">"Candidate"</a></li>
-                <li><a href="/tmf-api/serviceCatalogManagement/v4/specification">"Specification"</a></li>
-            </ul>
-        </nav>
 
-        <Outlet />
-    }
-}
 
 #[component]
 pub fn ServiceCatalogList() -> impl IntoView {
