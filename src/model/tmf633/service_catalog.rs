@@ -13,10 +13,10 @@ pub fn ServiceCatalogHome() -> impl IntoView {
     view! {
         <nav>
             <ul class="menu">
-                <li><a href="/tmf-api/serviceCatalogManagement/v4/catalog">"Service Catalog"</a></li>
-                <li><a href="/tmf-api/serviceCatalogManagement/v4/category">"Service Category"</a></li>
-                <li><a href="/tmf-api/serviceCatalogManagement/v4/candidate">"Service Candidate"</a></li>
-                <li><a href="/tmf-api/serviceCatalogManagement/v4/specification">"Service Specification"</a></li>
+                <li><a href="/tmf-api/serviceCatalogManagement/v4/catalog">"Catalog"</a></li>
+                <li><a href="/tmf-api/serviceCatalogManagement/v4/category">"Category"</a></li>
+                <li><a href="/tmf-api/serviceCatalogManagement/v4/serviceCandidate">"Candidate"</a></li>
+                <li><a href="/tmf-api/serviceCatalogManagement/v4/specification">"Specification"</a></li>
             </ul>
         </nav>
 
