@@ -38,6 +38,7 @@ pub fn BasicCustomer(mut customer : Customer) -> impl IntoView {
 #[component(transparent)]
 pub fn CustomerRoutes() -> impl MatchNestedRoutes + Clone {
     view! {
+<<<<<<< HEAD
         <ParentRoute path=path!("/tmf-api/customerManagement/v4") view=CustomerHome>
             <ParentRoute path=path!("customer") view=CustomerList >
                 <Route path=path!(":id") view=CustomerView />
@@ -45,6 +46,15 @@ pub fn CustomerRoutes() -> impl MatchNestedRoutes + Clone {
                 <Route path=path!("") view=NoOptionView />
             </ParentRoute>
             <Route path=path!("") view=NoOptionView />
+=======
+        <ParentRoute path="/tmf-api/customerManagement/v4" view=CustomerHome>
+            <Route path="customer" view=CustomerList >
+                <Route path=":id" view=CustomerView />
+                <Route path="add" view=CustomerAdd />
+                <Route path="" view=NoOptionView />
+            </Route>
+            <Route path="" view=NoOptionView />
+>>>>>>> master
         </ParentRoute>
     }
     .into_inner()

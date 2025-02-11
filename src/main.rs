@@ -46,9 +46,10 @@ fn NotFound() -> impl IntoView {
 
 #[component]
 fn Platypus() -> impl IntoView {
+    // provide_context(ExampleContext(0));
 
     view!{
-        <Router>
+        <Router set_is_routing>
             <nav>
                 <Banner />
             </nav>
