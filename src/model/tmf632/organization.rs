@@ -1,14 +1,16 @@
 //! Organization Model
 
-use components::Outlet;
-use hooks::use_params;
+
+// use hooks::use_params;
 #[cfg(feature = "tmf632_v4")]
 use tmflib::tmf632::organization_v4::Organization;
 #[cfg(feature = "tmf632_v5")]
 use tmflib::tmf632::organization_v5::Organization;
 
 use leptos::prelude::*;
-use leptos_router::*;
+use leptos_router::components::*;
+use leptos_router::hooks::use_params;
+use leptos_router::params::Params;
 
 
 use crate::model::common::list::GenericListWithAdd;

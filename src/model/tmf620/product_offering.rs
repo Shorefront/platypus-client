@@ -2,7 +2,7 @@
 
 use leptos::prelude::*;
 use leptos_router::components::Outlet;
-use crate::model::common::table::GenericTable;
+// use crate::model::common::table::GenericTable;
 use crate::model::common::list::GenericListWithAdd;
 
 use tmflib::tmf620::product_offering::ProductOffering;

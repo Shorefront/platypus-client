@@ -1,10 +1,10 @@
 //! Product Specification Model
 
-use leptos::*;
-use leptos_router::Outlet;
-use tmflib::HasId;
+use leptos::prelude::*;
+use leptos_router::components::Outlet;
+// use tmflib::HasId;
 
-use crate::model::common::table::GenericTable;
+// use crate::model::common::table::GenericTable;
 use crate::model::common::list::GenericListWithAdd;
 use crate::model::common::form::NamedClass;
 use tmflib::tmf620::product_specification::ProductSpecification;
@@ -33,7 +33,7 @@ pub fn ProductSpecificationView() -> impl IntoView {
 
 #[component]
 pub fn ProductSpecificationAdd() -> impl IntoView {
-    let (name,set_name) = create_signal("New Specification".to_string());
+    let (name,set_name) = signal("New Specification".to_string());
     let new_ps = ProductSpecification::new(name.get());
     view! {
         <div class="form">

@@ -1,12 +1,11 @@
 //! Category Views
 
-use components::Outlet;
-use hooks::use_params_map;
 use leptos::prelude::*;
-use leptos_router::*;
+use leptos_router::components::*;
+use leptos_router::hooks::use_params_map;
 use log::{info,error};
 
-use crate::model::common::{form::SingleRow, table::GenericTable};
+use crate::model::common::form::SingleRow;
 use crate::model::common::list::GenericListWithAdd;
 use tmflib::{tmf620::category::Category, HasId, HasName};
 use crate::model::common::form::NamedClass;
@@ -52,7 +51,7 @@ pub fn CategoryTable() -> impl IntoView {
 
     let cat_list = vec![cat1,cat2];
 
-    let add_href = format!("{}/add",Category::get_class_href());
+    let _add_href = format!("{}/add",Category::get_class_href());
     
     view! {
         <div class="list">
@@ -85,9 +84,9 @@ pub fn CategorySelection(signal : WriteSignal<String>) -> impl IntoView {
 
 #[component]
 pub fn CategoryAdd() -> impl IntoView {
-    let (name,set_name) = create_signal("New Category".to_string());
-    let (parent,set_parent) = create_signal("Root".to_string());
-    let (get_desc,set_desc) = create_signal("Description".to_string());
+    let (name,set_name) = signal("New Category".to_string());
+    let (parent,set_parent) = signal("Root".to_string());
+    let (get_desc,set_desc) = signal("Description".to_string());
     let mut new_cat = Category::new(name.get());
     name.with(|n| new_cat.set_name(n));
     view! {
@@ -124,7 +123,7 @@ pub fn CategoryNode(cat : Category, position: u16) -> impl IntoView {
 #[component]
 pub fn CategoryView() -> impl IntoView {
     let params = use_params_map();
-    let _id = move || params.with(|params| params.get("id").unwrap_or_default());
+    let _id = move || params.with(|params| params.get("id").clone().unwrap_or_default());
     
     // let cat1 = |_| {
     //     spawn_local(async {
@@ -150,7 +149,6 @@ pub fn CategoryView() -> impl IntoView {
     //cat.id = Some(cat_id);
     view!{
         <div>
-            <h2>"Category Details : " { cat1.name.as_ref().unwrap() } </h2>
             <svg>
                 <CategoryNode cat=cat1 position=0/>
                 <CategoryNode cat=cat2 position=1/>

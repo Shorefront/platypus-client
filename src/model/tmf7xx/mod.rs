@@ -1,6 +1,6 @@
 //! TMF7XX Cost Management Module
 
-use leptos::*;
+use leptos::prelude::*;
 use leptos_router::*;
 
 #[component]
@@ -20,7 +20,7 @@ pub fn CostModelMenu() -> impl IntoView {
 }
 
 #[component(transparent)]
-pub fn CostModelRoutes() -> impl IntoView {
+pub fn CostModelRoutes() -> impl MatchNestedRoutes + Clone {
     view! {
     <Route path="/tmf-api/tmf7xx/v5" view=CostHome>
         <Route path="costModel" view=CostModelList >

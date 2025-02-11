@@ -1,7 +1,8 @@
-use components::{ParentRoute, Router, Routes};
-use leptos_router::*;
+use leptos_router::components::{Router,Route, Routes};
+use leptos_router::path;
 use leptos::prelude::*;
-use leptos::mount::hydrate_body;
+use leptos::mount::mount_to_body;
+
 mod model;
 
 // Routes
@@ -16,7 +17,7 @@ use model::tmf674::GeographicSiteRoutes;
 use model::tmf7xx::CostModelRoutes;
 // Common
 use model::common::Banner;
-use model::common::table::GenericTable;
+// use model::common::table::GenericTable;
 use model::common::menu::Menu;
 
 #[warn(missing_docs)]
@@ -48,7 +49,7 @@ fn Platypus() -> impl IntoView {
     // provide_context(ExampleContext(0));
 
     view!{
-        <Router set_is_routing>
+        <Router>
             <nav>
                 <Banner />
             </nav>
@@ -56,16 +57,17 @@ fn Platypus() -> impl IntoView {
                 <Menu />
             </nav>
             <main>
-                <ParentRoute>
+                <Routes fallback=|| "This page could not be found">
                     <CatalogRoutes />
                     <CustomerRoutes />
                     <PartyRoutes />
                     <ServiceCatalogRoutes />
                     <QuoteRoutes />
                     <GeographicSiteRoutes />
-                    <Route path="/" view=Home/>
-                    <Route path="/*any" view=NotFound />
-                </ParentRoute>
+                    <Route path=path!("/") view=Home/>
+                    <Route path=path!("/*any") view=NotFound />
+                    <Route path=path!("") view=NotFound />
+                </Routes>
             </main>
         </Router>
     }
@@ -73,5 +75,5 @@ fn Platypus() -> impl IntoView {
 
 fn main() {
     _ = console_log::init_with_level(log::Level::Debug);
-    leptos::mount::hydrate_body(Platypus)
+    mount_to_body(Platypus)
 }
