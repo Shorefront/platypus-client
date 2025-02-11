@@ -49,7 +49,7 @@ fn Platypus() -> impl IntoView {
     // provide_context(ExampleContext(0));
 
     view!{
-        <Router set_is_routing>
+        <Router>
             <nav>
                 <Banner />
             </nav>

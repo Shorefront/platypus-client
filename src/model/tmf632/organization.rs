@@ -1,7 +1,7 @@
 //! Organization Model
 
-use components::Outlet;
-use hooks::use_params;
+
+// use hooks::use_params;
 #[cfg(feature = "tmf632_v4")]
 use tmflib::tmf632::organization_v4::Organization;
 #[cfg(feature = "tmf632_v5")]

@@ -59,21 +59,12 @@ pub fn GeographicSiteDetail() -> impl IntoView {
 pub fn GeographicSiteRoutes() -> impl MatchNestedRoutes + Clone {
     // let site_path = GeographicSite::get_class();
     view! {
-<<<<<<< HEAD
         <ParentRoute path=path!("/tmf-api/geographicSiteManagement/v4") view=GeographicSiteHome>
             <ParentRoute path=path!("geographicSite") view=GeographicSiteList >
                 <Route path=path!(":id") view=GeographicSiteDetail />
                 <Route path=path!("") view=NoOptionView />
             </ParentRoute>
             <Route path=path!("") view=NoOptionView />
-=======
-        <ParentRoute path="/tmf-api/geographicSiteManagement/v4" view=GeographicSiteHome>
-            <ParentRoute path=site_path view=GeographicSiteList >
-                <Route path=":id" view=GeographicSiteDetail />
-                <Route path="" view=NoOptionView />
-            </ParentRoute>
-            <Route path="" view=NoOptionView />
->>>>>>> master
         </ParentRoute>
     }
     .into_inner()

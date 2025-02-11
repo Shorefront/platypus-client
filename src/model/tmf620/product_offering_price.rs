@@ -1,6 +1,6 @@
 //! Product Offering Price Module
-
-use components::Outlet;
+//! This module defines the Product Offering Price Model
+//! It is part of TMForum Open API 6.2.0 Product Offering module
 use tmflib::tmf620::product_offering_price::ProductOfferingPrice;
 // use crate::model::common::table::GenericTable;
 use crate::model::common::list::GenericListWithAdd;
