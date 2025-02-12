@@ -6,12 +6,19 @@ use leptos::mount::mount_to_body;
 mod model;
 
 // Routes
+#[cfg(feature = "tmf620")]
 use model::tmf620::CatalogRoutes;
+#[cfg(feature = "tmf629")]
 use model::tmf629::CustomerRoutes;
+#[cfg(feature = "tmf632")]
 use model::tmf632::PartyRoutes;
 #[cfg(feature = "tmf633")]
 use model::tmf633::ServiceCatalogRoutes;
+#[cfg(feature = "tmf645")]
+use model::tmf645::ServiceQualificationRoutes;
+#[cfg(feature = "tmf648")]
 use model::tmf648::QuoteRoutes;
+#[cfg(feature = "tmf674")]
 use model::tmf674::GeographicSiteRoutes;
 #[cfg(feature = "tmf7xx")]
 use model::tmf7xx::CostModelRoutes;
