@@ -5,7 +5,7 @@ use leptos::prelude::*;
 use leptos_router::components::{Route,ParentRoute,Outlet};
 use leptos_router::{path,MatchNestedRoutes};
 
-use crate::model::common::list::DescListWithAdd;
+use crate::model::common::list::DescList;
 
 use tmflib::tmf645::check_service_qualification::CheckServiceQualification;
 
@@ -45,7 +45,7 @@ pub fn CheckQualificationList() -> impl IntoView {
     let quals = vec![qual1, qual2];
     view! {
         <div class="list">
-            <DescListWithAdd items=quals />
+            <DescList items=quals />
         </div>
         <div class="detail">
             <Outlet />
