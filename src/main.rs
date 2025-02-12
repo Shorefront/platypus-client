@@ -71,6 +71,7 @@ fn Platypus() -> impl IntoView {
                     <ServiceCatalogRoutes />
                     <QuoteRoutes />
                     <GeographicSiteRoutes />
+                    <ServiceQualificationRoutes />
                     <Route path=path!("/") view=Home/>
                     <Route path=path!("/*any") view=NotFound />
                     <Route path=path!("") view=NotFound />
