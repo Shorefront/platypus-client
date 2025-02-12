@@ -40,10 +40,12 @@ pub fn ServiceQualificationHome() -> impl IntoView {
 #[component]
 pub fn CheckQualificationList() -> impl IntoView {
     let qual1 = CheckServiceQualification::new("Qual1");
-    let sites = vec![qual1];
+    let qual2 = CheckServiceQualification::new("Qual1");
+
+    let quals = vec![qual1, qual2];
     view! {
         <div class="list">
-            <DescListWithAdd items=sites />
+            <DescListWithAdd items=quals />
         </div>
         <div class="detail">
             <Outlet />
@@ -52,7 +54,7 @@ pub fn CheckQualificationList() -> impl IntoView {
 }
 
 #[component]
-pub fn CheckQualificaitonDetail() -> impl IntoView {
+pub fn CheckQualificationDetail() -> impl IntoView {
     view! {
         <p>"Check Qualification Details"</p>
     }
@@ -61,9 +63,9 @@ pub fn CheckQualificaitonDetail() -> impl IntoView {
 #[component(transparent)]
 pub fn ServiceQualificationRoutes() -> impl MatchNestedRoutes + Clone {
     view! {
-        <ParentRoute path=path!("/tmf-api/serviceQualification/v4") view=ServiceQualificationHome>
+        <ParentRoute path=path!("/tmf-api/serviceQualificationManagement/v4") view=ServiceQualificationHome>
             <ParentRoute path=path!("checkServiceQualification") view=CheckQualificationList >
-                <Route path=path!(":id") view=CheckQualificaitonDetail />
+                <Route path=path!(":id") view=CheckQualificationDetail />
                 <Route path=path!("") view=NoOptionView />
             </ParentRoute>
             <Route path=path!("") view=NoOptionView />
