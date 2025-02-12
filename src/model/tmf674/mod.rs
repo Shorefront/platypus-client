@@ -8,9 +8,9 @@ use leptos_router::{path,MatchNestedRoutes};
 use crate::model::common::list::GenericListWithAdd;
 
 // use tmflib::HasId;
-#[cfg(feature = "tmf674_v4")]
+#[cfg(feature = "V4")]
 use tmflib::tmf674::geographic_site_v4::GeographicSite;
-#[cfg(feature = "tmf674_v5")]
+#[cfg(feature = "V5")]
 use tmflib::tmf674::geographic_site_v5::GeographicSite;
 
 #[component]

@@ -11,9 +11,9 @@ use crate::model::common::list::GenericListWithAdd;
 use crate::model::common::form::NamedClass;
 
 use tmflib::tmf629::customer::Customer;
-#[cfg(feature = "tmf632_v4")]
+#[cfg(feature = "V4")]
 use tmflib::tmf632::organization_v4::Organization;
-#[cfg(feature = "tmf632_v5")]
+#[cfg(feature = "V5")]
 use tmflib::tmf632::organization_v5::Organization;
 
 #[component]
