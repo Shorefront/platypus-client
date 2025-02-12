@@ -3,9 +3,9 @@
 use leptos::prelude::*;
 use leptos_router::components::*;
 
-#[cfg(feature = "tmf632_v4")]
+#[cfg(feature = "V4")]
 use tmflib::tmf632::individual_v4::Individual;
-#[cfg(feature = "tmf632_v5")]
+#[cfg(feature = "V5")]
 use tmflib::tmf632::individual_v5::Individual;
 
 // use crate::GenericTable;
