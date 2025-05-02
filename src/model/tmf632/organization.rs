@@ -2,9 +2,9 @@
 
 
 // use hooks::use_params;
-#[cfg(feature = "tmf632_v4")]
+#[cfg(feature = "V4")]
 use tmflib::tmf632::organization_v4::Organization;
-#[cfg(feature = "tmf632_v5")]
+#[cfg(feature = "V5")]
 use tmflib::tmf632::organization_v5::Organization;
 
 use leptos::prelude::*;

@@ -2,7 +2,7 @@
 //! 
 
 use leptos::prelude::*;
-use tmflib::{HasId,HasName};
+use tmflib::{HasDescription, HasId, HasName};
 
 #[component]
 pub fn ListItem<T : HasId + HasName>(item : T) -> impl IntoView {
@@ -34,4 +34,38 @@ pub fn GenericListWithAdd<T : HasId + HasName>(items : Vec<T>) -> impl IntoView 
         <GenericList items = items />
         <a href=add_href>{ add_title} </a>
     }   
+}
+
+#[component]
+pub fn DescItem<T : HasId + HasDescription>(item : T) -> impl IntoView {
+    view! {
+        <li><a href={item.get_href()}>{ item.get_description() }</a></li>
+    }
+}
+
+#[component]
+pub fn DescList<T : HasId + HasDescription>(items : Vec<T>) -> impl IntoView { 
+    view! {
+        <h3>{ T::get_class()}s</h3>
+        <ul>
+            {
+                items.into_iter()
+                .map(|c| {
+                    DescItem(DescItemProps{ item: c})
+                }).collect_view()
+            }  
+        </ul>
+    }
+}
+
+#[component]
+pub fn DescListWithAdd<T : HasId + HasDescription>(items : Vec<T>) -> impl IntoView {
+    view! {
+        let add_href = format!("{}/add",T::get_class_href());
+        let add_title = format!("Add {}",T::get_class());
+        view! {
+            
+        } 
+        <a href="add">"Add"</a>
+    }
 }
