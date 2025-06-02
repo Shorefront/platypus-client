@@ -9,36 +9,23 @@ use crate::model::common::form::SingleRow;
 use crate::model::common::list::GenericListWithAdd;
 use tmflib::{tmf620::category::Category, HasId, HasName};
 use crate::model::common::form::NamedClass;
-use reqwest_wasm::Client;
+// use tmf_client::{Operations, TMFClient};
+
 
 const DEFAULT_HOST : &str = "http://localhost:8000";
 
-async fn get_cat() -> Vec<Category> {
+fn get_cat() -> Vec<Category> {
     // This is where we create an API call back into back end
-    
-    let href = format!("{}{}",DEFAULT_HOST,Category::get_class_href());
-    let client = Client::new();
-    let res = client.get(href).send().await;
-    match res {
-        Ok(r) => {
-            // Parse result into Vec<Category>
-            let body = r.text().await;
-            match body {
-                Ok(b) => {
-                    let cat_list : Vec<Category> = serde_json::from_str(b.as_ref()).unwrap();
-                    info!("Found {} categories",cat_list.len());
-                    cat_list
-                },
-                Err(e) => {
-                    error!("Could not parse JSON: {}",e);
-                    vec![]
-                },
-            }
+    let url = format!("{}/categoryManagement/v4/category",DEFAULT_HOST);
+    let client = reqwest_wasm::blocking::get(url);
+    match client {
+        Ok(response) => {
+            let cats : Vec<Category> = serde_json::from_str(response.text().unwrap().as_str()).unwrap();
+            cats
         },
         Err(e) => {
-            // output error, return empty
-            error!("Could not fetch categories: {}",e);
-            vec![]
+            error!("Error: {}",e);
+            Vec::new()
         }
     }
 }
@@ -46,10 +33,11 @@ async fn get_cat() -> Vec<Category> {
 #[component]
 pub fn CategoryTable() -> impl IntoView {
 
-    let cat1 = Category::new("Component");
-    let cat2 = Category::new("Product");
+    // let cat1 = Category::new("Component");
+    // let cat2 = Category::new("Product");
 
-    let cat_list = vec![cat1,cat2];
+    // let cat_list = vec![cat1,cat2];
+    let cat_list = get_cat();
 
     let _add_href = format!("{}/add",Category::get_class_href());
     
