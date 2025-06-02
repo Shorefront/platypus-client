@@ -40,7 +40,7 @@ pub fn ServiceQualificationHome() -> impl IntoView {
 #[component]
 pub fn CheckQualificationList() -> impl IntoView {
     let qual1 = CheckServiceQualification::new("Qual1");
-    let qual2 = CheckServiceQualification::new("Qual1");
+    let qual2 = CheckServiceQualification::new("Qual2");
 
     let quals = vec![qual1, qual2];
     view! {
