@@ -1,14 +1,13 @@
 //! Customer components
 
-
 use leptos::prelude::*;
-use leptos_router::components::{Route,ParentRoute,Outlet};
-use leptos_router::{path,MatchNestedRoutes};
+use leptos_router::components::{Outlet, ParentRoute, Route};
+use leptos_router::{path, MatchNestedRoutes};
 use tmflib::HasName;
 
 // use crate::model::common::table::GenericTable;
-use crate::model::common::list::GenericListWithAdd;
 use crate::model::common::form::NamedClass;
+use crate::model::common::list::GenericListWithAdd;
 
 use tmflib::tmf629::customer::Customer;
 #[cfg(feature = "V4")]
@@ -24,8 +23,8 @@ pub fn NoOptionView() -> impl IntoView {
 }
 
 #[component]
-pub fn BasicCustomer(mut customer : Customer) -> impl IntoView {
-    let (name,set_name) = signal("New Category".to_string());
+pub fn BasicCustomer(mut customer: Customer) -> impl IntoView {
+    let (name, set_name) = signal("New Category".to_string());
     name.with(|n| customer.set_name(n));
     view! {
         <fieldset>
@@ -78,7 +77,7 @@ pub fn CustomerList() -> impl IntoView {
     let cust1 = Customer::new(org1);
     let org2 = Organization::new("Customer Two".to_string());
     let cust2 = Customer::new(org2);
-    let custs = vec![cust1,cust2];
+    let custs = vec![cust1, cust2];
 
     view! {
         <div class="list">

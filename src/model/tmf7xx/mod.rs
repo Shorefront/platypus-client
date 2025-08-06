@@ -12,7 +12,7 @@ pub fn NoOptionView() -> impl IntoView {
 
 #[component]
 pub fn CostModelMenu() -> impl IntoView {
-    view! {  
+    view! {
         <li>
             <a href="/tmf-api/tmf7xx/v5/costModel">"TMF7XX"</a>
         </li>
@@ -45,14 +45,10 @@ pub fn CostHome() -> impl IntoView {
 
 #[component]
 pub fn CostModelList() -> impl IntoView {
-    view! {
-
-    }
+    view! {}
 }
 
 #[component]
 pub fn CostModelDetail() -> impl IntoView {
-    view! {
-
-    }
+    view! {}
 }

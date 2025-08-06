@@ -1,9 +1,9 @@
 //! TMF674 Geographic Sites
-//! 
+//!
 
 use leptos::prelude::*;
-use leptos_router::components::{Route,ParentRoute,Outlet};
-use leptos_router::{path,MatchNestedRoutes};
+use leptos_router::components::{Outlet, ParentRoute, Route};
+use leptos_router::{path, MatchNestedRoutes};
 
 use crate::model::common::list::GenericListWithAdd;
 
@@ -37,7 +37,7 @@ pub fn GeographicSiteHome() -> impl IntoView {
 pub fn GeographicSiteList() -> impl IntoView {
     let site1 = GeographicSite::new("Branch123".to_string());
     let site2 = GeographicSite::new("Head Office".to_string());
-    let sites = vec![site1,site2];
+    let sites = vec![site1, site2];
     view! {
         <div class="list">
             <GenericListWithAdd items=sites />

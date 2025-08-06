@@ -1,15 +1,13 @@
-
 /// Quote Module
-/// 
-
+///
 use leptos::prelude::*;
 use leptos_router::components::*;
-use leptos_router::{MatchNestedRoutes,path};
+use leptos_router::{path, MatchNestedRoutes};
 
-use tmflib::{HasId, HasName};
 use tmflib::tmf648::quote::Quote;
+use tmflib::{HasId, HasName};
 
-use crate::model::common::form::{NamedClass,Validity,SingleRow};
+use crate::model::common::form::{NamedClass, SingleRow, Validity};
 
 #[component]
 pub fn NoOptionView() -> impl IntoView {
@@ -36,13 +34,13 @@ pub fn QuoteList() -> impl IntoView {
     let mut quote1 = Quote::new();
     quote1.id = Some("Quote123".to_string());
     let quotes = vec![quote1];
-    let add_href = format!("{}/add",Quote::get_class_href());
+    let add_href = format!("{}/add", Quote::get_class_href());
     view! {
         <div class="list">
         <ul>
             {quotes.into_iter()
                 .map(|_c| {
-                
+
                 }).collect_view()
             }
         </ul>
@@ -62,12 +60,12 @@ pub fn QuoteDetail() -> impl IntoView {
 }
 
 #[component]
-pub fn BasicQuote(mut quote : Quote) -> impl IntoView {
+pub fn BasicQuote(mut quote: Quote) -> impl IntoView {
     // let desc = quote.description.clone();
     // let cat = quote.category.clone();
-    let (name,set_name) = signal(quote.get_name());
-    let (_desc,set_desc) = signal(quote.description());
-    let (_cat,set_cat) = signal("Cat".to_string());
+    let (name, set_name) = signal(quote.get_name());
+    let (_desc, set_desc) = signal(quote.description());
+    let (_cat, set_cat) = signal("Cat".to_string());
     name.with(|n| quote.set_name(n));
     view! {
         <fieldset>
@@ -84,8 +82,8 @@ pub fn BasicQuote(mut quote : Quote) -> impl IntoView {
 
 #[component]
 pub fn QuoteAdd() -> impl IntoView {
-    let quote =Quote::new();
-    let (_name,_set_name) = signal("New Quote".to_string());
+    let quote = Quote::new();
+    let (_name, _set_name) = signal("New Quote".to_string());
     view! {
         <p>"Add Quote"</p>
         <BasicQuote quote=quote.clone() />
@@ -110,4 +108,3 @@ pub fn QuoteRoutes() -> impl MatchNestedRoutes + Clone {
     }
     .into_inner()
 }
-

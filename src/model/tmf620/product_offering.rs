@@ -11,7 +11,7 @@ use tmflib::tmf620::product_offering::ProductOffering;
 pub fn ProductOfferingTable() -> impl IntoView {
     let offer1 = ProductOffering::new("Internet");
     let offer2 = ProductOffering::new("WAN");
-    let items = vec![offer1,offer2];
+    let items = vec![offer1, offer2];
     view! {
         <div class="list">
             <GenericListWithAdd items=items/>

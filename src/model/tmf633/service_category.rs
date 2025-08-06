@@ -4,7 +4,6 @@ use leptos::prelude::*;
 
 // use tmflib::tmf633::*;
 
-
 #[component]
 pub fn ServiceCategoryList() -> impl IntoView {
     view! { <p>"Not implemented!"</p> }
