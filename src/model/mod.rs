@@ -1,5 +1,6 @@
 //! Model Module
 
+pub mod common;
 #[cfg(feature = "tmf620")]
 pub mod tmf620;
 #[cfg(feature = "tmf629")]
@@ -16,4 +17,3 @@ pub mod tmf648;
 pub mod tmf674;
 #[cfg(feature = "tmf7xx")]
 pub mod tmf7xx;
-pub mod common;

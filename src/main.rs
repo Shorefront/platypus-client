@@ -1,7 +1,7 @@
-use leptos_router::components::{Router,Route, Routes};
-use leptos_router::path;
-use leptos::prelude::*;
 use leptos::mount::mount_to_body;
+use leptos::prelude::*;
+use leptos_router::components::{Route, Router, Routes};
+use leptos_router::path;
 
 mod model;
 
@@ -28,10 +28,9 @@ use model::common::Banner;
 use model::common::menu::Menu;
 
 #[warn(missing_docs)]
-
 #[component]
 fn Home() -> impl IntoView {
-    view!{
+    view! {
         <nav>
             <ul>
                 ""
@@ -46,7 +45,7 @@ fn Home() -> impl IntoView {
 
 #[component]
 fn NotFound() -> impl IntoView {
-    view!{
+    view! {
             <p class="error">"Cannot find that page"</p>
     }
 }
@@ -55,7 +54,7 @@ fn NotFound() -> impl IntoView {
 fn Platypus() -> impl IntoView {
     // provide_context(ExampleContext(0));
 
-    view!{
+    view! {
         <Router>
             <nav>
                 <Banner />

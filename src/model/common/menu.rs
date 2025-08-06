@@ -7,7 +7,7 @@ use crate::model::tmf7xx::CostModelMenu;
 
 #[component]
 pub fn Menu() -> impl IntoView {
-    view!{
+    view! {
         <ul class="menu">
             <li><a href="/">"Home"</a></li>
             <li>

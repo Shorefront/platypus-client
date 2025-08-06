@@ -1,19 +1,21 @@
 //! TMF632 models
 pub mod catalog;
 pub mod category;
-pub mod product_specification;
 pub mod product_offering;
 pub mod product_offering_price;
+pub mod product_specification;
 
 use leptos::prelude::*;
-use leptos_router::components::{Route,ParentRoute,Outlet};
+use leptos_router::components::{Outlet, ParentRoute, Route};
 use leptos_router::{path, MatchNestedRoutes};
 
-use catalog::{CatalogList,CatalogDetails,CatalogAdd};
-use category::{CategoryTable,CategoryView,CategoryAdd};
-use product_offering::{ProductOfferingTable,ProductOfferingView};
-use product_specification::{ProductSpecificationTable,ProductSpecificationView,ProductSpecificationAdd};
-use product_offering_price::{ProductOfferingPriceList,ProductOfferingPriceDetail};
+use catalog::{CatalogAdd, CatalogDetails, CatalogList};
+use category::{CategoryAdd, CategoryTable, CategoryView};
+use product_offering::{ProductOfferingTable, ProductOfferingView};
+use product_offering_price::{ProductOfferingPriceDetail, ProductOfferingPriceList};
+use product_specification::{
+    ProductSpecificationAdd, ProductSpecificationTable, ProductSpecificationView,
+};
 
 #[component]
 pub fn NoOptionView() -> impl IntoView {
@@ -24,10 +26,10 @@ pub fn NoOptionView() -> impl IntoView {
 
 #[component(transparent)]
 pub fn CatalogRoutes() -> impl MatchNestedRoutes + Clone {
-    view!{
+    view! {
         <ParentRoute path=path!("/tmf-api/productCatalogManagement/v4") view=CatalogHome>
             <ParentRoute path=path!("catalog") view=CatalogList >
-                <Route path=path!(":id") view=CatalogDetails /> 
+                <Route path=path!(":id") view=CatalogDetails />
                 <Route path=path!("add") view=CatalogAdd />
                 <Route path=path!("") view=NoOptionView />
                 <Route path=path!("/") view=NoOptionView />

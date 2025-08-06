@@ -12,7 +12,7 @@ use leptos_router::components::Outlet;
 pub fn ProductOfferingPriceList() -> impl IntoView {
     let price1 = ProductOfferingPrice::new("Internet Pricing");
     let price2 = ProductOfferingPrice::new("WAN Pricing");
-    let prices = vec![price1,price2];
+    let prices = vec![price1, price2];
     view! {
         <div class="list">
             <GenericListWithAdd items=prices />

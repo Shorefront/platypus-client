@@ -3,20 +3,20 @@
 use leptos::prelude::*;
 use leptos_router::components::*;
 use leptos_router::hooks::use_params_map;
-use log::{info,error};
+use log::{error, info};
 
+use crate::model::common::form::NamedClass;
 use crate::model::common::form::SingleRow;
 use crate::model::common::list::GenericListWithAdd;
-use tmflib::{tmf620::category::Category, HasId, HasName};
-use crate::model::common::form::NamedClass;
 use reqwest_wasm::Client;
+use tmflib::{tmf620::category::Category, HasId, HasName};
 
-const DEFAULT_HOST : &str = "http://localhost:8000";
+const DEFAULT_HOST: &str = "http://localhost:8000";
 
 async fn get_cat() -> Vec<Category> {
     // This is where we create an API call back into back end
-    
-    let href = format!("{}{}",DEFAULT_HOST,Category::get_class_href());
+
+    let href = format!("{}{}", DEFAULT_HOST, Category::get_class_href());
     let client = Client::new();
     let res = client.get(href).send().await;
     match res {
@@ -25,19 +25,19 @@ async fn get_cat() -> Vec<Category> {
             let body = r.text().await;
             match body {
                 Ok(b) => {
-                    let cat_list : Vec<Category> = serde_json::from_str(b.as_ref()).unwrap();
-                    info!("Found {} categories",cat_list.len());
+                    let cat_list: Vec<Category> = serde_json::from_str(b.as_ref()).unwrap();
+                    info!("Found {} categories", cat_list.len());
                     cat_list
-                },
+                }
                 Err(e) => {
-                    error!("Could not parse JSON: {}",e);
+                    error!("Could not parse JSON: {}", e);
                     vec![]
-                },
+                }
             }
-        },
+        }
         Err(e) => {
             // output error, return empty
-            error!("Could not fetch categories: {}",e);
+            error!("Could not fetch categories: {}", e);
             vec![]
         }
     }
@@ -45,27 +45,25 @@ async fn get_cat() -> Vec<Category> {
 
 #[component]
 pub fn CategoryTable() -> impl IntoView {
-
     let cat1 = Category::new("Component");
     let cat2 = Category::new("Product");
 
-    let cat_list = vec![cat1,cat2];
+    let cat_list = vec![cat1, cat2];
 
-    let _add_href = format!("{}/add",Category::get_class_href());
-    
+    let _add_href = format!("{}/add", Category::get_class_href());
+
     view! {
         <div class="list">
             <GenericListWithAdd items=cat_list />
-        </div> 
+        </div>
         <div class="detail">
             <Outlet />
         </div>
     }
-    
 }
 
 #[component]
-pub fn CategorySelection(signal : WriteSignal<String>) -> impl IntoView {
+pub fn CategorySelection(signal: WriteSignal<String>) -> impl IntoView {
     // TODO: Get a list of categories to generate the selection
     view! {
         <fieldset>
@@ -73,7 +71,7 @@ pub fn CategorySelection(signal : WriteSignal<String>) -> impl IntoView {
             <label for="parent">"Parent Node"</label>
             <select id="parent" on:change=move |ev| {
                 signal.set(event_target_value(&ev));
-            }>   
+            }>
                 <option value="rootId">"Root"</option>
                 <option value="childa">"Child A"</option>
                 <option value="childb">"Child B"</option>
@@ -84,9 +82,9 @@ pub fn CategorySelection(signal : WriteSignal<String>) -> impl IntoView {
 
 #[component]
 pub fn CategoryAdd() -> impl IntoView {
-    let (name,set_name) = signal("New Category".to_string());
-    let (parent,set_parent) = signal("Root".to_string());
-    let (get_desc,set_desc) = signal("Description".to_string());
+    let (name, set_name) = signal("New Category".to_string());
+    let (parent, set_parent) = signal("Root".to_string());
+    let (get_desc, set_desc) = signal("Description".to_string());
     let mut new_cat = Category::new(name.get());
     name.with(|n| new_cat.set_name(n));
     view! {
@@ -101,13 +99,13 @@ pub fn CategoryAdd() -> impl IntoView {
 }
 
 #[component]
-pub fn CategoryNode(cat : Category, position: u16) -> impl IntoView {
-    let y1 = 5+(30*position);
+pub fn CategoryNode(cat: Category, position: u16) -> impl IntoView {
+    let y1 = 5 + (30 * position);
     let stroke = match cat.root() {
         true => "blue".to_string(),
         false => "black".to_string(),
     };
-    let style = format!("fill: grey; stroke: {}; opacity: 0.5;",stroke);
+    let style = format!("fill: grey; stroke: {}; opacity: 0.5;", stroke);
     view! {
         <g class="catnode">
             <rect x="10" y={ y1 }  width="64" height="24" rx="5" style=style/>
@@ -124,7 +122,7 @@ pub fn CategoryNode(cat : Category, position: u16) -> impl IntoView {
 pub fn CategoryView() -> impl IntoView {
     let params = use_params_map();
     let _id = move || params.with(|params| params.get("id").clone().unwrap_or_default());
-    
+
     // let cat1 = |_| {
     //     spawn_local(async {
     //         get_cat_by_id(id()).await;
@@ -136,7 +134,7 @@ pub fn CategoryView() -> impl IntoView {
     //     spawn_local(async {
     //         match get_cat_by_id(cat_id).await {
     //             Ok(_) => "one".to_string(),
-    //             Err(_) => "two".to_string(),            
+    //             Err(_) => "two".to_string(),
     //         };
     //         cat_output = "Test".to_string();
     //     });
@@ -145,9 +143,9 @@ pub fn CategoryView() -> impl IntoView {
     let cat1 = Category::new("Root Category".to_string());
     let cat2 = Category::new("Component".to_string());
     let cat3 = Category::new("Product".to_string());
-    
+
     //cat.id = Some(cat_id);
-    view!{
+    view! {
         <div>
             <svg>
                 <CategoryNode cat=cat1 position=0/>

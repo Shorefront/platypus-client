@@ -3,7 +3,7 @@
 use leptos::prelude::*;
 // use leptos_router::*;
 
-use tmflib::{HasId,HasName};
+use tmflib::{HasId, HasName};
 
 #[component]
 pub fn GenericHome() -> impl IntoView {
@@ -13,7 +13,7 @@ pub fn GenericHome() -> impl IntoView {
 }
 
 #[component]
-pub fn GenericList<T : HasId + HasName + Clone>(_item : T) -> impl IntoView {
+pub fn GenericList<T: HasId + HasName + Clone>(_item: T) -> impl IntoView {
     let class_name = T::get_class();
     view! {
         <p>"A List of "{class_name }</p>

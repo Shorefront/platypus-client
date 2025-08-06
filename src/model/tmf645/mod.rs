@@ -2,8 +2,8 @@
 //! This module defines the Service Qualification Model
 
 use leptos::prelude::*;
-use leptos_router::components::{Route,ParentRoute,Outlet};
-use leptos_router::{path,MatchNestedRoutes};
+use leptos_router::components::{Outlet, ParentRoute, Route};
+use leptos_router::{path, MatchNestedRoutes};
 
 use crate::model::common::list::DescList;
 

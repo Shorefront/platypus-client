@@ -1,16 +1,16 @@
 //! TMF Form components
-//! 
+//!
 use leptos::prelude::*;
-use tmflib::{HasId,HasName,HasValidity};
+use tmflib::{HasId, HasName, HasValidity};
 
 #[component]
-pub fn SingleRow(id: String, label: String, signal : WriteSignal<String>) ->impl IntoView {
+pub fn SingleRow(id: String, label: String, signal: WriteSignal<String>) -> impl IntoView {
     view! {
         <tr>
             <td><label for=id.clone()>{ label }</label></td>
-            <td><input 
-                id=id.clone() 
-                on:input=move |ev| { signal.set(event_target_value(&ev)); } 
+            <td><input
+                id=id.clone()
+                on:input=move |ev| { signal.set(event_target_value(&ev)); }
                 />
             </td>
         </tr>
@@ -18,21 +18,24 @@ pub fn SingleRow(id: String, label: String, signal : WriteSignal<String>) ->impl
 }
 
 #[component]
-pub fn BasicClass<T : HasId> (item : T) -> impl IntoView {
+pub fn BasicClass<T: HasId>(item: T) -> impl IntoView {
     let id = item.get_id();
     let href = item.get_href();
     view! {
             <tr>
                 <td><label for="id">"Id"</label></td>
                 <td><a href=href>{ id }</a></td>
-            </tr> 
+            </tr>
     }
 }
 
 #[component]
-pub fn NamedClass<T : HasId + HasName + Clone> (item : T,signal : WriteSignal<String>) -> impl IntoView {
+pub fn NamedClass<T: HasId + HasName + Clone>(
+    item: T,
+    signal: WriteSignal<String>,
+) -> impl IntoView {
     let name = item.get_name();
-    view!{
+    view! {
         <fieldset>
             <legend>"Class "{ T::get_class()}</legend>
             <BasicClass item=item />
@@ -47,7 +50,7 @@ pub fn NamedClass<T : HasId + HasName + Clone> (item : T,signal : WriteSignal<St
 }
 
 #[component]
-pub fn Validity<T : HasId + HasValidity> (item : T) -> impl IntoView {
+pub fn Validity<T: HasId + HasValidity>(item: T) -> impl IntoView {
     let valid_start = item.get_validity_start();
     let valid_end = item.get_validity_end();
     view! {

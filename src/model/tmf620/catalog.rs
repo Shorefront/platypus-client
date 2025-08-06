@@ -1,17 +1,16 @@
 use leptos::prelude::*;
 use leptos_router::components::Outlet;
-use reqwest_wasm::Client;
 use log::info;
+use reqwest_wasm::Client;
 
-use tmflib::{tmf620::catalog::Catalog, HasId};
 use crate::model::common::list::GenericListWithAdd;
 use crate::model::common::table::GenericTable;
+use tmflib::{tmf620::catalog::Catalog, HasId};
 
-const DEFAULT_HOST : &str = "http://localhost:8001";
+const DEFAULT_HOST: &str = "http://localhost:8001";
 
 async fn get_catalogs() -> Vec<Catalog> {
-
-    let href = format!("{}{}",DEFAULT_HOST,Catalog::get_class_href());
+    let href = format!("{}{}", DEFAULT_HOST, Catalog::get_class_href());
     let client = Client::new();
     let res = client.get(href).send().await;
     match res {
@@ -21,17 +20,17 @@ async fn get_catalogs() -> Vec<Catalog> {
             match body {
                 Ok(_b) => {
                     vec![]
-                },
+                }
                 Err(_e) => {
                     vec![]
                 }
             }
-        },
+        }
         Err(_e) => {
             // Could not get catalog, return some defaults
             let cat1 = Catalog::new("Design");
             let cat2 = Catalog::new("Production");
-            let catalogs = vec![cat1,cat2];
+            let catalogs = vec![cat1, cat2];
             catalogs
         }
     }
@@ -39,15 +38,14 @@ async fn get_catalogs() -> Vec<Catalog> {
 
 #[component]
 pub fn CatalogAdd() -> impl IntoView {
-    view! {
-    }
+    view! {}
 }
 
 #[component]
 pub fn CatalogList() -> impl IntoView {
     let cat1 = Catalog::new("Components");
     let cat2 = Catalog::new("Products");
-    let cat_list = vec![cat1,cat2];
+    let cat_list = vec![cat1, cat2];
 
     view! {
         <div class="list">
@@ -61,11 +59,10 @@ pub fn CatalogList() -> impl IntoView {
 
 #[component]
 pub fn CatalogTable() -> impl IntoView {
-
     let cat1 = Catalog::new("Design");
     let cat2 = Catalog::new("Production");
-    let add_href = format!("{}/add",Catalog::get_class_href());
-    let catalogs = vec![cat1,cat2];
+    let add_href = format!("{}/add", Catalog::get_class_href());
+    let catalogs = vec![cat1, cat2];
     view! {
         <div class="list">
             <GenericTable items=catalogs />

@@ -1,18 +1,18 @@
 //! Service Catalogue Module
-//! 
+//!
 
 use leptos::prelude::*;
-use leptos_router::components::{Outlet,Route,ParentRoute};
-use leptos_router::{MatchNestedRoutes,path};
+use leptos_router::components::{Outlet, ParentRoute, Route};
+use leptos_router::{path, MatchNestedRoutes};
 
+pub mod service_candidate;
 pub mod service_catalog;
 pub mod service_category;
-pub mod service_candidate;
 pub mod service_specification;
 
+use service_candidate::*;
 use service_catalog::*;
 use service_category::*;
-use service_candidate::*;
 use service_specification::*;
 
 #[component]
@@ -45,7 +45,6 @@ pub fn ServiceCatalogHome() -> impl IntoView {
     }
 }
 
-
 #[component(transparent)]
 pub fn ServiceCatalogRoutes() -> impl MatchNestedRoutes + Clone {
     view! {
@@ -75,4 +74,3 @@ pub fn ServiceCatalogRoutes() -> impl MatchNestedRoutes + Clone {
     }
     .into_inner()
 }
-

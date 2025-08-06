@@ -1,13 +1,15 @@
-
 pub mod individual;
 pub mod organization;
 
-use leptos_router::{components::{Outlet, ParentRoute, Route}, MatchNestedRoutes};
-use leptos_router::path;
 use leptos::prelude::*;
+use leptos_router::path;
+use leptos_router::{
+    components::{Outlet, ParentRoute, Route},
+    MatchNestedRoutes,
+};
 
-use organization::{OrganizationList,OrganizationView};
-use individual::{IndividualTable,IndividualView};
+use individual::{IndividualTable, IndividualView};
+use organization::{OrganizationList, OrganizationView};
 
 #[component]
 pub fn NoOptionView() -> impl IntoView {
