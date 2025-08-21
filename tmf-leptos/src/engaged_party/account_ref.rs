@@ -1,7 +1,7 @@
 //! AccountRef 
 //! 
 //! 
-use leptos::*;
+use leptos::prelude::*;
 
 use tmflib::tmf666::AccountRef;
 
