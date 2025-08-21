@@ -8,6 +8,8 @@ use tmflib::tmf632::individual_v4::Individual;
 #[cfg(feature = "V5")]
 use tmflib::tmf632::individual_v5::Individual;
 
+use tmflib::HasName;
+
 // use crate::GenericTable;
 use crate::model::common::list::GenericListWithAdd;
 
@@ -29,7 +31,27 @@ pub fn IndividualTable() -> impl IntoView {
 
 #[component]
 pub fn IndividualView() -> impl IntoView {
-    view! {
-        <p>"Placeholder for individual data"</p>
+    let name = "Placeholder".to_string();
+   view! {
+        <table>
+            <tr>
+                <td>"Name:"</td>
+                <td>{name}</td>
+            </tr>
+        </table>
     }
 }
+
+#[component]
+pub fn IndividualAdd() -> impl IntoView {
+    let new_item = Individual::new("New Individual");
+    view! {
+        <p>"Add new Individual"</p>
+        <form>
+            <label for="name">"Name:"</label>
+            <input type="text" id="name" name="name" value={new_item.get_name()}/><br />
+            <button type="submit">"Submit"</button>
+        </form>
+        <Outlet />
+    }
+}    

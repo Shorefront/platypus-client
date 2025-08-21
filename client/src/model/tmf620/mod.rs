@@ -20,7 +20,7 @@ use product_specification::{
 #[component]
 pub fn NoOptionView() -> impl IntoView {
     view! {
-        <p>"Please select an option"</p>
+        <p>"Product Catalogue - Please select an catalogue object"</p>
     }
 }
 
@@ -29,14 +29,14 @@ pub fn CatalogRoutes() -> impl MatchNestedRoutes + Clone {
     view! {
         <ParentRoute path=path!("/tmf-api/productCatalogManagement/v4") view=CatalogHome>
             <ParentRoute path=path!("catalog") view=CatalogList >
-                <Route path=path!(":id") view=CatalogDetails />
                 <Route path=path!("add") view=CatalogAdd />
-                <Route path=path!("") view=NoOptionView />
+                <Route path=path!(":id") view=CatalogDetails />
+                <Route path=path!("") view=CatalogList />
                 <Route path=path!("/") view=NoOptionView />
             </ParentRoute>
             <ParentRoute path=path!("category") view=CategoryTable >
-                <Route path=path!(":id") view=CategoryView />
                 <Route path=path!("add") view=CategoryAdd />
+                <Route path=path!(":id") view=CategoryView />
                 <Route path=path!("") view=NoOptionView />
                 <Route path=path!("/") view=NoOptionView />
             </ParentRoute>

@@ -60,12 +60,10 @@ pub fn DescList<T: HasId + HasDescription>(items: Vec<T>) -> impl IntoView {
 
 #[component]
 pub fn DescListWithAdd<T: HasId + HasDescription>(items: Vec<T>) -> impl IntoView {
+    let add_href = format!("{}/add",T::get_class_href());
+    let add_title = format!("Add {}",T::get_class());
     view! {
-        let add_href = format!("{}/add",T::get_class_href());
-        let add_title = format!("Add {}",T::get_class());
-        view! {
-
-        }
-        <a href="add">"Add"</a>
+        <p>"Add new item"</p>
+        <a href="{add_href}">"{add_title}"</a>
     }
 }

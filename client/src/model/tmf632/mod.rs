@@ -8,7 +8,7 @@ use leptos_router::{
     MatchNestedRoutes,
 };
 
-use individual::{IndividualTable, IndividualView};
+use individual::{IndividualTable, IndividualView, IndividualAdd};
 use organization::{OrganizationList, OrganizationView};
 
 #[component]
@@ -27,6 +27,7 @@ pub fn PartyRoutes() -> impl MatchNestedRoutes + Clone {
                 <Route path=path!("") view=NoOptionView />
             </ParentRoute>
             <ParentRoute path=path!("individual") view=IndividualTable >
+                <Route path=path!("add") view=IndividualAdd />
                 <Route path=path!(":id") view=IndividualView />
                 <Route path=path!("") view=NoOptionView />
             </ParentRoute>

@@ -6,6 +6,7 @@ use reqwest_wasm::Client;
 use crate::model::common::list::GenericListWithAdd;
 use crate::model::common::table::GenericTable;
 use tmflib::{tmf620::catalog::Catalog, HasId};
+use tmf_leptos::common::time_period::TimePeriod;
 
 const DEFAULT_HOST: &str = "http://localhost:8001";
 
@@ -38,7 +39,19 @@ async fn get_catalogs() -> Vec<Catalog> {
 
 #[component]
 pub fn CatalogAdd() -> impl IntoView {
-    view! {}
+    let new_item = Catalog::new("New Catalog");
+    view! {
+        <p>"Add new Catalog"</p>
+        <form>
+            <label for="name">"Name:"</label>
+            <input type="text" id="name" name="name" /><br />
+            <label for="description">"Description:"</label>
+            <input type="text" id="description" name="description" /><br />
+            <TimePeriod item=&new_item />
+            <button type="submit">"Submit"</button>
+        </form>
+        <Outlet />
+    }
 }
 
 #[component]

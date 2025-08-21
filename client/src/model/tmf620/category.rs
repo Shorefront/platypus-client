@@ -123,23 +123,7 @@ pub fn CategoryView() -> impl IntoView {
     let params = use_params_map();
     let _id = move || params.with(|params| params.get("id").clone().unwrap_or_default());
 
-    // let cat1 = |_| {
-    //     spawn_local(async {
-    //         get_cat_by_id(id()).await;
-    //     });
-    // };
-    // let cat_id = id();
-    // let mut output = String::new();
-    // let get_cat = move |cat_id,cat_output : &mut String| {
-    //     spawn_local(async {
-    //         match get_cat_by_id(cat_id).await {
-    //             Ok(_) => "one".to_string(),
-    //             Err(_) => "two".to_string(),
-    //         };
-    //         cat_output = "Test".to_string();
-    //     });
-    // };
-    // let cat1 = get_cat(cat_id,&mut output);
+
     let cat1 = Category::new("Root Category".to_string());
     let cat2 = Category::new("Component".to_string());
     let cat3 = Category::new("Product".to_string());
