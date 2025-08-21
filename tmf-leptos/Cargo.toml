@@ -4,7 +4,8 @@ version = "0.1.1"
 edition = "2021"
 authors = ["Ryan Ruckley <rruckley@gmail.com>"]
 description = "Library to render TMF schema as forms"
-repository = "https://github.com/rruckley/leptos_tmf"
+repository = "https://github.com/rruckley/platypus-client/tmf-leptos"
+license = "Apache-2.0"
 
 [features]
 v4 = ["tmflib/build-V4"]
