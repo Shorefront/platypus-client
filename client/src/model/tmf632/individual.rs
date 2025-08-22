@@ -44,12 +44,22 @@ pub fn IndividualView() -> impl IntoView {
 
 #[component]
 pub fn IndividualAdd() -> impl IntoView {
-    let new_item = Individual::new("New Individual");
+    let new_item = Individual::new("New Individual")
+        .email("test@example.com");
     view! {
-        <p>"Add new Individual"</p>
         <form>
-            <label for="name">"Name:"</label>
-            <input type="text" id="name" name="name" value={new_item.get_name()}/><br />
+            <fieldset>
+                <legend>"New Individual"</legend>
+                    <label for="name">"Name"</label>
+                    <input type="text" id="name" name="name" value={new_item.get_name()}/><br />
+                </fieldset>
+                <fieldset>
+                    <legend>"Contact"</legend>
+                    <label for="email">"Email"</label>
+                    <input type="email" id="email" name="email" value={new_item.get_email()}/><br />
+                    <label for="mobile">"Mobile"</label>
+                    <input type="tel" id="mobile" name="mobile" value={new_item.get_mobile()}/><br />
+                </fieldset>
             <button type="submit">"Submit"</button>
         </form>
         <Outlet />

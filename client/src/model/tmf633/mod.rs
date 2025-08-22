@@ -25,7 +25,7 @@ pub fn NoOptionView() -> impl IntoView {
 #[component]
 pub fn InvalidOptionView() -> impl IntoView {
     view! {
-        <p class="error">"Invalid Option"</p>
+        <p>"Choose an Option"</p>
     }
 }
 
@@ -50,23 +50,23 @@ pub fn ServiceCatalogRoutes() -> impl MatchNestedRoutes + Clone {
     view! {
         <ParentRoute path=path!("/tmf-api/serviceCatalogManagement/v4") view=ServiceCatalogHome>
             <ParentRoute path=path!("catalog") view=ServiceCatalogList >
-                <Route path=path!(":id") view=ServiceCatalogView />
                 <Route path=path!("add") view=ServiceCatalogForm />
+                <Route path=path!(":id") view=ServiceCatalogView />
                 <Route path=path!("") view=InvalidOptionView />
             </ParentRoute>
             <ParentRoute path=path!("category") view=ServiceCategoryList >
-                <Route path=path!(":id") view=ServiceCategoryView />
                 <Route path=path!("add") view=ServiceCategoryForm />
+                <Route path=path!(":id") view=ServiceCategoryView />
                 <Route path=path!("") view=InvalidOptionView />
             </ParentRoute>
             <ParentRoute path=path!("serviceCandidate") view=ServiceCandidateList >
-                <Route path=path!(":id") view=ServiceCandidateView />
                 <Route path=path!("add") view=ServiceCandidateForm />
+                <Route path=path!(":id") view=ServiceCandidateView />
                 <Route path=path!("") view=InvalidOptionView />
             </ParentRoute>
             <ParentRoute path=path!("specification") view=ServiceSpecificationList >
-                <Route path=path!(":id") view=ServiceSpecificationView />
                 <Route path=path!("add") view=ServiceSpecificationForm />
+                <Route path=path!(":id") view=ServiceSpecificationView />
                 <Route path=path!("") view=InvalidOptionView />
             </ParentRoute>
         <Route path=path!("") view=NoOptionView />

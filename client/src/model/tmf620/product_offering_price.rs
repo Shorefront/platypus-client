@@ -29,3 +29,21 @@ pub fn ProductOfferingPriceDetail() -> impl IntoView {
         <p>"Product Offering Price"</p>
     }
 }
+
+#[component]
+pub fn ProductOfferingPriceAdd() -> impl IntoView {
+    let new_item = ProductOfferingPrice::new("New Price");
+    view! {
+        <form>
+            <fieldset>
+                <legend>"New Product Offering Price"</legend>
+                <label for="name">"Name"</label>
+                <input type="text" id="name" name="name" /><br />
+                <label for="description">"Description"</label>
+                <input type="text" id="description" name="description" /><br />
+            </fieldset>
+            <button type="submit">"Submit"</button>
+        </form>
+        <Outlet />
+    }
+}

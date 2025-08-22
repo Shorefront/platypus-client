@@ -11,8 +11,8 @@ use leptos_router::{path, MatchNestedRoutes};
 
 use catalog::{CatalogAdd, CatalogDetails, CatalogList};
 use category::{CategoryAdd, CategoryTable, CategoryView};
-use product_offering::{ProductOfferingTable, ProductOfferingView};
-use product_offering_price::{ProductOfferingPriceDetail, ProductOfferingPriceList};
+use product_offering::{ProductOfferingTable, ProductOfferingView,ProductOfferingAdd};
+use product_offering_price::{ProductOfferingPriceDetail, ProductOfferingPriceList, ProductOfferingPriceAdd};
 use product_specification::{
     ProductSpecificationAdd, ProductSpecificationTable, ProductSpecificationView,
 };
@@ -41,17 +41,19 @@ pub fn CatalogRoutes() -> impl MatchNestedRoutes + Clone {
                 <Route path=path!("/") view=NoOptionView />
             </ParentRoute>
             <ParentRoute path=path!("productOffering") view=ProductOfferingTable >
+                <Route path=path!("add") view=ProductOfferingAdd />
                 <Route path=path!(":id") view=ProductOfferingView />
                 <Route path=path!("") view=NoOptionView />
                 <Route path=path!("/") view=NoOptionView />
             </ParentRoute>
             <ParentRoute path=path!("productSpecification") view=ProductSpecificationTable >
-                <Route path=path!(":id") view=ProductSpecificationView />
                 <Route path=path!("add") view=ProductSpecificationAdd />
+                <Route path=path!(":id") view=ProductSpecificationView />
                 <Route path=path!("") view=NoOptionView />
                 <Route path=path!("/") view=NoOptionView />
             </ParentRoute>
             <ParentRoute path=path!("productOfferingPrice") view=ProductOfferingPriceList >
+                <Route path=path!("add") view=ProductOfferingPriceAdd />
                 <Route path=path!(":id") view=ProductOfferingPriceDetail />
                 <Route path=path!("") view=NoOptionView />
                 <Route path=path!("/") view=NoOptionView />

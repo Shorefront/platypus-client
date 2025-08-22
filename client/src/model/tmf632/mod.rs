@@ -9,7 +9,7 @@ use leptos_router::{
 };
 
 use individual::{IndividualTable, IndividualView, IndividualAdd};
-use organization::{OrganizationList, OrganizationView};
+use organization::{OrganizationList, OrganizationView, OrganizationAdd};
 
 #[component]
 pub fn NoOptionView() -> impl IntoView {
@@ -23,6 +23,7 @@ pub fn PartyRoutes() -> impl MatchNestedRoutes + Clone {
     view! {
         <ParentRoute path=path!("/tmf-api/partyManagement/v4") view=PartyHome>
             <ParentRoute path=path!("organization") view=OrganizationList >
+                <Route path=path!("add") view=OrganizationAdd />
                 <Route path=path!(":id") view=OrganizationView />
                 <Route path=path!("") view=NoOptionView />
             </ParentRoute>

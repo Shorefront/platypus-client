@@ -41,12 +41,14 @@ async fn get_catalogs() -> Vec<Catalog> {
 pub fn CatalogAdd() -> impl IntoView {
     let new_item = Catalog::new("New Catalog");
     view! {
-        <p>"Add new Catalog"</p>
         <form>
-            <label for="name">"Name:"</label>
-            <input type="text" id="name" name="name" /><br />
-            <label for="description">"Description:"</label>
-            <input type="text" id="description" name="description" /><br />
+            <fieldset>
+                <legend>"New Catalog"</legend>
+                <label for="name">"Name"</label>
+                <input type="text" id="name" name="name" /><br />
+                <label for="description">"Description"</label>
+                <input type="text" id="description" name="description" /><br />
+            </fieldset>
             <TimePeriod item=&new_item />
             <button type="submit">"Submit"</button>
         </form>

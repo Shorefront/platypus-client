@@ -44,3 +44,19 @@ pub fn OrganizationView() -> impl IntoView {
         </table>
     }
 }
+
+#[component]
+pub fn OrganizationAdd() -> impl IntoView {
+    let new_item = Organization::new("New Organization".to_string());
+    view! {
+        <form>
+            <fieldset>  
+                <legend>"New Organization"</legend>
+                <label for="name">"Name"</label>
+                <input type="text" id="name" name="name" value=new_item.name.clone() /><br />
+            </fieldset>
+            <button type="submit">"Submit"</button>
+        </form>
+        <Outlet />
+    }
+}

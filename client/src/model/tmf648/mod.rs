@@ -71,11 +71,8 @@ pub fn BasicQuote(mut quote: Quote) -> impl IntoView {
         <fieldset>
             <legend>"Quote Information"</legend>
             <NamedClass item=quote.clone() signal=set_name/>
-            <fieldset>
-                <legend>"Details"</legend>
-                <SingleRow id="description".to_string() label="Description".to_string() signal=set_desc />
-                <SingleRow id="category".to_string() label="Category".to_string() signal=set_cat />
-            </fieldset>
+            <SingleRow id="description".to_string() label="Description".to_string() signal=set_desc />
+            <SingleRow id="category".to_string() label="Category".to_string() signal=set_cat />
         </fieldset>
     }
 }
@@ -85,7 +82,6 @@ pub fn QuoteAdd() -> impl IntoView {
     let quote = Quote::new();
     let (_name, _set_name) = signal("New Quote".to_string());
     view! {
-        <p>"Add Quote"</p>
         <BasicQuote quote=quote.clone() />
         <Validity item=quote />
     }
@@ -99,8 +95,8 @@ pub fn QuoteRoutes() -> impl MatchNestedRoutes + Clone {
     view! {
         <ParentRoute path=path!("/tmf-api/quoteManagement/v4") view=QuoteHome>
             <ParentRoute path=path!("quote") view=QuoteList >
-                <Route path=path!(":id") view=QuoteDetail />
                 <Route path=path!("add") view=QuoteAdd />
+                <Route path=path!(":id") view=QuoteDetail />
                 <Route path=path!("") view=NoOptionView />
             </ParentRoute>
             <Route path=path!("") view=NoOptionView />

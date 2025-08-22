@@ -28,3 +28,22 @@ pub fn ProductOfferingView() -> impl IntoView {
         <p>"Product Offering View"</p>
     }
 }
+
+#[component]
+pub fn ProductOfferingAdd() -> impl IntoView {
+    let new_item = ProductOffering::new("New Offering");
+    view! {
+        <form>
+            <fieldset>
+                <legend>"New Product Offering"</legend>
+                <label for="name">"Name"</label>
+                <input type="text" id="name" name="name" /><br />
+                <label for="description">"Description"</label>
+                <input type="text" id="description" name="description" /><br />
+            </fieldset>
+            <button type="submit">"Submit"</button>
+        </form>
+        <Outlet />
+    }
+}
+

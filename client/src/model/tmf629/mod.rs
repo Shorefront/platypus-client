@@ -24,13 +24,10 @@ pub fn NoOptionView() -> impl IntoView {
 
 #[component]
 pub fn BasicCustomer(mut customer: Customer) -> impl IntoView {
-    let (name, set_name) = signal("New Category".to_string());
+    let (name, set_name) = signal("New Customer".to_string());
     name.with(|n| customer.set_name(n));
     view! {
-        <fieldset>
-            <legend>Customer Information</legend>
-            <NamedClass item=customer signal=set_name/>
-        </fieldset>
+        <NamedClass item=customer signal=set_name/>
     }
 }
 
@@ -39,8 +36,8 @@ pub fn CustomerRoutes() -> impl MatchNestedRoutes + Clone {
     view! {
         <ParentRoute path=path!("/tmf-api/customerManagement/v4") view=CustomerHome>
             <ParentRoute path=path!("customer") view=CustomerList >
-                <Route path=path!(":id") view=CustomerView />
                 <Route path=path!("add") view=CustomerAdd />
+                <Route path=path!(":id") view=CustomerView />
                 <Route path=path!("") view=NoOptionView />
             </ParentRoute>
             <Route path=path!("") view=NoOptionView />
@@ -93,7 +90,6 @@ pub fn CustomerList() -> impl IntoView {
 pub fn CustomerAdd() -> impl IntoView {
     let customer = Customer::default();
     view! {
-        <p>"Add Customer"</p>
         <BasicCustomer customer=customer.clone() />
     }
 }

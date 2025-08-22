@@ -6,14 +6,12 @@ use tmflib::{HasId, HasName, HasValidity};
 #[component]
 pub fn SingleRow(id: String, label: String, signal: WriteSignal<String>) -> impl IntoView {
     view! {
-        <tr>
-            <td><label for=id.clone()>{ label }</label></td>
-            <td><input
+            <label for=id.clone()>{ label }</label>
+            <input
                 id=id.clone()
                 on:input=move |ev| { signal.set(event_target_value(&ev)); }
                 />
-            </td>
-        </tr>
+            <br />
     }
 }
 
@@ -22,10 +20,8 @@ pub fn BasicClass<T: HasId>(item: T) -> impl IntoView {
     let id = item.get_id();
     let href = item.get_href();
     view! {
-            <tr>
-                <td><label for="id">"Id"</label></td>
-                <td><a href=href>{ id }</a></td>
-            </tr>
+        <label for="id">"Link"</label>
+        <a href=href>{ id }</a><br />
     }
 }
 
@@ -37,14 +33,12 @@ pub fn NamedClass<T: HasId + HasName + Clone>(
     let name = item.get_name();
     view! {
         <fieldset>
-            <legend>"Class "{ T::get_class()}</legend>
+            <legend>{ T::get_class()}</legend>
             <BasicClass item=item />
-            <tr>
-                <td><label for="name">"Name"</label></td>
-                <td><input id="name" value=name on:input=move |ev| {
+                <label for="name">"Name"</label>
+                <input id="name" value=name on:input=move |ev| {
                     signal.set(event_target_value(&ev));
-                }/></td>
-            </tr>
+                }/>
         </fieldset>
     }
 }

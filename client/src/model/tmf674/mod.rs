@@ -12,6 +12,7 @@ use crate::model::common::list::GenericListWithAdd;
 use tmflib::tmf674::geographic_site_v4::GeographicSite;
 #[cfg(feature = "V5")]
 use tmflib::tmf674::geographic_site_v5::GeographicSite;
+use tmflib::HasName;
 
 #[component]
 pub fn NoOptionView() -> impl IntoView {
@@ -55,12 +56,31 @@ pub fn GeographicSiteDetail() -> impl IntoView {
     }
 }
 
+#[component]
+pub fn GeographicSiteAdd() -> impl IntoView {
+    let new_item = GeographicSite::new("New Site".to_string());
+    view! {
+        <form>
+            <fieldset>
+                <legend>"New Geographic Site"</legend>
+                <label for="name">"Name"</label>
+                <input type="text" id="name" name="name" value={new_item.get_name()} /><br />
+                <label for="description">"Description"</label>
+                <input type="text" id="description" name="description" /><br />
+            </fieldset>
+            <button type="submit">"Submit"</button>
+        </form>
+        <Outlet />
+    }
+}
+
 #[component(transparent)]
 pub fn GeographicSiteRoutes() -> impl MatchNestedRoutes + Clone {
     // let site_path = GeographicSite::get_class();
     view! {
         <ParentRoute path=path!("/tmf-api/geographicSiteManagement/v4") view=GeographicSiteHome>
             <ParentRoute path=path!("geographicSite") view=GeographicSiteList >
+                <Route path=path!("add") view=GeographicSiteAdd />
                 <Route path=path!(":id") view=GeographicSiteDetail />
                 <Route path=path!("") view=NoOptionView />
             </ParentRoute>
