@@ -10,6 +10,8 @@ use crate::model::common::form::SingleRow;
 use crate::model::common::list::GenericListWithAdd;
 use reqwest_wasm::Client;
 use tmflib::{tmf620::category::Category, HasId, HasName};
+use tmf_leptos::common::related_party::RelatedPartyList;
+use tmf_leptos::common::time_period::TimePeriod;
 
 const DEFAULT_HOST: &str = "http://localhost:8000";
 
@@ -85,16 +87,21 @@ pub fn CategoryAdd() -> impl IntoView {
     let (name, set_name) = signal("New Category".to_string());
     let (parent, set_parent) = signal("Root".to_string());
     let (get_desc, set_desc) = signal("Description".to_string());
+    let (version, set_version) = signal("1".to_string());
     let mut new_cat = Category::new(name.get());
     name.with(|n| new_cat.set_name(n));
     view! {
-        <div class="form">
-            <h2>"Add Category"</h2>
-            <NamedClass item=new_cat signal=set_name />
+        <form>
+            <NamedClass item=&new_cat signal=set_name />
+            <fieldset>
+                <legend>Details</legend>
+                <SingleRow id="description".to_string() label="Description".to_string() read=get_desc write=set_desc />
+                <SingleRow id="version".to_string() label="Version".to_string() read=version write=set_version />
+            </fieldset>
+            <TimePeriod item=&new_cat />
             <CategorySelection signal=set_parent/>
-            <SingleRow id="description".to_string() label="Description".to_string() signal=set_desc />
-            <p>"Will create new category called: " { name } " with parent: " { parent } and description { get_desc }</p>
-        </div>
+        </form>
+        <p>"Will create new category [" {version} "]:  "{ name } " with parent: "{ parent }" and description "{ get_desc }</p>
     }
 }
 

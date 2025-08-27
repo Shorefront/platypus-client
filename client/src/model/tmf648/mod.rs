@@ -64,15 +64,15 @@ pub fn BasicQuote(mut quote: Quote) -> impl IntoView {
     // let desc = quote.description.clone();
     // let cat = quote.category.clone();
     let (name, set_name) = signal(quote.get_name());
-    let (_desc, set_desc) = signal(quote.description());
-    let (_cat, set_cat) = signal("Cat".to_string());
+    let (desc, set_desc) = signal(quote.description());
+    let (cat, set_cat) = signal("Cat".to_string());
     name.with(|n| quote.set_name(n));
     view! {
         <fieldset>
             <legend>"Quote Information"</legend>
-            <NamedClass item=quote.clone() signal=set_name/>
-            <SingleRow id="description".to_string() label="Description".to_string() signal=set_desc />
-            <SingleRow id="category".to_string() label="Category".to_string() signal=set_cat />
+            <NamedClass item=&quote signal=set_name/>
+            <SingleRow id="description".to_string() label="Description".to_string() read=desc write=set_desc />
+            <SingleRow id="category".to_string() label="Category".to_string() read=cat write=set_cat />
         </fieldset>
     }
 }

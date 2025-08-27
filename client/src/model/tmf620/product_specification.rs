@@ -37,7 +37,7 @@ pub fn ProductSpecificationAdd() -> impl IntoView {
     let new_ps = ProductSpecification::new(name.get());
     view! {
         <div class="form">
-        <NamedClass item=new_ps.clone() signal=set_name />
+        <NamedClass item=&new_ps signal=set_name />
         <p>"Will create new category called: " { name }</p>
         </div>
     }

@@ -2,11 +2,15 @@ use leptos::prelude::*;
 use leptos_router::components::Outlet;
 use log::info;
 use reqwest_wasm::Client;
+use tmflib::HasRelatedParty;
 
 use crate::model::common::list::GenericListWithAdd;
 use crate::model::common::table::GenericTable;
 use tmflib::{tmf620::catalog::Catalog, HasId};
+use tmflib::common::related_party::RelatedParty;
+use tmflib::tmf632::individual_v4::Individual;
 use tmf_leptos::common::time_period::TimePeriod;
+use tmf_leptos::common::related_party::RelatedPartyList;
 
 const DEFAULT_HOST: &str = "http://localhost:8001";
 
@@ -39,7 +43,9 @@ async fn get_catalogs() -> Vec<Catalog> {
 
 #[component]
 pub fn CatalogAdd() -> impl IntoView {
-    let new_item = Catalog::new("New Catalog");
+    let rp = RelatedParty::from(&Individual::new("John Smith"));
+    let new_item = Catalog::new("New Catalog")
+        .party(rp);
     view! {
         <form>
             <fieldset>
@@ -50,6 +56,7 @@ pub fn CatalogAdd() -> impl IntoView {
                 <input type="text" id="description" name="description" /><br />
             </fieldset>
             <TimePeriod item=&new_item />
+            <RelatedPartyList item=&new_item />
             <button type="submit">"Submit"</button>
         </form>
         <Outlet />

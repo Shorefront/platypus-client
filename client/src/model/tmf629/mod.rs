@@ -8,6 +8,7 @@ use tmflib::HasName;
 // use crate::model::common::table::GenericTable;
 use crate::model::common::form::NamedClass;
 use crate::model::common::list::GenericListWithAdd;
+use tmf_leptos::common::related_party::RelatedPartyList;
 
 use tmflib::tmf629::customer::Customer;
 #[cfg(feature = "V4")]
@@ -27,7 +28,7 @@ pub fn BasicCustomer(mut customer: Customer) -> impl IntoView {
     let (name, set_name) = signal("New Customer".to_string());
     name.with(|n| customer.set_name(n));
     view! {
-        <NamedClass item=customer signal=set_name/>
+        <NamedClass item=&customer signal=set_name/>
     }
 }
 
@@ -61,10 +62,10 @@ pub fn CustomerHome() -> impl IntoView {
 
 #[component]
 pub fn CustomerView() -> impl IntoView {
+    let customer = Customer::default();
     view! {
         <h2>"Customer Details"</h2>
-        <table>
-        </table>
+        <BasicCustomer customer=customer.clone() />
     }
 }
 
