@@ -10,7 +10,7 @@ pub fn TimePeriod<T : HasValidity,'a>(item : &'a T) -> impl IntoView {
     let finish = item.get_validity_end();
     view!{
         <fieldset>
-            <legend>Time Period</legend>
+            <legend>Valid For</legend>
             <label for="name">"Start:"</label>
             <input type="text" id="start" name="start" value={start}/><br />
             <label for="name">"Finish:"</label>
