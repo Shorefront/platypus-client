@@ -4,6 +4,8 @@ use leptos::prelude::*;
 use leptos_router::components::*;
 use leptos_router::hooks::use_params_map;
 use log::{error, info};
+use tmflib::HasValidity;
+use tmflib::TimePeriod;
 
 use crate::model::common::form::NamedClass;
 use crate::model::common::form::SingleRow;
@@ -86,22 +88,23 @@ pub fn CategorySelection(signal: WriteSignal<String>) -> impl IntoView {
 pub fn CategoryAdd() -> impl IntoView {
     let (name, set_name) = signal("New Category".to_string());
     let (parent, set_parent) = signal("Root".to_string());
-    let (get_desc, set_desc) = signal("Description".to_string());
+    let (desc, set_desc) = signal("Description".to_string());
     let (version, set_version) = signal("1".to_string());
-    let mut new_cat = Category::new(name.get());
+    let mut new_cat = Category::new(name.get())
+        .validity(TimePeriod::default());
     name.with(|n| new_cat.set_name(n));
     view! {
         <form>
             <NamedClass item=&new_cat signal=set_name />
             <fieldset>
                 <legend>Details</legend>
-                <SingleRow id="description".to_string() label="Description".to_string() read=get_desc write=set_desc />
+                <SingleRow id="description".to_string() label="Description".to_string() read=desc write=set_desc />
                 <SingleRow id="version".to_string() label="Version".to_string() read=version write=set_version />
             </fieldset>
-            <TimePeriod item=&new_cat />
+            <TimePeriod item=&mut new_cat />
             <CategorySelection signal=set_parent/>
         </form>
-        <p>"Will create new category [" {version} "]:  "{ name } " with parent: "{ parent }" and description "{ get_desc }</p>
+        <div class="debug">"Will create new category [" {version} "]:  "{ name } " with parent: "{ parent }" and description "{ desc }</div>
     }
 }
 
