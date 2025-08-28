@@ -44,7 +44,7 @@ async fn get_catalogs() -> Vec<Catalog> {
 #[component]
 pub fn CatalogAdd() -> impl IntoView {
     let rp = RelatedParty::from(&Individual::new("John Smith"));
-    let new_item = Catalog::new("New Catalog")
+    let mut new_item = Catalog::new("New Catalog")
         .party(rp);
     view! {
         <form>
@@ -55,7 +55,7 @@ pub fn CatalogAdd() -> impl IntoView {
                 <label for="description">"Description"</label>
                 <input type="text" id="description" name="description" /><br />
             </fieldset>
-            <TimePeriod item=&new_item />
+            <TimePeriod item=&mut new_item />
             <RelatedPartyList item=&new_item />
             <button type="submit">"Submit"</button>
         </form>
