@@ -4,12 +4,13 @@ use leptos::prelude::*;
 use tmflib::{HasId, HasName, HasValidity};
 
 #[component]
-pub fn SingleRow(id: String, label: String, signal: WriteSignal<String>) -> impl IntoView {
+pub fn SingleRow(id: String, label: String, read: ReadSignal<String>, write: WriteSignal<String>) -> impl IntoView {
     view! {
             <label for=id.clone()>{ label }</label>
             <input
                 id=id.clone()
-                on:input=move |ev| { signal.set(event_target_value(&ev)); }
+                on:input=move |ev| { write.set(event_target_value(&ev)); }
+                value={read.get()}
                 />
             <br />
     }
@@ -26,19 +27,18 @@ pub fn BasicClass<T: HasId>(item: T) -> impl IntoView {
 }
 
 #[component]
-pub fn NamedClass<T: HasId + HasName + Clone>(
-    item: T,
+pub fn NamedClass<T: HasId + HasName + ,'a>(
+    item: &'a T,
     signal: WriteSignal<String>,
 ) -> impl IntoView {
     let name = item.get_name();
     view! {
         <fieldset>
             <legend>{ T::get_class()}</legend>
-            <BasicClass item=item />
-                <label for="name">"Name"</label>
-                <input id="name" value=name on:input=move |ev| {
-                    signal.set(event_target_value(&ev));
-                }/>
+            <label for="name">"Name"</label>
+            <input id="name" value=name on:input=move |ev| {
+                signal.set(event_target_value(&ev));
+            }/>
         </fieldset>
     }
 }
