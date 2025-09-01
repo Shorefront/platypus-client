@@ -10,9 +10,9 @@ use tmflib::TimePeriod;
 use crate::model::common::form::NamedClass;
 use crate::model::common::form::SingleRow;
 use crate::model::common::list::GenericListWithAdd;
+
 use reqwest_wasm::Client;
 use tmflib::{tmf620::category::Category, HasId, HasName};
-use tmf_leptos::common::related_party::RelatedPartyList;
 use tmf_leptos::common::time_period::TimePeriod;
 
 const DEFAULT_HOST: &str = "http://localhost:8000";
