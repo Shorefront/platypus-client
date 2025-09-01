@@ -7,9 +7,14 @@ use leptos::prelude::*;
 #[component]
 pub fn TimePeriod<T : HasValidity,'a>(item : &'a mut T) -> impl IntoView {
     let start = item.get_validity_start();
-    let finish = item.get_validity_end();
     let start_enabled = start.is_some();
+    let (start, set_start) = signal(start.unwrap_or_default());
+    start.with(|s| item.set_validity_start(s.clone()));
+
+    let finish = item.get_validity_end();    
     let finish_enabled = finish.is_some();
+    let (finish, set_finish) = signal(finish.unwrap_or_default());
+    finish.with(|f| item.set_validity_end(f.clone()));
     view!{
         <fieldset>
             <legend>Valid For</legend>
