@@ -13,12 +13,11 @@ use crate::model::common::list::GenericListWithAdd;
 
 use reqwest_wasm::Client;
 use tmflib::{tmf620::category::Category, HasId, HasName};
-use tmf_leptos::common::related_party::RelatedPartyList;
 use tmf_leptos::common::time_period::TimePeriod;
 
 const DEFAULT_HOST: &str = "http://localhost:8000";
 
-fn get_cat() -> Vec<Category> {
+async fn get_cat() -> Vec<Category> {
     // This is where we create an API call back into back end
 
     let href = format!("{}{}", DEFAULT_HOST, Category::get_class_href());

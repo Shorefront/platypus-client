@@ -71,7 +71,7 @@ pub fn CatalogList() -> impl IntoView {
 
     view! {
         <div class="list">
-            <GenericListWithAdd items=once.get().unwrap() />
+            <GenericListWithAdd items=cat_list />
         </div>
         <div class="detail">
             <Outlet />
