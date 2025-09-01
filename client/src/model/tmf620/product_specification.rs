@@ -7,6 +7,7 @@ use leptos_router::components::Outlet;
 // use crate::model::common::table::GenericTable;
 use crate::model::common::form::NamedClass;
 use crate::model::common::list::GenericListWithAdd;
+use crate::model::common::form::SingleRow;
 use tmflib::tmf620::product_specification::ProductSpecification;
 
 #[component]
@@ -34,11 +35,19 @@ pub fn ProductSpecificationView() -> impl IntoView {
 #[component]
 pub fn ProductSpecificationAdd() -> impl IntoView {
     let (name, set_name) = signal("New Specification".to_string());
+    let (description, set_description) = signal("".to_string());
+    let (brand, set_brand) = signal("".to_string());
+    brand.with(|b| println!("Brand changed to: {}", b));
     let new_ps = ProductSpecification::new(name.get());
     view! {
         <div class="form">
         <NamedClass item=&new_ps signal=set_name />
-        <p>"Will create new category called: " { name }</p>
+        <fieldset>
+            <legend>"Details"</legend>
+            <SingleRow id="desc" label="Description" read=description write=set_description />
+            <SingleRow id="brand" label="Brand" read=brand write=set_brand />
+        </fieldset>
+        <p>"Will create new speciication called: " { name } " with description " { description } " and brand " { brand }</p>
         </div>
     }
 }
