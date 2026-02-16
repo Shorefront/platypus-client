@@ -1,4 +1,4 @@
 /client/target
-/client/dist/*
+/client/dist/
 /tmf-leptos/target
 /target
