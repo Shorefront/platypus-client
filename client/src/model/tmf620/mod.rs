@@ -20,7 +20,7 @@ use product_specification::{
 #[component]
 pub fn NoOptionView() -> impl IntoView {
     view! {
-        <p>"Product Catalogue - Please select an catalogue object"</p>
+        <p>"Product Catalogue - Please select an object"</p>
     }
 }
 
@@ -31,7 +31,7 @@ pub fn CatalogRoutes() -> impl MatchNestedRoutes + Clone {
             <ParentRoute path=path!("catalog") view=CatalogList >
                 <Route path=path!("add") view=CatalogAdd />
                 <Route path=path!(":id") view=CatalogDetails />
-                <Route path=path!("") view=CatalogList />
+                <Route path=path!("") view=NoOptionView />
                 <Route path=path!("/") view=NoOptionView />
             </ParentRoute>
             <ParentRoute path=path!("category") view=CategoryTable >
