@@ -10,6 +10,8 @@ use leptos::prelude::*;
 use leptos_router::components::*;
 use leptos_router::hooks::use_params;
 use leptos_router::params::Params;
+use leptos_router::components::{Outlet, ParentRoute, Route};
+use leptos_router::{path, MatchNestedRoutes};
 
 use crate::model::common::list::GenericListWithAdd;
 
@@ -29,14 +31,13 @@ pub fn OrganizationList() -> impl IntoView {
     }
 }
 
-#[derive(Default, Params, PartialEq)]
+
 struct OrgParams {
     id: Option<String>,
 }
 
 #[component]
 pub fn OrganizationView() -> impl IntoView {
-    let _params = use_params::<OrgParams>();
 
     view! {
         <h3>"Organization View"</h3>
