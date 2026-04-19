@@ -21,7 +21,7 @@ tmf7xx = ["experimental"]
 composable = ["experimental"]
 
 [dependencies]
-leptos = { version = "0.8.15", features = ["csr"] }
+leptos = { version = "0.8.19", features = ["csr"] }
 # tmflib = { git = "https://github.com/rruckley/tmflib.git"}
 log = "0.4.29"
 console_log = "1"
