@@ -95,7 +95,7 @@ pub fn CategoryAdd() -> impl IntoView {
         .validity(TimePeriod::default());
     name.with(|n| new_cat.set_name(n));
     desc.with(|d| new_cat.set_description(d));
-    // version.with(|v| new_cat.set_version(v));
+    let mut validity = new_cat.get_validity().unwrap_or_default();
     view! {
         <form>
             <NamedClass item=&new_cat signal=set_name />
@@ -104,7 +104,7 @@ pub fn CategoryAdd() -> impl IntoView {
                 <legend>Details</legend>
                 <SingleRow id="version".to_string() label="Version".to_string() read=version write=set_version />
             </fieldset>
-            <TimePeriod item=&mut new_cat />
+            <TimePeriod period=&mut validity />
             <CategorySelection signal=set_parent/>
         </form>
         <div class="debug">"Will create new category [" {version} "]:  "{ name } " with parent: "{ parent }" and description "{ desc }</div>

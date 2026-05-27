@@ -44,13 +44,7 @@ pub fn ProductOfferingPriceAdd() -> impl IntoView {
     view! {
         <form>
             <NamedClass item=&new_item signal=set_name />
-            <fieldset>
-                <legend>"New Product Offering Price"</legend>
-                <label for="name">"Name"</label>
-                <input type="text" id="name" name="name" /><br />
-                <label for="description">"Description"</label>
-                <input type="text" id="description" name="description" /><br />
-            </fieldset>
+            <div class="debug">"Will create new catalog called: " { name }</div>
             <button type="submit">"Submit"</button>
         </form>
         <Outlet />

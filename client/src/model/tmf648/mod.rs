@@ -5,10 +5,10 @@ use leptos_router::components::*;
 use leptos_router::{path, MatchNestedRoutes};
 
 use tmflib::tmf648::quote::Quote;
-use tmflib::{HasId, HasName};
+use tmflib::{HasId, HasName,HasValidity, TimePeriod};
 
 use tmf_leptos::common::SingleRow;
-use tmf_leptos::common::has_validity::Validity;
+use tmf_leptos::common::has_validity::HasValidity;
 use tmf_leptos::common::has_name::NamedClass;
 
 #[component]
@@ -68,6 +68,10 @@ pub fn BasicQuote(mut quote: Quote) -> impl IntoView {
     let (name, set_name) = signal(quote.get_name());
     let (desc, set_desc) = signal(quote.description());
     let (cat, set_cat) = signal("Cat".to_string());
+    let(start_read, start_write) = signal("Start".to_string());
+    let(end_read, end_write) = signal("End".to_string());
+    start_read.with(|s| quote.set_validity_start(s.clone()));
+    end_read.with(|e| quote.set_validity_end(e.clone()));
     name.with(|n| quote.set_name(n));
     view! {
         <fieldset>
@@ -81,11 +85,17 @@ pub fn BasicQuote(mut quote: Quote) -> impl IntoView {
 
 #[component]
 pub fn QuoteAdd() -> impl IntoView {
-    let quote = Quote::new();
+    let mut quote = Quote::new();
     let (_name, _set_name) = signal("New Quote".to_string());
+    let (start_read, start_write) = signal("Start".to_string());
+    let (end_read, end_write) = signal("End".to_string());
+    start_read.with(|s| quote.set_validity_start(s.clone()));
+    end_read.with(|e| quote.set_validity_end(e.clone()));
+    // let mut validity = quote.get_validity().unwrap_or_default();
+    let mut validity = TimePeriod::period_30days();
     view! {
         <BasicQuote quote=quote.clone() />
-        <Validity item=quote />
+        <HasValidity period=&mut validity />
     }
 }
 

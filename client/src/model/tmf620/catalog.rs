@@ -7,7 +7,7 @@ use tmflib::HasRelatedParty;
 use tmf_leptos::common::has_name::NamedClass;
 use crate::model::common::list::GenericListWithAdd;
 use crate::model::common::table::GenericTable;
-use tmflib::{tmf620::catalog::Catalog, HasId, HasName, HasDescription};
+use tmflib::{tmf620::catalog::Catalog, HasId, HasName, HasDescription,HasValidity};
 use tmflib::common::related_party::RelatedParty;
 use tmflib::tmf632::individual_v4::Individual;
 use tmf_leptos::common::time_period::TimePeriod;
@@ -54,11 +54,12 @@ pub fn CatalogAdd() -> impl IntoView {
     // Update proto-object
     name.with(|n| new_item.set_name(n));
     desc.with(|d| new_item.set_description(d));
+    let mut validity = new_item.get_validity().unwrap_or_default();
     view! {
         <form>
             <NamedClass item=&new_item signal=set_name />
             <HasDescription description_read=desc description_write=set_desc />
-            <TimePeriod item=&mut new_item />
+            <TimePeriod period=&mut validity />
             <RelatedPartyList item=&new_item />
             <button type="submit">"Submit"</button>
         </form>
