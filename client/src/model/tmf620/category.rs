@@ -7,13 +7,14 @@ use log::{error, info};
 use tmflib::HasValidity;
 use tmflib::TimePeriod;
 
-use crate::model::common::form::NamedClass;
-use crate::model::common::form::SingleRow;
+use tmf_leptos::common::has_name::NamedClass;
+use tmf_leptos::common::SingleRow;
 use crate::model::common::list::GenericListWithAdd;
 
 use reqwest_wasm::Client;
-use tmflib::{tmf620::category::Category, HasId, HasName};
+use tmflib::{tmf620::category::Category, HasId, HasName,HasDescription};
 use tmf_leptos::common::time_period::TimePeriod;
+use tmf_leptos::common::has_description::HasDescription;
 
 const DEFAULT_HOST: &str = "http://localhost:8000";
 
@@ -93,12 +94,14 @@ pub fn CategoryAdd() -> impl IntoView {
     let mut new_cat = Category::new(name.get())
         .validity(TimePeriod::default());
     name.with(|n| new_cat.set_name(n));
+    desc.with(|d| new_cat.set_description(d));
+    // version.with(|v| new_cat.set_version(v));
     view! {
         <form>
             <NamedClass item=&new_cat signal=set_name />
+            <HasDescription description_read=desc description_write=set_desc />
             <fieldset>
                 <legend>Details</legend>
-                <SingleRow id="description".to_string() label="Description".to_string() read=desc write=set_desc />
                 <SingleRow id="version".to_string() label="Version".to_string() read=version write=set_version />
             </fieldset>
             <TimePeriod item=&mut new_cat />

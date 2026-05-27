@@ -5,10 +5,12 @@ use leptos_router::components::Outlet;
 // use tmflib::HasId;
 
 // use crate::model::common::table::GenericTable;
-use crate::model::common::form::NamedClass;
+use tmf_leptos::common::has_name::NamedClass;
 use crate::model::common::list::GenericListWithAdd;
-use crate::model::common::form::SingleRow;
+use tmf_leptos::common::SingleRow;
 use tmflib::tmf620::product_specification::ProductSpecification;
+use tmflib::{HasName,HasDescription};
+use tmf_leptos::common::has_description::HasDescription;
 
 #[component]
 pub fn ProductSpecificationTable() -> impl IntoView {
@@ -35,19 +37,23 @@ pub fn ProductSpecificationView() -> impl IntoView {
 #[component]
 pub fn ProductSpecificationAdd() -> impl IntoView {
     let (name, set_name) = signal("New Specification".to_string());
-    let (description, set_description) = signal("".to_string());
+    let (desc, set_desc) = signal("".to_string());
     let (brand, set_brand) = signal("".to_string());
     brand.with(|b| println!("Brand changed to: {}", b));
-    let new_ps = ProductSpecification::new(name.get());
+    let mut new_ps = ProductSpecification::new(name.get());
+
+    // Update proto-object
+    name.with(|n| new_ps.set_name(n));
+    desc.with(|d| new_ps.set_description(d));
     view! {
         <div class="form">
         <NamedClass item=&new_ps signal=set_name />
+        <HasDescription description_read=desc description_write=set_desc />
         <fieldset>
             <legend>"Details"</legend>
-            <SingleRow id="desc" label="Description" read=description write=set_description />
             <SingleRow id="brand" label="Brand" read=brand write=set_brand />
         </fieldset>
-        <p>"Will create new speciication called: " { name } " with description " { description } " and brand " { brand }</p>
+        <div class="debug">"Will create new speciication called: " { name } " with description " { desc } " and brand " { brand }</div>
         </div>
     }
 }

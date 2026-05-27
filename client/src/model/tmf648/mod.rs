@@ -7,7 +7,9 @@ use leptos_router::{path, MatchNestedRoutes};
 use tmflib::tmf648::quote::Quote;
 use tmflib::{HasId, HasName};
 
-use crate::model::common::form::{NamedClass, SingleRow, Validity};
+use tmf_leptos::common::SingleRow;
+use tmf_leptos::common::has_validity::Validity;
+use tmf_leptos::common::has_name::NamedClass;
 
 #[component]
 pub fn NoOptionView() -> impl IntoView {

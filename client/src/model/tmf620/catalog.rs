@@ -4,13 +4,15 @@ use log::info;
 use reqwest_wasm::Client;
 use tmflib::HasRelatedParty;
 
+use tmf_leptos::common::has_name::NamedClass;
 use crate::model::common::list::GenericListWithAdd;
 use crate::model::common::table::GenericTable;
-use tmflib::{tmf620::catalog::Catalog, HasId};
+use tmflib::{tmf620::catalog::Catalog, HasId, HasName, HasDescription};
 use tmflib::common::related_party::RelatedParty;
 use tmflib::tmf632::individual_v4::Individual;
 use tmf_leptos::common::time_period::TimePeriod;
 use tmf_leptos::common::related_party::RelatedPartyList;
+use tmf_leptos::common::has_description::HasDescription;
 
 const DEFAULT_HOST: &str = "http://localhost:8001";
 
@@ -46,19 +48,22 @@ pub fn CatalogAdd() -> impl IntoView {
     let rp = RelatedParty::from(&Individual::new("John Smith"));
     let mut new_item = Catalog::new("New Catalog")
         .party(rp);
+    let (name, set_name) = signal(new_item.get_name());
+    let (desc, set_desc) = signal(new_item.get_description());
+    
+    // Update proto-object
+    name.with(|n| new_item.set_name(n));
+    desc.with(|d| new_item.set_description(d));
     view! {
         <form>
-            <fieldset>
-                <legend>"New Catalog"</legend>
-                <label for="name">"Name"</label>
-                <input type="text" id="name" name="name" /><br />
-                <label for="description">"Description"</label>
-                <input type="text" id="description" name="description" /><br />
-            </fieldset>
+            <NamedClass item=&new_item signal=set_name />
+            <HasDescription description_read=desc description_write=set_desc />
             <TimePeriod item=&mut new_item />
             <RelatedPartyList item=&new_item />
             <button type="submit">"Submit"</button>
         </form>
+        <div class="debug">"Will create new catalog called: " { name } " with description " { desc }</div>
+
         <Outlet />
     }
 }

@@ -2,8 +2,11 @@
 //! This module defines the Product Offering Price Model
 //! It is part of TMForum Open API 6.2.0 Product Offering module
 use tmflib::tmf620::product_offering_price::ProductOfferingPrice;
+use tmflib::HasName;
 // use crate::model::common::table::GenericTable;
 use crate::model::common::list::GenericListWithAdd;
+// use tmf_leptos::common::has_description::HasDescription;
+use tmf_leptos::common::has_name::NamedClass;
 
 use leptos::prelude::*;
 use leptos_router::components::Outlet;
@@ -32,9 +35,15 @@ pub fn ProductOfferingPriceDetail() -> impl IntoView {
 
 #[component]
 pub fn ProductOfferingPriceAdd() -> impl IntoView {
-    let new_item = ProductOfferingPrice::new("New Price");
+    let mut new_item = ProductOfferingPrice::new("New Price");
+    let (name, set_name) = signal(new_item.get_name());
+    // let (desc, set_desc) = signal(new_item.get_description());
+    // Update proto-object
+    name.with(|n| new_item.set_name(n));
+    // desc.with(|d| new_item.set_description(d));
     view! {
         <form>
+            <NamedClass item=&new_item signal=set_name />
             <fieldset>
                 <legend>"New Product Offering Price"</legend>
                 <label for="name">"Name"</label>
