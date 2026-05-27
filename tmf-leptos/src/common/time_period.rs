@@ -4,10 +4,11 @@ use tmflib::{HasValidity,TimePeriod};
 
 use leptos::prelude::*;
 
-use leptos::web_sys::*;
-
 #[component]
-pub fn TimePeriod<'a>(period : &'a mut TimePeriod) -> impl IntoView {
+pub fn TimePeriod<'a>(
+        period : &'a mut TimePeriod,
+        dirty: WriteSignal<bool>
+    ) -> impl IntoView {
     let start_enabled : bool = false;
     let finish_enabled : bool = false;
     let preset : i32 = 0;
@@ -30,6 +31,8 @@ pub fn TimePeriod<'a>(period : &'a mut TimePeriod) -> impl IntoView {
         println!("Preset changed to: {}. New period: {:?}", p, new_period);
         start_write.set(new_period.start_date_time.clone());
         finish_write.set(new_period.end_date_time.clone());
+        /// Set dirty flag to signal upstream that values have been updated in mutable object
+        dirty.set(true);
         // enabled_write.set(new_period.start_date_time.is_some());
         // finish_enabled_write.set(new_period.end_date_time.is_some());
     }); 

@@ -1,19 +1,19 @@
 //! Forms for HasValidity trait
 //! 
 
-use leptos::{html::Time, prelude::*};
-use tmflib::{HasId,HasValidity,TimePeriod};
+use leptos::prelude::*;
+use tmflib::TimePeriod;
 use super::time_period::TimePeriod;
 
 #[component]
-pub fn HasValidity<'a>(period: &'a mut TimePeriod) -> impl IntoView {
-
-    // let mut period = TimePeriod::period_days(0);
-
+pub fn HasValidity<'a>(
+        period: &'a mut TimePeriod,
+        dirty : WriteSignal<bool>
+    ) -> impl IntoView {
     view! {
         <fieldset>
             <legend>"Validity"</legend>
-           <TimePeriod period=period />
+           <TimePeriod period=period dirty=dirty />
         </fieldset>
     }
 }

@@ -86,16 +86,26 @@ pub fn BasicQuote(mut quote: Quote) -> impl IntoView {
 #[component]
 pub fn QuoteAdd() -> impl IntoView {
     let mut quote = Quote::new();
+    let valid_dirty : bool = false;
     let (_name, _set_name) = signal("New Quote".to_string());
     let (start_read, start_write) = signal("Start".to_string());
     let (end_read, end_write) = signal("End".to_string());
+    let (valid,valid_write) = signal(valid_dirty);
     start_read.with(|s| quote.set_validity_start(s.clone()));
     end_read.with(|e| quote.set_validity_end(e.clone()));
-    // let mut validity = quote.get_validity().unwrap_or_default();
-    let mut validity = TimePeriod::period_30days();
+  
+    let mut validity = quote.get_validity().unwrap_or(TimePeriod::period_30days());
+    valid.with(|f| {
+        // Flag has been set to dirty, so we know to update the validity in the proto-object
+        if *f {
+            quote.set_validity(validity.clone());
+            // Reset dirty flag
+            valid_write.set(false);
+        }
+    });
     view! {
         <BasicQuote quote=quote.clone() />
-        <HasValidity period=&mut validity />
+        <HasValidity period=&mut validity dirty=valid_write />
     }
 }
 

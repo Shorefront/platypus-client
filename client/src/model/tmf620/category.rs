@@ -87,15 +87,25 @@ pub fn CategorySelection(signal: WriteSignal<String>) -> impl IntoView {
 
 #[component]
 pub fn CategoryAdd() -> impl IntoView {
+    let valid_dirty : bool = false;
     let (name, set_name) = signal("New Category".to_string());
     let (parent, set_parent) = signal("Root".to_string());
     let (desc, set_desc) = signal("Description".to_string());
     let (version, set_version) = signal("1".to_string());
+    let (valid,valid_write) = signal(valid_dirty);
     let mut new_cat = Category::new(name.get())
         .validity(TimePeriod::default());
     name.with(|n| new_cat.set_name(n));
     desc.with(|d| new_cat.set_description(d));
     let mut validity = new_cat.get_validity().unwrap_or_default();
+    valid.with(|f| {
+        // Flag has been set to dirty, so we know to update the validity in the proto-object
+        if *f {
+            new_cat.set_validity(validity.clone());
+            // Reset dirty flag
+            valid_write.set(false);
+        }
+    });
     view! {
         <form>
             <NamedClass item=&new_cat signal=set_name />
@@ -104,7 +114,7 @@ pub fn CategoryAdd() -> impl IntoView {
                 <legend>Details</legend>
                 <SingleRow id="version".to_string() label="Version".to_string() read=version write=set_version />
             </fieldset>
-            <TimePeriod period=&mut validity />
+            <TimePeriod period=&mut validity dirty=valid_write />
             <CategorySelection signal=set_parent/>
         </form>
         <div class="debug">"Will create new category [" {version} "]:  "{ name } " with parent: "{ parent }" and description "{ desc }</div>
