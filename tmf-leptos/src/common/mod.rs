@@ -6,6 +6,7 @@ pub mod has_description;
 pub mod has_id;
 pub mod has_name;
 pub mod has_validity;
+pub mod has_lastupdate;
 
 use leptos::prelude::*;
 
