@@ -8,8 +8,8 @@ use tmflib::tmf648::quote::Quote;
 use tmflib::{HasId, HasName,HasValidity, TimePeriod};
 
 use tmf_leptos::common::SingleRow;
-use tmf_leptos::common::has_validity::HasValidity;
-use tmf_leptos::common::has_name::NamedClass;
+use tmf_leptos::traits::has_validity::HasValidity;
+use tmf_leptos::traits::has_name::NamedClass;
 
 #[component]
 pub fn NoOptionView() -> impl IntoView {

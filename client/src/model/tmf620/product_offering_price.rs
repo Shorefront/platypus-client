@@ -7,9 +7,9 @@ use tmflib::{HasLastUpdate, HasName, HasValidity};
 use crate::model::common::list::GenericListWithAdd;
 // use tmf_leptos::common::has_description::HasDescription;
 use tmf_leptos::common::SingleRow;
-use tmf_leptos::common::has_name::NamedClass;
-use tmf_leptos::common::has_validity::HasValidity;
-use tmf_leptos::common::has_lastupdate::HasLastUpdate;
+use tmf_leptos::traits::has_name::NamedClass;
+use tmf_leptos::traits::has_validity::HasValidity;
+use tmf_leptos::traits::has_lastupdate::HasLastUpdate;
 
 use leptos::prelude::*;
 use leptos_router::components::Outlet;

@@ -4,12 +4,12 @@ use leptos::prelude::*;
 use leptos_router::components::Outlet;
 // use crate::model::common::table::GenericTable;
 use crate::model::common::list::GenericListWithAdd;
-use tmf_leptos::common::has_name::NamedClass;
+use tmf_leptos::traits::has_name::NamedClass;
 
 use tmflib::tmf620::product_offering::ProductOffering;
 use tmflib::{HasName,HasDescription,HasValidity};
-use tmf_leptos::common::has_description::HasDescription;
-use tmf_leptos::common::has_validity::HasValidity;
+use tmf_leptos::traits::has_description::HasDescription;
+use tmf_leptos::traits::has_validity::HasValidity;
 
 #[component]
 pub fn ProductOfferingTable() -> impl IntoView {

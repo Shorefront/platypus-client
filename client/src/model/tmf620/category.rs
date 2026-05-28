@@ -7,14 +7,14 @@ use log::{error, info};
 use tmflib::HasValidity;
 use tmflib::TimePeriod;
 
-use tmf_leptos::common::has_name::NamedClass;
+use tmf_leptos::traits::has_name::NamedClass;
 use tmf_leptos::common::SingleRow;
 use crate::model::common::list::GenericListWithAdd;
 
 use reqwest_wasm::Client;
 use tmflib::{tmf620::category::Category, HasId, HasName,HasDescription};
 use tmf_leptos::common::time_period::TimePeriod;
-use tmf_leptos::common::has_description::HasDescription;
+use tmf_leptos::traits::has_description::HasDescription;
 
 const DEFAULT_HOST: &str = "http://localhost:8000";
 

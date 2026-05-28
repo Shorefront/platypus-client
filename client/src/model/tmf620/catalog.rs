@@ -4,7 +4,7 @@ use log::info;
 use reqwest_wasm::Client;
 use tmflib::HasRelatedParty;
 
-use tmf_leptos::common::has_name::NamedClass;
+use tmf_leptos::traits::has_name::NamedClass;
 use crate::model::common::list::GenericListWithAdd;
 use crate::model::common::table::GenericTable;
 use tmflib::{tmf620::catalog::Catalog, HasId, HasName, HasDescription,HasValidity};
@@ -12,7 +12,7 @@ use tmflib::common::related_party::RelatedParty;
 use tmflib::tmf632::individual_v4::Individual;
 use tmf_leptos::common::time_period::TimePeriod;
 use tmf_leptos::common::related_party::RelatedPartyList;
-use tmf_leptos::common::has_description::HasDescription;
+use tmf_leptos::traits::has_description::HasDescription;
 
 const DEFAULT_HOST: &str = "http://localhost:8001";
 

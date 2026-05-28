@@ -5,12 +5,12 @@ use leptos_router::components::Outlet;
 // use tmflib::HasId;
 
 // use crate::model::common::table::GenericTable;
-use tmf_leptos::common::has_name::NamedClass;
+use tmf_leptos::traits::has_name::NamedClass;
 use crate::model::common::list::GenericListWithAdd;
 use tmf_leptos::common::SingleRow;
 use tmflib::tmf620::product_specification::ProductSpecification;
 use tmflib::{HasName,HasDescription};
-use tmf_leptos::common::has_description::HasDescription;
+use tmf_leptos::traits::has_description::HasDescription;
 
 #[component]
 pub fn ProductSpecificationTable() -> impl IntoView {

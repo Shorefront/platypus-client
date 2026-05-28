@@ -6,7 +6,7 @@ use leptos_router::{path, MatchNestedRoutes};
 use tmflib::HasName;
 
 // use crate::model::common::table::GenericTable;
-use tmf_leptos::common::has_name::NamedClass;
+use tmf_leptos::traits::has_name::NamedClass;
 use crate::model::common::list::GenericListWithAdd;
 use tmf_leptos::common::related_party::RelatedPartyList;
 

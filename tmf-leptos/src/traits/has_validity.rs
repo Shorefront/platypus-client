@@ -3,7 +3,7 @@
 
 use leptos::prelude::*;
 use tmflib::TimePeriod;
-use super::time_period::TimePeriod;
+use crate::common::time_period::TimePeriod;
 
 #[component]
 pub fn HasValidity<'a>(
