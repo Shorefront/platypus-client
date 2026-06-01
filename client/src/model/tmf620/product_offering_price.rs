@@ -46,8 +46,9 @@ pub fn ProductOfferingPriceAdd() -> impl IntoView {
     let (valid,valid_write) = signal(valid_dirty);
     let (version, set_version) = signal("1.0".to_string());
     let (last_update, set_last_update) = signal(new_item.get_last_update().unwrap_or_default());
-    let price = Price::default();
-    let (price_read, price_write) = signal(price);
+    let mut price = Price::default();
+    price.tax_rate = 10.0;
+    let (price_read, price_write) = signal(price.clone());
 
     
     // Update proto-object
@@ -76,7 +77,7 @@ pub fn ProductOfferingPriceAdd() -> impl IntoView {
                     <SingleRow id="version" label="Version" read=version write=set_version />
                     <HasLastUpdate lu_read=last_update lu_write=set_last_update />
                 </fieldset>
-            <div class="debug">"Will create new catalog called: " { name } " with version " {version} " and last update " {last_update} </div>
+            <div class="debug">"Will create new price called: " { name } " with version " {version} " and last update " {last_update} "and tax rate" {price.tax_rate} </div>
             <button type="submit">"Submit"</button>
         </form>
         <Outlet />
