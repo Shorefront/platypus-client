@@ -52,6 +52,7 @@ pub fn ProductSpecificationAdd() -> impl IntoView {
         <fieldset>
             <legend>"Details"</legend>
             <SingleRow id="brand" label="Brand" read=brand write=set_brand />
+            
         </fieldset>
         <div class="debug">"Will create new speciication called: " { name } " with description " { desc } " and brand " { brand }</div>
         </div>

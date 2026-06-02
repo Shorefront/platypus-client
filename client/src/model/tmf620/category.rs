@@ -13,7 +13,8 @@ use crate::model::common::list::GenericListWithAdd;
 
 use reqwest_wasm::Client;
 use tmflib::{tmf620::category::Category, HasId, HasName,HasDescription};
-use tmf_leptos::common::time_period::TimePeriod;
+// use tmf_leptos::common::time_period::TimePeriod;
+use tmf_leptos::traits::has_validity::HasValidity;
 use tmf_leptos::traits::has_description::HasDescription;
 
 const DEFAULT_HOST: &str = "http://localhost:8000";
@@ -114,7 +115,7 @@ pub fn CategoryAdd() -> impl IntoView {
                 <legend>Details</legend>
                 <SingleRow id="version".to_string() label="Version".to_string() read=version write=set_version />
             </fieldset>
-            <TimePeriod period=&mut validity dirty=valid_write />
+            <HasValidity period=&mut validity dirty=valid_write />
             <CategorySelection signal=set_parent/>
         </form>
         <div class="debug">"Will create new category [" {version} "]:  "{ name } " with parent: "{ parent }" and description "{ desc }</div>

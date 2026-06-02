@@ -13,7 +13,7 @@ pub fn HasValidity<'a>(
     view! {
         <fieldset>
             <legend>"Validity"</legend>
-           <TimePeriod period=period dirty=dirty />
+            <TimePeriod period=period dirty=dirty />
         </fieldset>
     }
 }

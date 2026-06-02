@@ -10,37 +10,25 @@ use crate::model::common::table::GenericTable;
 use tmflib::{tmf620::catalog::Catalog, HasId, HasName, HasDescription,HasValidity};
 use tmflib::common::related_party::RelatedParty;
 use tmflib::tmf632::individual_v4::Individual;
-use tmf_leptos::common::time_period::TimePeriod;
+// use tmf_leptos::common::time_period::TimePeriod;
+use tmf_leptos::traits::has_validity::HasValidity;
 use tmf_leptos::common::related_party::RelatedPartyList;
 use tmf_leptos::traits::has_description::HasDescription;
 
 const DEFAULT_HOST: &str = "http://localhost:8001";
 
-async fn get_catalogs() -> Vec<Catalog> {
-    let href = format!("{}{}", DEFAULT_HOST, Catalog::get_class_href());
-    let client = Client::new();
-    let res = client.get(href).send().await;
-    match res {
-        Ok(r) => {
-            info!("Fetched Catalog data");
-            let body = r.text().await;
-            match body {
-                Ok(_b) => {
-                    vec![]
-                }
-                Err(_e) => {
-                    vec![]
-                }
-            }
-        }
-        Err(_e) => {
-            // Could not get catalog, return some defaults
-            let cat1 = Catalog::new("Design");
-            let cat2 = Catalog::new("Production");
-            let catalogs = vec![cat1, cat2];
-            catalogs
-        }
-    }
+fn get_catalogs() -> Vec<Catalog> {
+    let cat1 = Catalog::new("Mobile")
+        .description("Mobile plans / offers");
+    let cat2 = Catalog::new("Fixed")
+        .description("Fixed products and offerings");
+    let cat3 = Catalog::new("MNS / ICT")
+        .description("Overlay and ICT / MNS products");
+    vec![
+        cat1,
+        cat2,
+        cat3,
+    ]
 }
 
 #[component]
@@ -69,7 +57,7 @@ pub fn CatalogAdd() -> impl IntoView {
         <form>
             <NamedClass item=&new_item signal=set_name />
             <HasDescription description_read=desc description_write=set_desc />
-            <TimePeriod period=&mut validity dirty=valid_write />
+            <HasValidity period=&mut validity dirty=valid_write />
             <RelatedPartyList item=&new_item />
             <button type="submit">"Submit"</button>
         </form>
@@ -81,10 +69,11 @@ pub fn CatalogAdd() -> impl IntoView {
 
 #[component]
 pub fn CatalogList() -> impl IntoView {
-    let cat1 = Catalog::new("Components");
-    let cat2 = Catalog::new("Products");
-    let cat_list = vec![cat1, cat2];
-
+    // let cat1 = Catalog::new("Components");
+    // let cat2 = Catalog::new("Products");
+    // let cat_list = vec![cat1, cat2];
+    let cat_list = get_catalogs();
+    
     view! {
         <div class="list">
             <GenericListWithAdd items=cat_list />

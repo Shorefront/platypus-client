@@ -12,6 +12,13 @@ pub fn ListItem<T: HasId + HasName>(item: T) -> impl IntoView {
 }
 
 #[component]
+pub fn DescriptionItem<T : HasName + HasDescription>(item : T) -> impl IntoView {
+    view! {
+        <li><a title={item.get_description()} href={item.get_href()}>{ item.get_name()}</a></li>
+    }
+}
+
+#[component]
 pub fn GenericList<T: HasId + HasName>(items: Vec<T>) -> impl IntoView {
     view! {
         <h3>{ T::get_class()}s</h3>
@@ -23,6 +30,31 @@ pub fn GenericList<T: HasId + HasName>(items: Vec<T>) -> impl IntoView {
                 }).collect_view()
             }
         </ul>
+    }
+}
+
+#[component]
+pub fn DescriptionList<T: HasName + HasDescription>(items : Vec<T>) ->impl IntoView {
+    view! {
+        <h3>{ T::get_class()}s</h3>
+        <ul>
+            {
+                items.into_iter()
+                .map(|c| {
+                    DescriptionItem(DescriptionItemProps{ item: c})
+                }).collect_view()
+            }
+        </ul>
+    }    
+}
+
+#[component]
+pub fn ListWithDescription<T : HasName + HasDescription>(items : Vec<T>) -> impl IntoView {
+    let add_href = format!("{}/add", T::get_class_href());
+    let add_title = format!("Add {}", T::get_class());
+    view! {
+        <DescriptionList items = items />
+        <a href=add_href>{ add_title} </a>
     }
 }
 
