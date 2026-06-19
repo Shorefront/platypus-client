@@ -36,8 +36,8 @@ COPY --from=builder /usr/src/app/target/release/platypus-client /app/platypus-cl
 ENV RUST_LOG=info
 ENV LEPTOS_SITE_ADDR="0.0.0.0:8080"
 ENV LEPTOS_SITE_ROOT="site"
-ENV PORT=3000
+ENV PORT=8080
 
-EXPOSE 3000
+EXPOSE 8080
 
 CMD ["/app/platypus-client"]
