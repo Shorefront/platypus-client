@@ -3,6 +3,10 @@ use leptos::prelude::*;
 use leptos_router::components::{Route, Router, Routes};
 use leptos_router::path;
 
+use actix_web::middleware::Logger;
+use actix_web::middleware::Compress;
+use actix_web::{web, App, HttpResponse, HttpServer,Responder};
+
 mod model;
 
 // Routes
@@ -80,7 +84,20 @@ fn Platypus() -> impl IntoView {
     }
 }
 
-fn main() {
+async fn leptos_main() -> impl Responder {
     _ = console_log::init_with_level(log::Level::Debug);
-    mount_to_body(Platypus)
+    mount_to_body(Platypus);
+    HttpResponse::Ok().body("Hello from the server!")
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()>{
+    HttpServer::new(move || {
+        App::new()
+            .wrap(Logger::default())
+            .wrap(Compress::default())
+            .service(web::resource("/api/{tail:.*}").route(web::post().to(leptos_main)))
+    })
+    .run()
+    .await
 }
