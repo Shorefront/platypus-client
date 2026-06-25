@@ -4,7 +4,7 @@ use std::path::PathBuf;
 
 // Fallback handler to serve index.html for client-side routing
 async fn index() -> Result<NamedFile> {
-    Ok(NamedFile::open(PathBuf::from("./client/dist/index.html"))?)
+    Ok(NamedFile::open(PathBuf::from("../client/dist/index.html"))?)
 }
 
 #[actix_web::main]
@@ -20,7 +20,7 @@ async fn main() -> std::io::Result<()> {
             })))
             
             // 2. Serve the static assets compiled by Trunk
-            .service(Files::new("/", "./client/dist").index_file("index.html"))
+            .service(Files::new("/", "../client/dist"))
             
             // 3. Fallback to index.html for any unmatched routes (handles browser refreshes)
             .default_service(web::to(index))
