@@ -84,20 +84,7 @@ fn Platypus() -> impl IntoView {
     }
 }
 
-async fn leptos_main() -> impl Responder {
+fn main()  {
     _ = console_log::init_with_level(log::Level::Debug);
     mount_to_body(Platypus);
-    HttpResponse::Ok().body("Hello from the server!")
-}
-
-#[actix_web::main]
-async fn main() -> std::io::Result<()>{
-    HttpServer::new(move || {
-        App::new()
-            .wrap(Logger::default())
-            .wrap(Compress::default())
-            .service(web::resource("/api/{tail:.*}").route(web::post().to(leptos_main)))
-    })
-    .run()
-    .await
 }
