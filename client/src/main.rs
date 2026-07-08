@@ -3,10 +3,6 @@ use leptos::prelude::*;
 use leptos_router::components::{Route, Router, Routes};
 use leptos_router::path;
 
-use actix_web::middleware::Logger;
-use actix_web::middleware::Compress;
-use actix_web::{web, App, HttpResponse, HttpServer,Responder};
-
 mod model;
 
 // Routes
