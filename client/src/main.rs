@@ -80,7 +80,7 @@ fn Platypus() -> impl IntoView {
     }
 }
 
-fn main() {
+fn main()  {
     _ = console_log::init_with_level(log::Level::Debug);
-    mount_to_body(Platypus)
+    mount_to_body(Platypus);
 }
