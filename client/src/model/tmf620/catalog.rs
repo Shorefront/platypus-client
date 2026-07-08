@@ -15,8 +15,6 @@ use tmf_leptos::traits::has_validity::HasValidity;
 use tmf_leptos::common::related_party::RelatedPartyList;
 use tmf_leptos::traits::has_description::HasDescription;
 
-const DEFAULT_HOST: &str = "http://localhost:8001";
-
 fn get_catalogs() -> Vec<Catalog> {
     let cat1 = Catalog::new("Mobile")
         .description("Mobile plans / offers");
